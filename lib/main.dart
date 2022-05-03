@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sei_services/src/app_initial_widget.dart';
 import 'package:sei_services/src/app_module.dart';
 
-void main(){
+void main() {
   return runApp(ModularApp(module: AppModule(), child: AppInitialWidget()));
 }
 
