@@ -10,13 +10,25 @@ abstract class _LoginController with Store {
   @observable
   String? password = "";
 
+  @observable
+  bool passwordVisible = false;
+
+  @observable
+  bool loading = false;
+
+  @observable
+  bool _loggedIn = false;
+
+  @action
+  togglePasswordVisibility() => passwordVisible = !passwordVisible;
+
   @action
   void setEmail(String? email) {
-    email = email!;
+    this.email = email!;
   }
 
   @action
   void setPassword(String? password) {
-    password = password!;
+    this.password = password!;
   }
 }

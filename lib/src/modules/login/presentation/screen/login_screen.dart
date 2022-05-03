@@ -26,51 +26,54 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.only(left: 20, right: 30),
             child: Column(
               children: [
-                Observer(
-                    builder: (_) => FormBuilderTextField(
-                      name: 'Email',
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.email_outlined),
-                      ),
-                      onChanged: _loginController.setEmail,
-                      // valueTransformer: (text) => num.tryParse(text),
-                      // validator: FormBuilderValidators.compose([
-                      //   FormBuilderValidators.required(context),
-                      //   FormBuilderValidators.numeric(context),
-                      //   FormBuilderValidators.max(context, 70),
-                      // ]),
-                      keyboardType: TextInputType.emailAddress,
-                    ),
+                FormBuilderTextField(
+                  name: 'Email',
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.email_outlined),
+                  ),
+                  onChanged: _loginController.setEmail,
+                  // valueTransformer: (text) => num.tryParse(text),
+                  autovalidateMode: AutovalidateMode.always,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(errorText: 'This field is required'),
+                    FormBuilderValidators.email(errorText: 'This fiel must be a valid email')
+                  ]),
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                // Observer(
-                //   builder: (_) => FormBuilderTextField(
-                //     name: 'Senha',
-                //     decoration: InputDecoration(
-                //       labelText: 'Senha',
-                //       border: const OutlineInputBorder(),
-                //       prefixIcon: const Icon(Icons.password),
-                //       suffixIcon: PasswordIconButton(
-                //         icon1: const Icon(Icons.remove_red_eye),
-                //         icon2: const Icon(Icons.email_outlined),
-                //         function: _loginController.togglePasswordVisibility,
-                //       ),
-                //     ),
-                //     onChanged: _loginController.setPassword,
-                //     // valueTransformer: (text) => num.tryParse(text),
-                //     // validator: FormBuilderValidators.compose([
-                //     //   FormBuilderValidators.required(context),
-                //     //   FormBuilderValidators.numeric(context),
-                //     //   FormBuilderValidators.max(context, 70),
-                //     // ]),
-                //     keyboardType: TextInputType.text,
-                //     obscureText: true,
-                //   ),
-                // ),
+                Observer(
+                  builder: (_) => FormBuilderTextField(
+                    name: 'Senha',
+                    decoration: InputDecoration(
+                      labelText: 'Senha',
+                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.password),
+                      suffixIcon: PasswordIconButton(
+                        icon1: const Icon(Icons.remove_red_eye),
+                        icon2: const Icon(Icons.remove_red_eye_outlined),
+                        function: _loginController.togglePasswordVisibility,
+                        onTapIcon: _loginController.passwordVisible,
+                      ),
+                    ),
+                    onChanged: _loginController.setPassword,
+                    // valueTransformer: (text) => num.tryParse(text),
+                    autovalidateMode: AutovalidateMode.always,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(errorText: 'This field is required'),
+                      FormBuilderValidators.numeric(errorText: 'The age is a numeric value'),
+                      FormBuilderValidators.minLength(8, errorText: 'The password must have min length 8')
+                    ]),
+                    keyboardType: TextInputType.text,
+                    obscureText: true,
+                  ),
+                ),
+                Observer(
+                    builder: (_) => Text('Nome: ' + _loginController.email.toString())
+                ),
               ],
             ),
           )

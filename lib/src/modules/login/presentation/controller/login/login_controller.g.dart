@@ -41,8 +41,67 @@ mixin _$LoginController on _LoginController, Store {
     });
   }
 
+  late final _$passwordVisibleAtom =
+      Atom(name: '_LoginController.passwordVisible', context: context);
+
+  @override
+  bool get passwordVisible {
+    _$passwordVisibleAtom.reportRead();
+    return super.passwordVisible;
+  }
+
+  @override
+  set passwordVisible(bool value) {
+    _$passwordVisibleAtom.reportWrite(value, super.passwordVisible, () {
+      super.passwordVisible = value;
+    });
+  }
+
+  late final _$loadingAtom =
+      Atom(name: '_LoginController.loading', context: context);
+
+  @override
+  bool get loading {
+    _$loadingAtom.reportRead();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.reportWrite(value, super.loading, () {
+      super.loading = value;
+    });
+  }
+
+  late final _$_loggedInAtom =
+      Atom(name: '_LoginController._loggedIn', context: context);
+
+  @override
+  bool get _loggedIn {
+    _$_loggedInAtom.reportRead();
+    return super._loggedIn;
+  }
+
+  @override
+  set _loggedIn(bool value) {
+    _$_loggedInAtom.reportWrite(value, super._loggedIn, () {
+      super._loggedIn = value;
+    });
+  }
+
   late final _$_LoginControllerActionController =
       ActionController(name: '_LoginController', context: context);
+
+  @override
+  dynamic togglePasswordVisibility() {
+    final _$actionInfo = _$_LoginControllerActionController.startAction(
+        name: '_LoginController.togglePasswordVisibility');
+    try {
+      return super.togglePasswordVisibility();
+    } finally {
+      _$_LoginControllerActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void setEmail(String? email) {
@@ -70,7 +129,9 @@ mixin _$LoginController on _LoginController, Store {
   String toString() {
     return '''
 email: ${email},
-password: ${password}
+password: ${password},
+passwordVisible: ${passwordVisible},
+loading: ${loading}
     ''';
   }
 }

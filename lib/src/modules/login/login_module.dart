@@ -6,7 +6,7 @@ class LoginModule extends Module {
   @override
   // TODO: implement binds
   List<Bind<Object>> get binds => [
-    Bind.singleton((i) => LoginController())
+    Bind.lazySingleton((i) => LoginController())
   ];
 
   @override
