@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:localization/localization.dart';
 import '../controller/login/login_controller.dart';
 import '../widgets/password_icon_button_widget.dart';
 
@@ -59,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     builder: (_) => FormBuilderTextField(
                       name: 'Senha',
                       decoration: InputDecoration(
-                        labelText: 'Senha',
+                        labelText: 'password'.i18n(),
                         border: const OutlineInputBorder(),
                         prefixIcon: const Icon(Icons.password),
                         suffixIcon: PasswordIconButton(
@@ -82,8 +84,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     name: 'Login password',
                   ),
-                  const SizedBox(
-                    height: 10,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                          onPressed: (){
+                            Modular.to.pushNamed('/forgot_password');
+                          },
+                          child: Text('forgotPassword'.i18n())
+                      )
+                    ],
                   ),
                   ElevatedButton(
                       onPressed: () {
@@ -91,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Modular.to.navigate('/private');
                         }
                       },
-                      child: const Text('Login')
+                      child: Text('login'.i18n())
                   )
                 ],
               ),
