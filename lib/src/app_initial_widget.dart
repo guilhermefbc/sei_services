@@ -8,6 +8,7 @@ class AppInitialWidget extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.blue),
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
+
     ); //added by extension
   }
 }
