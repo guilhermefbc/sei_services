@@ -29,6 +29,21 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        color: const Color(0xFFB9FAFA),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Não tem conta? '),
+            TextButton(
+                onPressed: (){
+                  Modular.to.pushNamed('/register');
+                },
+                child: const Text('Registre-se', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+              ),
+          ],
+        ),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
