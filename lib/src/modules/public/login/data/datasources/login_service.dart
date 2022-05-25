@@ -13,10 +13,10 @@ class LoginService {
       if(response.statusCode == 200){
         return json.decode(response.body);
       }else{
-        throw const HttpException('Login Inválido!');
+        throw const HttpException('Invalid login');
       }
     }catch(e) {
-      throw const HttpException('Login Inválido!');
+      throw const HttpException('Invalid login');
     }
   }
 }
