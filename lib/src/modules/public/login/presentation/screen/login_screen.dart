@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:localization/localization.dart';
 import '../controller/login/login_controller.dart';
@@ -28,49 +29,54 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //Set the fit size (fill in the screen size of the device in the design)
+    //If the design is based on the size of the 360*690(dp)
+    ScreenUtil.init(context, designSize: const Size(390, 780));
+
     return Scaffold(
+      appBar: AppBar(),
       bottomNavigationBar: BottomAppBar(
         color: const Color(0xFFB9FAFA),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Não tem conta? '),
+            Text('dontHaveAnAccount'.i18n()),
             TextButton(
                 onPressed: (){
                   Modular.to.pushNamed('/register');
                 },
-                child: const Text('Registre-se', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+                child: Text('register'.i18n(), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
               ),
           ],
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: ListView(
         children: [
+          SizedBox(
+            height: 160.h,
+          ),
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 30),
+            padding: EdgeInsets.only(left: 20.r, right: 30.r),
             child: Form(
               key: _formKey,
               child: Column(
                 children: [
                   FormBuilderTextField(
                     name: 'Email',
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.email_outlined),
+                    decoration: InputDecoration(
+                      labelText: 'email'.i18n(),
+                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.email_outlined),
                     ),
                     onChanged: _loginController.setEmail,
-                    // valueTransformer: (text) => num.tryParse(text),
-                    // autovalidateMode: AutovalidateMode.always,
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(errorText: 'This field is required'),
-                      FormBuilderValidators.email(errorText: 'This fiel must be a valid email')
+                      FormBuilderValidators.required(errorText: 'thisFieldIsRequired'.i18n()),
+                      FormBuilderValidators.email(errorText: 'thisFieldMustBeAValidEmail'.i18n())
                     ]),
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: 10.r,
                   ),
                   Observer(
                     builder: (_) => FormBuilderTextField(
@@ -90,9 +96,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       // valueTransformer: (text) => num.tryParse(text),
                       // autovalidateMode: AutovalidateMode.always,
                       validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(errorText: 'This field is required'),
-                        FormBuilderValidators.numeric(errorText: 'The age is a numeric value'),
-                        FormBuilderValidators.minLength(8, errorText: 'The password must have min length 8'),
+                        FormBuilderValidators.required(errorText: 'thisFieldIsRequired'.i18n()),
+                        FormBuilderValidators.minLength(8, errorText: 'thePasswordMustHaveMinLength'.i18n()),
                       ]),
                       keyboardType: TextInputType.text,
                       obscureText: _loginController.passwordVisible,
@@ -123,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           )
         ],
-      ),
+      )
     );
   }
 }

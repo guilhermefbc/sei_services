@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:localization/localization.dart';
+import 'package:sei_services/src/modules/public/register/presentation/controllers/register/register_controller.dart';
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_decorated_box_widget.dart';
 
 class NameFormWidget extends StatefulWidget {
@@ -15,6 +19,8 @@ class NameFormWidget extends StatefulWidget {
 }
 
 class _NameFormWidgetState extends State<NameFormWidget> {
+  final RegisterController _registerController = Modular.get<RegisterController>();
+
   @override
   Widget build(BuildContext context) {
     return RegisterDecoratedBoxWidget(
@@ -23,31 +29,33 @@ class _NameFormWidgetState extends State<NameFormWidget> {
         child: Column(
           children: [
             FormBuilderTextField(
+              initialValue: _registerController.firstName,
               name: 'First name',
-              decoration: const InputDecoration(
-                labelText: 'First Name',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.email_outlined),
+              decoration: InputDecoration(
+                labelText: 'firstName'.i18n(),
+                border: const OutlineInputBorder(),
+                prefixIcon: const Icon(Icons.edit),
               ),
-              // onChanged: _loginController.setEmail,
+              onChanged: _registerController.setFirstName,
               validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(errorText: 'This field is required'),
+                FormBuilderValidators.required(errorText: 'thisFieldIsRequired'.i18n()),
               ]),
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.name,
             ),
-            const SizedBox(height: 20,),
+            SizedBox(height: 20.h,),
             FormBuilderTextField(
+              initialValue: _registerController.lastName,
               name: 'Last name',
-              decoration: const InputDecoration(
-                labelText: 'Last Name',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.email_outlined),
+              decoration: InputDecoration(
+                labelText: 'lastName'.i18n(),
+                border: const OutlineInputBorder(),
+                prefixIcon: const Icon(Icons.edit),
               ),
-              // onChanged: _loginController.setEmail,
+              onChanged: _registerController.setLastName,
               validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(errorText: 'This field is required'),
+                FormBuilderValidators.required(errorText: 'thisFieldIsRequired'.i18n()),
               ]),
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.name,
             ),
           ],
         ),

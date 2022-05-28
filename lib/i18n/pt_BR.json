@@ -1,7 +1,14 @@
 {
   "email": "Email",
   "password": "Senha",
+  "confirmPassword": "Confirme a senha",
   "forgotPassword": "Esqueceu a senha?",
   "login": "Login",
-  "send": "Enviar"
+  "send": "Enviar",
+  "dontHaveAnAccount": "Não tem uma conta?",
+  "register": "Registre-se",
+  "firstName": "Nome",
+  "thisFieldIsRequired": "Este campo é necessário",
+  "thisFieldMustBeAValidEmail": "Este email não é válido",
+  "thePasswordMustHaveMinLength": "A senha deve ter um tamanho mínimo de 8"
 }

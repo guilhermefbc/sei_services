@@ -1,7 +1,15 @@
 {
   "email": "Email",
   "password": "Password",
+  "confirmPassword": "Confirm Password",
   "forgotPassword": "Forgot password?",
   "login": "Login",
-  "send": "Send"
+  "send": "Send",
+  "dontHaveAnAccount": "Don't have an account?",
+  "register": "Register",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "thisFieldIsRequired": "This field is required",
+  "thisFieldMustBeAValidEmail": "This fiel must be a valid email",
+  "thePasswordMustHaveMinLength": "The password must have min length 8"
 }

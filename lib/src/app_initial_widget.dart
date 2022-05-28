@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:localization/localization.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -8,6 +9,9 @@ class AppInitialWidget extends StatelessWidget {
     // set json file directory
     // default value is ['lib/i18n']
     LocalJsonLocalization.delegate.directories = ['lib/i18n'];
+
+    // Load screen util
+    // ScreenUtil.init(context);
 
     return MaterialApp.router(
       title: 'My Smart App',
