@@ -29,6 +29,7 @@ class _EmailFormWidgetState extends State<EmailFormWidget> {
           children: [
             FormBuilderTextField(
               key: const ValueKey('RegisterEmail'),
+              autofocus: true,
               initialValue: _registerController.email,
               name: 'RegisterEmail',
               decoration: InputDecoration(

@@ -9,7 +9,10 @@
   "register": "Register",
   "firstName": "First Name",
   "lastName": "Last Name",
+  "next": "Next",
+  "prev": "Prev",
   "thisFieldIsRequired": "This field is required",
   "thisFieldMustBeAValidEmail": "This fiel must be a valid email",
-  "thePasswordMustHaveMinLength": "The password must have min length 8"
+  "thePasswordMustHaveMinLength": "The password must have min length 8",
+  "informedPasswordsDoNotMatch": "Informed passwords do not match"
 }

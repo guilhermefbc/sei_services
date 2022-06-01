@@ -7,6 +7,7 @@ import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/public/login/presentation/widgets/password_icon_button_widget.dart';
 import 'package:sei_services/src/modules/public/register/presentation/controllers/register/register_controller.dart';
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_decorated_box_widget.dart';
+import 'package:sei_services/src/shared/validators/custom_form_builder_validarors.dart';
 
 class PasswordFormWidget extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -21,6 +22,20 @@ class PasswordFormWidget extends StatefulWidget {
 
 class _PasswordFormWidgetState extends State<PasswordFormWidget> {
   final RegisterController _registerController = Modular.get<RegisterController>();
+  late FocusNode passwordFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    passwordFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed.
+    passwordFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +47,8 @@ class _PasswordFormWidgetState extends State<PasswordFormWidget> {
             Observer(
               builder: (_) => FormBuilderTextField(
                 key: const ValueKey('Register Password'),
+                autofocus: true,
+                onSubmitted: (_) => passwordFocusNode.requestFocus(),
                 name: 'Password',
                 decoration: InputDecoration(
                   labelText: 'password'.i18n(),
@@ -48,6 +65,11 @@ class _PasswordFormWidgetState extends State<PasswordFormWidget> {
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(errorText: 'thisFieldIsRequired'.i18n()),
                   FormBuilderValidators.minLength(8, errorText: 'thePasswordMustHaveMinLength'.i18n()),
+                  CustomFormBuilderValidators.equalPasswords(
+                      _registerController.password,
+                      _registerController.confirmPassword,
+                      errorText: 'informedPasswordsDoNotMatch'.i18n()
+                  )
                 ]),
                 keyboardType: TextInputType.text,
                 obscureText: _registerController.passwordVisible,
@@ -58,6 +80,7 @@ class _PasswordFormWidgetState extends State<PasswordFormWidget> {
             Observer(
               builder: (_) => FormBuilderTextField(
                 key: const ValueKey('Register Confirm Password'),
+                focusNode: passwordFocusNode,
                 name: 'Confirm Password',
                 decoration: InputDecoration(
                   labelText: 'confirmPassword'.i18n(),
@@ -74,6 +97,11 @@ class _PasswordFormWidgetState extends State<PasswordFormWidget> {
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(errorText: 'thisFieldIsRequired'.i18n()),
                   FormBuilderValidators.minLength(8, errorText: 'thePasswordMustHaveMinLength'.i18n()),
+                  CustomFormBuilderValidators.equalPasswords(
+                      _registerController.password,
+                      _registerController.confirmPassword,
+                      errorText: 'informedPasswordsDoNotMatch'.i18n()
+                  )
                 ]),
                 keyboardType: TextInputType.text,
                 obscureText: _registerController.passwordVisible,

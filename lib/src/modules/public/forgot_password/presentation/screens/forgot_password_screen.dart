@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/public/login/presentation/controller/login/login_controller.dart';
+import 'package:sei_services/src/shared/presentation/widgets/button/simple_button.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
@@ -46,22 +47,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     keyboardType: TextInputType.emailAddress,
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(onPressed: (){}, child: Text('forgotPassword'.i18n()))
-                    ],
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        if(_formKey.currentState!.validate()) {
-                          // Modular.to.navigate('/private');
-                          print("Email de recuperação enviado!");
-                        }
-                      },
-                      child: Text('send'.i18n())
+                  SimpleButton(
+                    onPressed: () {
+                      if(_formKey.currentState!.validate()) {
+                        // Modular.to.navigate('/private');
+                        print("Email de recuperação enviado!");
+                      }
+                    },
+                    title: 'send'.i18n(),
+                    width: 100,
                   )
                 ],
               ),

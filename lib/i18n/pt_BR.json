@@ -8,7 +8,11 @@
   "dontHaveAnAccount": "Não tem uma conta?",
   "register": "Registre-se",
   "firstName": "Nome",
+  "lastName": "Last Name",
+  "next": "Próximo",
+  "prev": "Anterior",
   "thisFieldIsRequired": "Este campo é necessário",
   "thisFieldMustBeAValidEmail": "Este email não é válido",
-  "thePasswordMustHaveMinLength": "A senha deve ter um tamanho mínimo de 8"
+  "thePasswordMustHaveMinLength": "A senha deve ter um tamanho mínimo de 8",
+  "informedPasswordsDoNotMatch": "As senhas informadas não são iguais"
 }

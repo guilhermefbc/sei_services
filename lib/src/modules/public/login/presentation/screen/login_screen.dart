@@ -6,6 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:localization/localization.dart';
+import 'package:sei_services/src/shared/presentation/widgets/button/simple_button.dart';
 import '../controller/login/login_controller.dart';
 import '../widgets/password_icon_button_widget.dart';
 
@@ -115,13 +116,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       )
                     ],
                   ),
-                  ElevatedButton(
+                  SimpleButton(
                       onPressed: () {
                         if(_formKey.currentState!.validate()) {
                           Modular.to.navigate('/private');
                         }
                       },
-                      child: Text('login'.i18n())
+                      title: 'login'.i18n(),
+                      width: 100,
                   )
                 ],
               ),

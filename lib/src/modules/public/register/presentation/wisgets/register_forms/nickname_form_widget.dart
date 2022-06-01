@@ -33,7 +33,6 @@ class _NicknameFormWidgetState extends State<NicknameFormWidget> {
               // onChanged: _loginController.setEmail,
               validator: FormBuilderValidators.compose([
                 FormBuilderValidators.required(errorText: 'This field is required'),
-                FormBuilderValidators.email(errorText: 'This fiel must be a valid email')
               ]),
               keyboardType: TextInputType.emailAddress,
             ),

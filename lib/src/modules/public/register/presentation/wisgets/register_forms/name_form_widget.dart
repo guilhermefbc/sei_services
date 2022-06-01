@@ -20,6 +20,20 @@ class NameFormWidget extends StatefulWidget {
 
 class _NameFormWidgetState extends State<NameFormWidget> {
   final RegisterController _registerController = Modular.get<RegisterController>();
+  late FocusNode nameFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    nameFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the focus node when the Form is disposed.
+    nameFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +44,8 @@ class _NameFormWidgetState extends State<NameFormWidget> {
           children: [
             FormBuilderTextField(
               key: const ValueKey('Register First Name'),
+              autofocus: true,
+              onSubmitted: (_) => nameFocusNode.requestFocus(),
               initialValue: _registerController.firstName,
               name: 'First name',
               decoration: InputDecoration(
@@ -46,6 +62,7 @@ class _NameFormWidgetState extends State<NameFormWidget> {
             SizedBox(height: 20.h,),
             FormBuilderTextField(
               key: const ValueKey('Register Last Name'),
+              focusNode: nameFocusNode,
               initialValue: _registerController.lastName,
               name: 'Last name',
               decoration: InputDecoration(

@@ -3,11 +3,13 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:im_stepper/stepper.dart';
+import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/public/register/presentation/controllers/register/register_controller.dart';
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_forms/email_form_widget.dart';
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_forms/name_form_widget.dart';
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_forms/nickname_form_widget.dart';
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_forms/password_form_widget.dart';
+import 'package:sei_services/src/shared/presentation/widgets/button/simple_button.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -56,15 +58,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     _registerController.activeStep = index;
                   },
                 ),
-                SizedBox(height: 100.h,),
+                SizedBox(height: 140.h,),
                 <Widget>[
                   NameFormWidget(formKey: _formKey),
                   EmailFormWidget(formKey: _formKey),
                   PasswordFormWidget(formKey: _formKey),
                   NicknameFormWidget(formKey: _formKey),
-
                 ][_registerController.activeStep],
-                SizedBox(height: 100.h,),
+                if([1,3].contains(_registerController.activeStep))
+                  SizedBox(height: 90.h,),
+                SizedBox(height: 160.h,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -80,28 +83,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Widget _nextButton() {
-    return ElevatedButton(
+    return SimpleButton(
       onPressed: () {
         if(_formKey.currentState!.validate()) {
           // Increment activeStep, when the next button is tapped. However, check for upper bound.
           if (_registerController.activeStep <= _registerController.upperBound) {
-              _registerController.activeStep++;
+            _registerController.activeStep++;
           }
         }
       },
-      child: Text('Next'),
+      title: 'next'.i18n(),
+      width: 120,
     );
   }
 
   Widget _previousButton() {
-    return ElevatedButton(
+    return SimpleButton(
       onPressed: () {
         // Decrement activeStep, when the previous button is tapped. However, check for lower bound i.e., must be greater than 0.
         if (_registerController.activeStep > 0) {
           _registerController.activeStep--;
         }
       },
-      child: Text('Prev'),
+      title: 'prev'.i18n(),
+      width: 120,
     );
   }
 }
