@@ -7,7 +7,7 @@ import 'package:sei_services/src/modules/public/register/presentation/controller
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_decorated_box_widget.dart';
 
 class EmailFormWidget extends StatefulWidget {
-  final GlobalKey formKey;
+  final GlobalKey<FormState> formKey;
   const EmailFormWidget({
     Key? key,
     required this.formKey
@@ -28,6 +28,7 @@ class _EmailFormWidgetState extends State<EmailFormWidget> {
         child: Column(
           children: [
             FormBuilderTextField(
+              key: const ValueKey('RegisterEmail'),
               initialValue: _registerController.email,
               name: 'RegisterEmail',
               decoration: InputDecoration(

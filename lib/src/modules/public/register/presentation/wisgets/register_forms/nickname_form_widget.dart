@@ -4,7 +4,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_decorated_box_widget.dart';
 
 class NicknameFormWidget extends StatefulWidget {
-  final GlobalKey formKey;
+  final GlobalKey<FormState> formKey;
   const NicknameFormWidget({
     Key? key,
     required this.formKey
@@ -23,6 +23,7 @@ class _NicknameFormWidgetState extends State<NicknameFormWidget> {
         child: Column(
           children: [
             FormBuilderTextField(
+              key: const ValueKey('Register Nickname'),
               name: 'Nickname',
               decoration: const InputDecoration(
                 labelText: 'Nickname',

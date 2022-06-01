@@ -8,7 +8,7 @@ import 'package:sei_services/src/modules/public/register/presentation/controller
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_decorated_box_widget.dart';
 
 class NameFormWidget extends StatefulWidget {
-  final GlobalKey formKey;
+  final GlobalKey<FormState> formKey;
   const NameFormWidget({
     Key? key,
     required this.formKey
@@ -29,6 +29,7 @@ class _NameFormWidgetState extends State<NameFormWidget> {
         child: Column(
           children: [
             FormBuilderTextField(
+              key: const ValueKey('Register First Name'),
               initialValue: _registerController.firstName,
               name: 'First name',
               decoration: InputDecoration(
@@ -44,6 +45,7 @@ class _NameFormWidgetState extends State<NameFormWidget> {
             ),
             SizedBox(height: 20.h,),
             FormBuilderTextField(
+              key: const ValueKey('Register Last Name'),
               initialValue: _registerController.lastName,
               name: 'Last name',
               decoration: InputDecoration(

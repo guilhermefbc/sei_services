@@ -9,7 +9,7 @@ import 'package:sei_services/src/modules/public/register/presentation/controller
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_decorated_box_widget.dart';
 
 class PasswordFormWidget extends StatefulWidget {
-  final GlobalKey formKey;
+  final GlobalKey<FormState> formKey;
   const PasswordFormWidget({
     Key? key,
     required this.formKey
@@ -31,6 +31,7 @@ class _PasswordFormWidgetState extends State<PasswordFormWidget> {
           children: [
             Observer(
               builder: (_) => FormBuilderTextField(
+                key: const ValueKey('Register Password'),
                 name: 'Password',
                 decoration: InputDecoration(
                   labelText: 'password'.i18n(),
@@ -56,6 +57,7 @@ class _PasswordFormWidgetState extends State<PasswordFormWidget> {
             const SizedBox(height: 20,),
             Observer(
               builder: (_) => FormBuilderTextField(
+                key: const ValueKey('Register Confirm Password'),
                 name: 'Confirm Password',
                 decoration: InputDecoration(
                   labelText: 'confirmPassword'.i18n(),

@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:sei_services/src/modules/public/register/presentation/controllers/register/register_controller.dart';
-import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_decorated_box_widget.dart';
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_forms/email_form_widget.dart';
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_forms/name_form_widget.dart';
 import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_forms/nickname_form_widget.dart';
