@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:sei_services/src/core/constants/url_const.dart';
+import 'package:sei_services/src/core/domain/constants/url_const.dart';
 
 class LoginService {
   Future<Map> login(String email, String password) async {
