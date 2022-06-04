@@ -1,4 +1,3 @@
-import 'package:sei_services/src/core/data/user_model.dart';
 import 'package:sei_services/src/core/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/util/from_api_util/from_api_type_util.dart';
 
