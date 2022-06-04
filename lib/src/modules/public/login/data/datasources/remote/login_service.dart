@@ -6,8 +6,10 @@ import 'package:sei_services/src/core/domain/constants/url_const.dart';
 class LoginService {
   Future<Map> login(String email, String password) async {
     try{
+      Uri uri = Uri.parse("https://dev.api.sei-imposto.com/taxes/users/makeLogin");
+
       final response = await http.post(
-          Uri(path: URLConst.URL + 'users/makeLogin'),
+          uri,
           body: {'email': email, 'password': password}
       );
       if(response.statusCode == 200){

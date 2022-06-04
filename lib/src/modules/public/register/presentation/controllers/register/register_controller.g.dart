@@ -9,43 +9,35 @@ part of 'register_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$RegisterController on _RegisterController, Store {
-  Computed<String>? _$changeAppBarTitleComputed;
+  late final _$firstnameAtom =
+      Atom(name: '_RegisterController.firstname', context: context);
 
   @override
-  String get changeAppBarTitle => (_$changeAppBarTitleComputed ??=
-          Computed<String>(() => super.changeAppBarTitle,
-              name: '_RegisterController.changeAppBarTitle'))
-      .value;
-
-  late final _$firstNameAtom =
-      Atom(name: '_RegisterController.firstName', context: context);
-
-  @override
-  String? get firstName {
-    _$firstNameAtom.reportRead();
-    return super.firstName;
+  String? get firstname {
+    _$firstnameAtom.reportRead();
+    return super.firstname;
   }
 
   @override
-  set firstName(String? value) {
-    _$firstNameAtom.reportWrite(value, super.firstName, () {
-      super.firstName = value;
+  set firstname(String? value) {
+    _$firstnameAtom.reportWrite(value, super.firstname, () {
+      super.firstname = value;
     });
   }
 
-  late final _$lastNameAtom =
-      Atom(name: '_RegisterController.lastName', context: context);
+  late final _$lastnameAtom =
+      Atom(name: '_RegisterController.lastname', context: context);
 
   @override
-  String? get lastName {
-    _$lastNameAtom.reportRead();
-    return super.lastName;
+  String? get lastname {
+    _$lastnameAtom.reportRead();
+    return super.lastname;
   }
 
   @override
-  set lastName(String? value) {
-    _$lastNameAtom.reportWrite(value, super.lastName, () {
-      super.lastName = value;
+  set lastname(String? value) {
+    _$lastnameAtom.reportWrite(value, super.lastname, () {
+      super.lastname = value;
     });
   }
 
@@ -231,18 +223,28 @@ mixin _$RegisterController on _RegisterController, Store {
   }
 
   @override
+  void setNickname(String? value) {
+    final _$actionInfo = _$_RegisterControllerActionController.startAction(
+        name: '_RegisterController.setNickname');
+    try {
+      return super.setNickname(value);
+    } finally {
+      _$_RegisterControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-firstName: ${firstName},
-lastName: ${lastName},
+firstname: ${firstname},
+lastname: ${lastname},
 email: ${email},
 password: ${password},
 confirmPassword: ${confirmPassword},
 passwordVisible: ${passwordVisible},
 nickname: ${nickname},
 activeStep: ${activeStep},
-upperBound: ${upperBound},
-changeAppBarTitle: ${changeAppBarTitle}
+upperBound: ${upperBound}
     ''';
   }
 }

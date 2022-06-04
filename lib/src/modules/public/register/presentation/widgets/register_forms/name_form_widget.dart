@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/public/register/presentation/controllers/register/register_controller.dart';
-import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_decorated_box_widget.dart';
+import 'package:sei_services/src/modules/public/register/presentation/widgets/register_decorated_box_widget.dart';
 
 class NameFormWidget extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -46,7 +46,7 @@ class _NameFormWidgetState extends State<NameFormWidget> {
               key: const ValueKey('Register First Name'),
               autofocus: true,
               onSubmitted: (_) => nameFocusNode.requestFocus(),
-              initialValue: _registerController.firstName,
+              initialValue: _registerController.firstname,
               name: 'First name',
               decoration: InputDecoration(
                 labelText: 'firstName'.i18n(),
@@ -63,7 +63,7 @@ class _NameFormWidgetState extends State<NameFormWidget> {
             FormBuilderTextField(
               key: const ValueKey('Register Last Name'),
               focusNode: nameFocusNode,
-              initialValue: _registerController.lastName,
+              initialValue: _registerController.lastname,
               name: 'Last name',
               decoration: InputDecoration(
                 labelText: 'lastName'.i18n(),

@@ -44,6 +44,7 @@ dependencies:
   im_stepper: ^1.0.0
   flutter_screenutil: ^5.5.3+2
   sqflite: ^2.0.2+1
+  flutter_secure_storage: ^5.0.2
 
 dev_dependencies:
   flutter_test:

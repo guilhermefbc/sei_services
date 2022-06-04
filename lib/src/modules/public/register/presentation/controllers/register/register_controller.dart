@@ -6,10 +6,10 @@ class RegisterController = _RegisterController with _$RegisterController;
 abstract class _RegisterController with Store {
 
   @observable
-  String? firstName;
+  String? firstname;
 
   @observable
-  String? lastName;
+  String? lastname;
 
   @observable
   String? email;
@@ -29,7 +29,7 @@ abstract class _RegisterController with Store {
 
   // THE FOLLOWING TWO VARIABLES ARE REQUIRED TO CONTROL THE STEPPER.
   @observable
-  int activeStep = 0; // Initial step set to 5.
+  int activeStep = 0; // Initial step set to 0.
 
   @observable
   int upperBound = 3; // upperBound MUST BE total number of icons minus 1.
@@ -38,26 +38,15 @@ abstract class _RegisterController with Store {
   @action
   togglePasswordVisibility() => passwordVisible = !passwordVisible;
 
-  @computed
-  String get changeAppBarTitle {
-    const List<String> titles = [
-      'Name',
-      'Email',
-      'Password',
-      'Nickname',
-      'Congratulations!'
-    ];
-    return titles[activeStep];
-  }
 
   @action
   void setFirstName(String? value) {
-    firstName = value!;
+    firstname = value!;
   }
 
   @action
   void setLastName(String? value) {
-    lastName = value!;
+    lastname = value!;
   }
 
   @action
@@ -73,5 +62,10 @@ abstract class _RegisterController with Store {
   @action
   void setConfirmPassword(String? value) {
     confirmPassword = value!;
+  }
+
+  @action
+  void setNickname(String? value) {
+    nickname = value!;
   }
 }

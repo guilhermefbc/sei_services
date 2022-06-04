@@ -6,7 +6,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/public/login/presentation/widgets/password_icon_button_widget.dart';
 import 'package:sei_services/src/modules/public/register/presentation/controllers/register/register_controller.dart';
-import 'package:sei_services/src/modules/public/register/presentation/wisgets/register_decorated_box_widget.dart';
+import 'package:sei_services/src/modules/public/register/presentation/widgets/register_decorated_box_widget.dart';
 import 'package:sei_services/src/shared/validators/custom_form_builder_validarors.dart';
 
 class PasswordFormWidget extends StatefulWidget {
