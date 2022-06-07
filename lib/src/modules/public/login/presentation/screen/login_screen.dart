@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Text('dontHaveAnAccount'.i18n()),
             TextButton(
                 onPressed: (){
-                  Modular.to.pushNamed('/register');
+                  Modular.to.pushNamed('/login/register');
                 },
                 child: Text('register'.i18n(), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
               ),
@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       TextButton(
                           onPressed: (){
-                            Modular.to.pushNamed('/forgot_password');
+                            Modular.to.pushNamed('/login/forgot_password');
                           },
                           child: Text('forgotPassword'.i18n())
                       )
