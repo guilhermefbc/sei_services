@@ -1,4 +1,4 @@
-import 'package:sei_services/src/core/domain/entities/product_entity.dart';
+import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
 import 'package:sei_services/src/shared/util/from_api_util/from_api_type_util.dart';
 
 class ProductModel extends ProductEntity{

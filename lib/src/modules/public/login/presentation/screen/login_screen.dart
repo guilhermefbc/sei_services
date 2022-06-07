@@ -6,7 +6,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:localization/localization.dart';
-import 'package:sei_services/src/modules/public/login/domain/repositories/login_repository.dart';
+import 'package:sei_services/src/modules/public/login/domain/usecases/login_usecase.dart';
+import 'package:sei_services/src/shared/domain/constants/screen_dimension_constant.dart';
 import 'package:sei_services/src/shared/presentation/widgets/button/simple_button.dart';
 import '../controller/login/login_controller.dart';
 import '../widgets/password_icon_button_widget.dart';
@@ -21,16 +22,15 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final LoginController _loginController = Modular.get<LoginController>();
-  final LoginRepository _loginRepository = Modular.get<LoginRepository>();
+  final LoginUsecase _loginRepository = Modular.get<LoginUsecase>();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design)
-    //If the design is based on the size of the 360*690(dp)
-    const double pixelXLHeight = 683.4285714285714;
-    const double pixelXLWidth = 411.42857142857144;
-    ScreenUtil.init(context, designSize: const Size(pixelXLWidth, pixelXLHeight));
+    ScreenUtil.init(context, designSize: const Size(
+        ScreenDimensionConstant.pixelXLWidth,
+        ScreenDimensionConstant.pixelXLHeight)
+    );
 
     return Scaffold(
       appBar: AppBar(),
@@ -117,15 +117,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   SimpleButton(
                       onPressed: () async {
                         if(_formKey.currentState!.validate()) {
-                          bool result = await _loginRepository.login(
+                          await _loginRepository.login(
                               _loginController.email!,
                               _loginController.password!
                           );
-                          if(result) {
-                            Modular.to.navigate('/private');
-                          }else{
-                            print('Do not work!');
-                          }
                         }
                       },
                       title: 'login'.i18n(),

@@ -1,4 +1,4 @@
-import 'package:sei_services/src/core/domain/entities/user_entity.dart';
+import 'package:sei_services/src/shared/domain/entities/user_entity.dart';
 
 class UserModel extends UserEntity {
 

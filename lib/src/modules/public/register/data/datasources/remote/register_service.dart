@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:sei_services/src/core/domain/constants/url_const.dart';
 
 class RegisterService {
   Future<int> createUser({
