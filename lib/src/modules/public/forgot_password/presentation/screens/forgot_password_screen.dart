@@ -36,6 +36,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 children: [
                   FormBuilderTextField(
                     name: 'Email',
+                    initialValue: _loginController.email,
                     decoration: const InputDecoration(
                       labelText: 'Email',
                       border: OutlineInputBorder(),
@@ -102,7 +103,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         context: context,
         builder: (ctx) => InfoDialog.confirm(
             context: ctx,
-            title: 'registerWithProblems'.i18n(),
+            title: 'forgotPasswordWithProblems'.i18n(),
             description: 'forgotPasswordWithProblemsMessage'.i18n(),
             buttonTitle: 'ok'.i18n(),
             buttonOnPressed: (){}
