@@ -47,6 +47,7 @@ class SuccessDialog extends BaseDialog {
           title,
           style: const TextStyle(
             fontWeight: FontWeight.w600,
+            fontSize: 24
           ),
           textAlign: TextAlign.center,
         ),
@@ -56,6 +57,7 @@ class SuccessDialog extends BaseDialog {
         Text(
           description,
           style: const TextStyle(
+            fontSize: 18
           ),
           textAlign: TextAlign.center,
         ),
@@ -63,6 +65,7 @@ class SuccessDialog extends BaseDialog {
           height: 22,
         ),
         SimpleButton(
+            width: 200,
             title: buttonTitle,
             onPressed: () async {
               await buttonOnPressed();

@@ -10,7 +10,7 @@ class InfoDialog extends BaseDialog {
     key: key,
     child: child,
     icon: Icons.info,
-    backgroundIconColor: Colors.yellowAccent,
+    backgroundIconColor: Colors.yellow,
   );
 
   InfoDialog.confirm({
@@ -30,7 +30,7 @@ class InfoDialog extends BaseDialog {
       buttonOnPressed,
     ),
     icon: Icons.info,
-    backgroundIconColor: Colors.yellowAccent,
+    backgroundIconColor: Colors.yellow,
   );
 
   static Widget defaultInfo(
@@ -47,6 +47,7 @@ class InfoDialog extends BaseDialog {
           title,
           style: const TextStyle(
             fontWeight: FontWeight.w600,
+            fontSize: 24
           ),
           textAlign: TextAlign.center,
         ),
@@ -56,6 +57,7 @@ class InfoDialog extends BaseDialog {
         Text(
           description,
           style: const TextStyle(
+            fontSize: 18
           ),
           textAlign: TextAlign.center,
         ),
