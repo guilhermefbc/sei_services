@@ -12,6 +12,8 @@ import 'package:sei_services/src/modules/public/register/presentation/widgets/re
 import 'package:sei_services/src/modules/public/register/presentation/widgets/register_forms/password_form_widget.dart';
 import 'package:sei_services/src/modules/public/register/presentation/widgets/register_forms/resume_form_widget.dart';
 import 'package:sei_services/src/shared/presentation/widgets/button/simple_button.dart';
+import 'package:sei_services/src/shared/presentation/widgets/dialogs/info_dialog.dart';
+import 'package:sei_services/src/shared/presentation/widgets/dialogs/success_dialog.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -32,10 +34,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     'summary'.i18n()
   ];
 
-  
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (context){
+    return Observer(builder: (context) {
       return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -48,93 +49,161 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 0.85.sh,
                 child: Column(
                   children: [
-                    IconStepper(
-                      enableNextPreviousButtons: false,
-                      enableStepTapping: false,
-                      scrollingDisabled: false,
-                      stepRadius: 25.r,
-                      activeStepBorderColor: Colors.blueAccent,
-                      activeStepColor: Colors.blueAccent,
-                      icons: const [
-                        Icon(Icons.edit),
-                        Icon(Icons.email_outlined),
-                        Icon(Icons.password),
-                        Icon(Icons.person),
-                        Icon(Icons.check_circle),
-                      ],
-
-                      // activeStep property set to activeStep variable defined above.
-                      activeStep: _controller.activeStep,
-
-                      // This ensures step-tapping updates the activeStep.
-                      onStepReached: (index) {
-                        _controller.activeStep = index;
-                      },
-                    ),
+                    _buildIconStepper(),
                     const Spacer(),
-                    <Widget>[
-                      NameFormWidget(formKey: _formKey),
-                      EmailFormWidget(formKey: _formKey),
-                      PasswordFormWidget(formKey: _formKey),
-                      NicknameFormWidget(formKey: _formKey),
-                      const ResumeFormWidget(key: ValueKey('ResumeFormWidgetKey'),)
-                    ][_controller.activeStep],
+                    _buildTextualField(),
                     const Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        _previousButton(),
-                        _nextButton(),
-                      ],
-                    ),
+                    _defineButtonArea(context)
                   ],
                 ),
               ),
-            )
-        ),
+            )),
       );
     });
   }
 
-  Widget _nextButton() {
-    if(_controller.activeStep <= _controller.upperBound) {
-      return SimpleButton(
-        onPressed: () {
-          if(_formKey.currentState!.validate()) {
-            _controller.activeStep++;
-          }
-        },
-        title: 'next'.i18n(),
-        width: 120.w,
-      );
-    }else {
-      return SimpleButton(
-          onPressed: () async{
-            bool result = await _repository.createUser(
-              email: _controller.email!,
-              firstname: _controller.firstname!,
-              lastName: _controller.lastname!,
-              nickname: _controller.nickname!,
-              password: _controller.password!
-            );
-          },
-          title: 'conclude'.i18n(),
-          width: 120.w,
-          color: Colors.green,
+  Widget _buildTextualField() {
+    return <Widget>[
+      NameFormWidget(formKey: _formKey),
+      EmailFormWidget(formKey: _formKey),
+      PasswordFormWidget(formKey: _formKey),
+      NicknameFormWidget(formKey: _formKey),
+      const ResumeFormWidget(
+        key: ValueKey('ResumeFormWidgetKey'),
+      )
+    ][_controller.activeStep];
+  }
+
+  Widget _buildIconStepper() {
+    return IconStepper(
+      enableNextPreviousButtons: false,
+      enableStepTapping: false,
+      scrollingDisabled: false,
+      stepRadius: 25.r,
+      activeStepBorderColor: Colors.blueAccent,
+      activeStepColor: Colors.blueAccent,
+      icons: const [
+        Icon(Icons.edit),
+        Icon(Icons.email_outlined),
+        Icon(Icons.password),
+        Icon(Icons.person),
+        Icon(Icons.check_circle),
+      ],
+
+      // activeStep property set to activeStep variable defined above.
+      activeStep: _controller.activeStep,
+
+      // This ensures step-tapping updates the activeStep.
+      onStepReached: (index) {
+        _controller.activeStep = index;
+      },
+    );
+  }
+
+  Widget _defineButtonArea(BuildContext context) {
+    if(_controller.isLoading) {
+      return const LinearProgressIndicator(minHeight: 2,);
+    }else{
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _previousButton(),
+          _nextButton(context),
+        ],
       );
     }
   }
 
+  Widget _nextButton(BuildContext context) {
+    if (_controller.activeStep <= _controller.upperBound) {
+      return SimpleButton(
+        onPressed: _nextAction(),
+        title: 'next'.i18n(),
+        width: 120.w,
+      );
+    } else {
+      return SimpleButton(
+        onPressed: _concludeAction(context),
+        title: 'conclude'.i18n(),
+        width: 120.w,
+        color: Colors.green,
+      );
+    }
+  }
+
+  _nextAction() {
+    return () {
+      if (_formKey.currentState!.validate()) {
+        _controller.activeStep++;
+      }
+    };
+  }
+
+  _concludeAction(BuildContext context) {
+    return () async {
+      _controller.toggleIsLoading();
+      bool result = await _sendRegistrationData();
+      _controller.toggleIsLoading();
+      if(result) {
+        _successDialog(context);
+      }else{
+        _somethingWentWrongDialog(context);
+      }
+    };
+  }
+
+  Future<bool> _sendRegistrationData() async {
+    return await _repository.createUser(
+        email: _controller.email!,
+        firstname: _controller.firstname!,
+        lastName: _controller.lastname!,
+        nickname: _controller.nickname!,
+        password: _controller.password!);
+  }
+
   Widget _previousButton() {
     return SimpleButton(
-      onPressed: () {
-        // Decrement activeStep, when the previous button is tapped. However, check for lower bound i.e., must be greater than 0.
-        if (_controller.activeStep > 0) {
-          _controller.activeStep--;
-        }
-      },
+      onPressed: _previousAction(),
       title: 'prev'.i18n(),
       width: 120.w,
+    );
+  }
+
+  _previousAction() {
+    return () {
+      if (_controller.activeStep > 0) {
+        _controller.activeStep--;
+      }
+    };
+  }
+
+  _successDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (ctx) => SuccessDialog.confirm(
+            context: ctx,
+            title: 'success'.i18n(),
+            description: 'registerSuccess'.i18n(),
+            buttonTitle: 'goToLogin'.i18n(),
+            buttonOnPressed: () {
+              Modular.to.navigate('/login/');
+            }
+        )
+    );
+  }
+
+  _somethingWentWrongDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (ctx) => InfoDialog.confirm(
+            context: ctx,
+            title: 'registerWithProblems'.i18n(),
+            description: 'registerWithProblemsMessage'.i18n(),
+            buttonTitle: 'ok'.i18n(),
+            buttonOnPressed: (){}
+        )
     );
   }
 }

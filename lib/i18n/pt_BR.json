@@ -1,4 +1,5 @@
 {
+  "ok": "OK",
   "email": "Email",
   "password": "Senha",
   "confirmPassword": "Confirme a senha",
@@ -15,7 +16,12 @@
   "next": "Próximo",
   "prev": "Anterior",
   "conclude": "Concluir",
+  "success": "Sucesso",
   "resumeOfRegister": "Resumo do registro",
+  "registerSuccess": "O cadastro foi concluído, agora você pode fazer o login.",
+  "goToLogin": "Ir para login",
+  "registerWithProblems": "Cadastro com problemas",
+  "registerWithProblemsMessage": "O cadastro não foi finalizado corretamente tente em algun minutos",
   "thisFieldIsRequired": "Este campo é necessário",
   "thisFieldMustBeAValidEmail": "Este email não é válido",
   "thePasswordMustHaveMinLength": "A senha deve ter um tamanho mínimo de 8",

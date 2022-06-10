@@ -1,4 +1,5 @@
 {
+  "ok": "OK",
   "email": "Email",
   "password": "Password",
   "confirmPassword": "Confirm Password",
@@ -15,6 +16,11 @@
   "next": "Next",
   "prev": "Prev",
   "conclude": "Conclude",
+  "success": "Success",
+  "registerSuccess": "The registration has been completed, now you can login.",
+  "goToLogin": "Go to login",
+  "registerWithProblems": "Register with problems",
+  "registerWithProblemsMessage": "The registration was not completed correctly, please try in a few minutes",
   "resumeOfRegister": "Resume of Register",
   "thisFieldIsRequired": "This field is required",
   "thisFieldMustBeAValidEmail": "This fiel must be a valid email",

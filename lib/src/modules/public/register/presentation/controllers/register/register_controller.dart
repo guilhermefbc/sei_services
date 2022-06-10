@@ -34,6 +34,11 @@ abstract class _RegisterController with Store {
   @observable
   int upperBound = 3; // upperBound MUST BE total number of icons minus 1.
 
+  @observable
+  bool isLoading = false;
+
+  @action
+  toggleIsLoading() => isLoading = !isLoading;
 
   @action
   togglePasswordVisibility() => passwordVisible = !passwordVisible;
@@ -68,4 +73,6 @@ abstract class _RegisterController with Store {
   void setNickname(String? value) {
     nickname = value!;
   }
+
+
 }

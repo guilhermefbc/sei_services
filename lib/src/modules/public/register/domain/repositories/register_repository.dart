@@ -20,7 +20,7 @@ class RegisterRepository {
           nickname: nickname
       );
 
-      return result == 200;
+      return result == 200 || result == 201;
     }catch(e) {
       return false;
     }

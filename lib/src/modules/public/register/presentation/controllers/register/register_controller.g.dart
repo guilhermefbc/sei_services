@@ -153,8 +153,35 @@ mixin _$RegisterController on _RegisterController, Store {
     });
   }
 
+  late final _$isLoadingAtom =
+      Atom(name: '_RegisterController.isLoading', context: context);
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
   late final _$_RegisterControllerActionController =
       ActionController(name: '_RegisterController', context: context);
+
+  @override
+  dynamic toggleIsLoading() {
+    final _$actionInfo = _$_RegisterControllerActionController.startAction(
+        name: '_RegisterController.toggleIsLoading');
+    try {
+      return super.toggleIsLoading();
+    } finally {
+      _$_RegisterControllerActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic togglePasswordVisibility() {
@@ -244,7 +271,8 @@ confirmPassword: ${confirmPassword},
 passwordVisible: ${passwordVisible},
 nickname: ${nickname},
 activeStep: ${activeStep},
-upperBound: ${upperBound}
+upperBound: ${upperBound},
+isLoading: ${isLoading}
     ''';
   }
 }

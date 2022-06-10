@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:sei_services/src/shared/presentation/widgets/button/simple_button.dart';
 import 'package:sei_services/src/shared/presentation/widgets/dialogs/base_dialog.dart';
 
-class InfoDialog extends BaseDialog {
-  const InfoDialog({
+class SuccessDialog extends BaseDialog {
+  const SuccessDialog({
     Key? key,
     required Widget child,
   }) : super(
     key: key,
     child: child,
-    icon: Icons.info,
-    backgroundIconColor: Colors.yellowAccent,
+    icon: Icons.check_circle,
+    backgroundIconColor: Colors.green,
   );
 
-  InfoDialog.confirm({
+  SuccessDialog.confirm({
     Key? key,
     required BuildContext context,
     required String title,
@@ -29,8 +29,8 @@ class InfoDialog extends BaseDialog {
       buttonTitle,
       buttonOnPressed,
     ),
-    icon: Icons.info,
-    backgroundIconColor: Colors.yellowAccent,
+    icon: Icons.check_circle,
+    backgroundIconColor: Colors.green,
   );
 
   static Widget defaultInfo(
@@ -66,7 +66,6 @@ class InfoDialog extends BaseDialog {
             title: buttonTitle,
             onPressed: () async {
               await buttonOnPressed();
-              Navigator.of(context).pop();
             },
         )
       ],
