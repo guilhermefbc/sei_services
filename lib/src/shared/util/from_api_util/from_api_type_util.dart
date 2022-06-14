@@ -1,6 +1,12 @@
+import 'package:sei_services/src/shared/data/models/product_model.dart';
+import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
 import 'package:sei_services/src/shared/util/from_api_util/convert_util.dart';
 
 class FromApiTypeUtil {
+  static List<ProductEntity> toProductEntityList(List<Map<String,dynamic>> products) {
+    return products.map((product) => ProductModel.fromMap(product)).toList();
+  }
+
   static double toDouble(Object? value, {double? defaultValue}) {
     return ConvertUtil.convertDoubleToAsFixed(_toDouble(value, defaultValue: defaultValue));  
   }

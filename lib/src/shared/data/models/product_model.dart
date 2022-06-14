@@ -64,4 +64,27 @@ class ProductModel extends ProductEntity{
       isMedicine: FromApiTypeUtil.toBool(map['isMedicine'])
     );
   }
+
+  Map<String,dynamic> toMap() {
+    return<String,dynamic>{
+      "productId": productId,
+      "transactionId": transactionId,
+      "description": description,
+      "eanCode": eanCode,
+      "quantity": quantity,
+      "metric": metric,
+      "price": price,
+      "productCode": productCode,
+      "genre": genre,
+      "cfop": cfop,
+      "discount": discount,
+      "approximateTaxation": approximateTaxation,
+      "productOrigin": productOrigin,
+      "icmsTaxation": icmsTaxation,
+      "isFavorite": isFavorite,
+      "expenseType": expenseType,
+      "isStockable": isStockable,
+      "isMedicine": isMedicine
+    };
+  }
 }

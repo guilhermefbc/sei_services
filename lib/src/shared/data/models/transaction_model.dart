@@ -17,7 +17,8 @@ class TransactionModel extends TransactionEntity {
     required ownerEmail,
     required codigoNotaFiscal,
     required isOwner,
-    required cpf
+    required cpf,
+    products
   }) : super(
     transactionId: transactionId,
     expenseGroupId: expenseGroupId,
@@ -32,7 +33,8 @@ class TransactionModel extends TransactionEntity {
     ownerEmail: ownerEmail,
     codigoNotaFiscal: codigoNotaFiscal,
     isOwner: isOwner,
-    cpf: cpf
+    cpf: cpf,
+    products: products
   );
 
   Map<String, dynamic> toMap() {
@@ -56,20 +58,21 @@ class TransactionModel extends TransactionEntity {
 
   factory TransactionModel.fromMap(Map<String, dynamic> map) {
     return TransactionModel(
-        transactionId: FromApiTypeUtil.toSafeString(map["transactionId"]),
-        expenseGroupId: FromApiTypeUtil.toSafeString(map["expenseGroupId"]),
+        transactionId: FromApiTypeUtil.toSafeString(map["_id"]),
+        expenseGroupId: FromApiTypeUtil.toSafeString(map["groupId"]),
         accountNumber: FromApiTypeUtil.toInt(map["accountNumber"]),
-        transactionType: map["transactionType"],
+        transactionType: map["TransactionType"],
         transactionAmount: FromApiTypeUtil.toDouble(map['transactionAmount']),
         expenseType: FromApiTypeUtil.toSafeString(map['expenseType']),
-        storeName: FromApiTypeUtil.toSafeString(map['storeName']),
+        storeName: FromApiTypeUtil.toSafeString(map['Store']),
         sellDate: FromApiTypeUtil.toSafeString(map['sellDate']),
         totalTaxes: FromApiTypeUtil.toDouble(map['totalTaxes']),
         ownerId: FromApiTypeUtil.toInt(map["ownerId"]),
         ownerEmail: FromApiTypeUtil.toSafeString(map["ownerEmail"]),
         codigoNotaFiscal: FromApiTypeUtil.toSafeString(map["codigoNotaFiscal"]),
         isOwner: FromApiTypeUtil.toBool(map["isOwner"]),
-        cpf: FromApiTypeUtil.toSafeString(map["cpf"])
+        cpf: FromApiTypeUtil.toSafeString(map["cpf"]),
+        products: FromApiTypeUtil.toProductEntityList(map["Products"][0])
     );
   }
 }

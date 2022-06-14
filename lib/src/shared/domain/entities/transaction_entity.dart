@@ -1,3 +1,5 @@
+import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
+
 class TransactionEntity {
   String transactionId;
   String expenseGroupId;
@@ -13,6 +15,7 @@ class TransactionEntity {
   String codigoNotaFiscal;
   bool isOwner;
   String cpf;
+  List<ProductEntity>? products;
 
   TransactionEntity({
       required this.transactionId,
@@ -28,7 +31,8 @@ class TransactionEntity {
       required this.ownerEmail,
       required this.codigoNotaFiscal,
       required this.isOwner,
-      required this.cpf
+      required this.cpf,
+      this.products
   });
 
 }

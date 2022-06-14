@@ -12,7 +12,7 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.green,
+        color: Colors.white70,
       ),
     );
   }
