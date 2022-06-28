@@ -1,6 +1,8 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sei_services/src/shared/domain/constants/screen_dimension_constant.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({ Key? key }) : super(key: key);
@@ -19,6 +21,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: const Size(
+        ScreenDimensionConstant.pixelXLWidth,
+        ScreenDimensionConstant.pixelXLHeight)
+    );
+
     return Scaffold(
       bottomNavigationBar: ConvexAppBar(
         style: TabStyle.fixedCircle,
@@ -32,11 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
         initialActiveIndex: 0,
         onTap: (int index) {
           switch(index) {
-            case 0: Modular.to.navigate('/private/transaction'); break;
+            case 0: Modular.to.navigate('/private/transaction/'); break;
             case 1: break;
-            case 2: break;
+            case 2: Modular.to.navigate('/private/scanner/'); break;
             case 3: break;
-            case 4: Modular.to.navigate('/private/account'); break;
+            case 4: Modular.to.navigate('/private/account/'); break;
           }
         },
       ),

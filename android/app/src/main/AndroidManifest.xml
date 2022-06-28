@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sei.services.sei_services">
+    <uses-permission android:name="android.permission.VIBRATE"/>
    <application
         android:label="sei_services"
         android:name="${applicationName}"
