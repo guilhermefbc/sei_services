@@ -65,7 +65,7 @@ class TransactionModel extends TransactionEntity {
         transactionAmount: FromApiTypeUtil.toDouble(map['transactionAmount']),
         expenseType: FromApiTypeUtil.toSafeString(map['expenseType']),
         storeName: FromApiTypeUtil.toSafeString(map['Store']),
-        sellDate: FromApiTypeUtil.toSafeString(map['sellDate']),
+        sellDate: FromApiTypeUtil.toDateTime(map['sellDate']),
         totalTaxes: FromApiTypeUtil.toDouble(map['totalTaxes']),
         ownerId: FromApiTypeUtil.toInt(map["ownerId"]),
         ownerEmail: FromApiTypeUtil.toSafeString(map["ownerEmail"]),

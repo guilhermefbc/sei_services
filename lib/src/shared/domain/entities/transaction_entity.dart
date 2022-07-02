@@ -1,20 +1,20 @@
 import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
 
 class TransactionEntity {
-  String transactionId;
-  String expenseGroupId;
-  int accountNumber;
-  String transactionType;
-  double transactionAmount;
-  String expenseType;
-  String storeName;
-  String sellDate;
-  double totalTaxes;
-  int ownerId;
-  String ownerEmail;
-  String codigoNotaFiscal;
+  String? transactionId;
+  String? expenseGroupId;
+  int? accountNumber;
+  String? transactionType;
+  double? transactionAmount;
+  String? expenseType;
+  String? storeName;
+  DateTime? sellDate;
+  double? totalTaxes;
+  int? ownerId;
+  String? ownerEmail;
+  String? codigoNotaFiscal;
   bool isOwner;
-  String cpf;
+  String? cpf;
   List<ProductEntity>? products;
 
   TransactionEntity({

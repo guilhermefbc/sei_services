@@ -7,13 +7,13 @@ class FromApiTypeUtil {
     return products.map((product) => ProductModel.fromMap(product)).toList();
   }
 
-  static double toDouble(Object? value, {double? defaultValue}) {
+  static double toDouble(value, {double? defaultValue}) {
     return ConvertUtil.convertDoubleToAsFixed(_toDouble(value, defaultValue: defaultValue));  
   }
   
-  static double _toDouble(Object? value, {double? defaultValue}) {
+  static double _toDouble(value, {double? defaultValue}) {
     if(value == null) {
-      return defaultValue ?? 0.0;
+      return value;
     } else if (value is String) {
       return double.parse(value);
     } else if (value is double) {
@@ -25,12 +25,10 @@ class FromApiTypeUtil {
     }
   }
 
-  /// ATTENTION!
-  /// If value is null will be returned
-  /// the current DateTime
-  static DateTime toDateTime(Object? value, {DateTime? defaultValue}) {
+
+  static DateTime toDateTime(value, {DateTime? defaultValue}) {
     if(value == null){
-      return defaultValue ?? DateTime.now();
+      return value;
     }else if(value is String) {
       return DateTime.parse(value);
     }else if(value is DateTime){
@@ -40,9 +38,9 @@ class FromApiTypeUtil {
     }
   }
 
-  static bool toBool(Object? value, {bool? defaultValue}) {
+  static bool toBool(value, {bool? defaultValue}) {
     if(value == null) {
-      return defaultValue ?? false;
+      return value;
     }else if(value is bool) {
       return value;
     }else if(value is int) {
@@ -54,9 +52,9 @@ class FromApiTypeUtil {
     }
   }
 
-  static String toSafeString(Object? value, {String? defaultValue}) {
+  static String toSafeString(value, {String? defaultValue}) {
     if(value == null) {
-      return defaultValue ?? '';
+      return value;
     }else if(value is String) {
       return value;
     }else{
@@ -64,9 +62,9 @@ class FromApiTypeUtil {
     }
   }
 
-  static int toInt(Object? value, {int? defaultValue}) {
+  static int toInt(value, {int? defaultValue}) {
     if(value == null) {
-      return defaultValue ?? 0;
+      return value;
     }else if(value is int) {
       return value;
     }else if(value is String) {
