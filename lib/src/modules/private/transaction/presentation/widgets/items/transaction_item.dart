@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/theme/items_shadow.dart';
@@ -65,7 +66,7 @@ class _TransactionItemState extends State<TransactionItem> {
   Widget _buildToProductScreenIcon() {
     return InkWell(
       onTap: () {
-
+        Modular.to.pushNamed('/private/transaction/product');
       },
       child: CircleAvatar(
           radius: 20.r,
