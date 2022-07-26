@@ -1,5 +1,6 @@
 import 'package:sei_services/src/shared/data/datasources/local/transaction_db.dart';
 import 'package:sei_services/src/shared/data/datasources/remote/transaction_service.dart';
+import 'package:sei_services/src/shared/data/models/transaction_model.dart';
 import 'package:sei_services/src/shared/domain/abstract/persistence_abstract.dart';
 import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
 
@@ -17,10 +18,17 @@ class TransactionsRepository implements Persistence{
 
   @override
   Future<void> saveInLocalDB(transactions) async {
-
+    for(TransactionModel transaction in transactions) {
+      await _db.saveTransaction(transaction);
+    }
   }
 
   Future<List<TransactionEntity>> getTransactions() async {
+    _getTransactionsByLocalDB();
     return _transactions;
+  }
+
+  Future<void> _getTransactionsByLocalDB() async {
+    _transactions.addAll(await _db.getAllTransactions());
   }
 }

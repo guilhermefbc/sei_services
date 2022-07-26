@@ -44,22 +44,22 @@ class ProductModel extends ProductEntity{
   
   factory ProductModel.fromMap(Map<String, dynamic> map) {
     return ProductModel(
-      productId: FromApiTypeUtil.toSafeString(map['productId']), 
-      transactionId: FromApiTypeUtil.toSafeString(map['transactionId']), 
-      description: FromApiTypeUtil.toSafeString(map['description']), 
-      eanCode: FromApiTypeUtil.toSafeString(map['eanCode']), 
+      productId: FromApiTypeUtil.toMyString(map['productId']), 
+      transactionId: FromApiTypeUtil.toMyString(map['transactionId']), 
+      description: FromApiTypeUtil.toMyString(map['description']), 
+      eanCode: FromApiTypeUtil.toMyString(map['eanCode']), 
       quantity: FromApiTypeUtil.toDouble(map['quantity']), 
-      metric: FromApiTypeUtil.toSafeString(map['metric']), 
+      metric: FromApiTypeUtil.toMyString(map['metric']), 
       price: FromApiTypeUtil.toDouble(map['price']),
-      productCode: FromApiTypeUtil.toSafeString(map['productCode']),
-      genre: FromApiTypeUtil.toSafeString(map['genre']),
-      cfop: FromApiTypeUtil.toSafeString(map['cfop']),
+      productCode: FromApiTypeUtil.toMyString(map['productCode']),
+      genre: FromApiTypeUtil.toMyString(map['genre']),
+      cfop: FromApiTypeUtil.toMyString(map['cfop']),
       discount: FromApiTypeUtil.toDouble(map['discount']),
       approximateTaxation: FromApiTypeUtil.toDouble(map['approximateTaxation']),
-      productOrigin: FromApiTypeUtil.toSafeString(map['productOrigin']),
+      productOrigin: FromApiTypeUtil.toMyString(map['productOrigin']),
       icmsTaxation: FromApiTypeUtil.toDouble(map['icmsTaxation']),
       isFavorite: FromApiTypeUtil.toBool(map['isFavorite']),
-      expenseType: FromApiTypeUtil.toSafeString(map['expenseType']),
+      expenseType: FromApiTypeUtil.toMyString(map['expenseType']),
       isStockable: FromApiTypeUtil.toBool(map['isStockable']),
       isMedicine: FromApiTypeUtil.toBool(map['isMedicine'])
     );

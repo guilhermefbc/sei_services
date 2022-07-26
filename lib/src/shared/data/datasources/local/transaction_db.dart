@@ -48,14 +48,11 @@ class TransactionDB {
             $_accountNumber INTEGER,
             $_expenseType TEXT,
             $_transactionType TEXT,
-            $_transactionAmount TEXT,
+            $_transactionAmount REAL,
             $_storeName TEXT,
             $_sellDate TEXT,
-            $_totalTaxes TEXT,
-            $_ownerId INTEGER,
-            $_ownerEmail TEXT,
+            $_totalTaxes REAL,
             $_codigoNotaFiscal TEXT,
-            $_isOwner INTEGER,
             $_cpf TEXT
           ) 
         ''');

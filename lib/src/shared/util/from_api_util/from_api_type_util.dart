@@ -3,8 +3,19 @@ import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
 import 'package:sei_services/src/shared/util/from_api_util/convert_util.dart';
 
 class FromApiTypeUtil {
-  static List<ProductEntity> toProductEntityList(List<Map<String,dynamic>> products) {
-    return products.map((product) => ProductModel.fromMap(product)).toList();
+  static toValidKey(Map<String, dynamic> map, String key) {
+    if(map.containsKey(key)) {
+      return map[key];
+    }else{
+      return null;
+    }
+  }
+
+  static List<ProductEntity> toProductEntityList(List<List>? products) {
+    if(products == null) {
+      return [];
+    }
+    return products[0].map((product) => ProductModel.fromMap(product)).toList();
   }
 
   static double? toDouble(value, {double? defaultValue}) {
@@ -52,7 +63,7 @@ class FromApiTypeUtil {
     }
   }
 
-  static String? toSafeString(value, {String? defaultValue}) {
+  static String? toMyString(value, {String? defaultValue}) {
     if(value == null) {
       return value;
     }else if(value is String) {

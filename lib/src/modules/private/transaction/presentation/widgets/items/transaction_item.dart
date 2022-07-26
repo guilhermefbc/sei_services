@@ -22,8 +22,8 @@ class _TransactionItemState extends State<TransactionItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20.w),
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5).r,
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10).r,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: const BorderRadius.all(Radius.circular(8)),

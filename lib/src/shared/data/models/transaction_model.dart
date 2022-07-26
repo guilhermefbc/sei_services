@@ -13,10 +13,7 @@ class TransactionModel extends TransactionEntity {
     required storeName,
     required sellDate,
     required totalTaxes,
-    // required ownerId,
-    // required ownerEmail,
     required codigoNotaFiscal,
-    // required isOwner,
     required cpf,
     products
   }) : super(
@@ -29,10 +26,7 @@ class TransactionModel extends TransactionEntity {
     storeName: storeName,
     sellDate: sellDate,
     totalTaxes: totalTaxes,
-    // ownerId: ownerId,
-    // ownerEmail: ownerEmail,
     codigoNotaFiscal: codigoNotaFiscal,
-    // isOwner: isOwner,
     cpf: cpf,
     products: products
   );
@@ -44,35 +38,28 @@ class TransactionModel extends TransactionEntity {
       'transactionType': transactionType,
       'transactionAmount': transactionAmount,
       'expenseType': expenseType,
-      'sellDate': sellDate,
+      'sellDate': FromApiTypeUtil.toMyString(sellDate),
       'storeName': storeName,
       'totalTaxes': totalTaxes,
       'expenseGroupId': expenseGroupId,
-      // 'ownerId': ownerId,
-      // 'ownerEmail': ownerEmail,
-      // 'codigoNotaFiscal': codigoNotaFiscal,
-      // 'isOwner': isOwner ? 1 : 0,
       'cpf': cpf
     };
   }
 
   factory TransactionModel.fromMap(Map<String, dynamic> map) {
     return TransactionModel(
-        transactionId: FromApiTypeUtil.toSafeString(map["_id"]),
-        expenseGroupId: FromApiTypeUtil.toSafeString(map["groupId"]),
+        transactionId: FromApiTypeUtil.toMyString(map["_id"]),
+        expenseGroupId: FromApiTypeUtil.toMyString(map["groupId"]),
         accountNumber: FromApiTypeUtil.toInt(map["accountNumber"]),
         transactionType: map["TransactionType"],
         transactionAmount: FromApiTypeUtil.toDouble(map['transactionAmount']),
-        expenseType: FromApiTypeUtil.toSafeString(map['expenseType']),
-        storeName: FromApiTypeUtil.toSafeString(map['Store']),
+        expenseType: FromApiTypeUtil.toMyString(map['expenseType']),
+        storeName: FromApiTypeUtil.toMyString(map['Store']),
         sellDate: FromApiTypeUtil.toDateTime(map['sellDate']),
         totalTaxes: FromApiTypeUtil.toDouble(map['totalTaxes']),
-        // ownerId: FromApiTypeUtil.toInt(map["ownerId"]),
-        // ownerEmail: FromApiTypeUtil.toSafeString(map["ownerEmail"]),
-        codigoNotaFiscal: FromApiTypeUtil.toSafeString(map["codigoNotaFiscal"]),
-        // isOwner: FromApiTypeUtil.toBool(map["isOwner"]),
-        cpf: FromApiTypeUtil.toSafeString(map["cpf"]),
-        products: FromApiTypeUtil.toProductEntityList(map["Products"][0])
+        codigoNotaFiscal: FromApiTypeUtil.toMyString(map["codigoNotaFiscal"]),
+        cpf: FromApiTypeUtil.toMyString(map["cpf"]),
+        products: FromApiTypeUtil.toProductEntityList(map["Products"])
     );
   }
 }
