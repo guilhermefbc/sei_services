@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    Modular.to.navigate('/private/transaction');
+    Modular.to.navigate('/private/transaction/');
   }
 
 

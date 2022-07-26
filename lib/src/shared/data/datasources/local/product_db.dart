@@ -5,10 +5,10 @@ import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
 import 'package:sqflite/sqflite.dart';
 
 
-class ProductsLocalDB {
-  static final ProductsLocalDB _instance = ProductsLocalDB.internal();
-  factory ProductsLocalDB() => _instance;
-  ProductsLocalDB.internal();
+class ProductsDB {
+  static final ProductsDB _instance = ProductsDB.internal();
+  factory ProductsDB() => _instance;
+  ProductsDB.internal();
   static Database? _db;
 
   final String _pathDBFileName = "products.db";

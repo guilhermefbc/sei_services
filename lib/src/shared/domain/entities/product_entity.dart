@@ -1,22 +1,22 @@
 class ProductEntity {
-  String productId;
-  String transactionId;
-  String description;
-  String eanCode;
-  double quantity;
-  String metric;
-  double price;
-  String productCode;
-  String genre;
-  String cfop;
-  double discount;
-  double approximateTaxation;
-  String productOrigin;
-  double icmsTaxation;
-  bool isFavorite = false;
-  String expenseType;
-  bool isStockable;
-  bool isMedicine;
+  String? productId;
+  String? transactionId;
+  String? description;
+  String? eanCode;
+  double? quantity;
+  String? metric;
+  double? price;
+  String? productCode;
+  String? genre;
+  String? cfop;
+  double? discount;
+  double? approximateTaxation;
+  String? productOrigin;
+  double? icmsTaxation;
+  bool? isFavorite = false;
+  String? expenseType;
+  bool? isStockable;
+  bool? isMedicine;
 
   ProductEntity({
       required this.productId,

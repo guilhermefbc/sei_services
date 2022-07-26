@@ -11,9 +11,9 @@ class TransactionEntity {
   DateTime? sellDate;
   double? totalTaxes;
   int? ownerId;
-  String? ownerEmail;
+  // String? ownerEmail;
   String? codigoNotaFiscal;
-  bool isOwner;
+  // bool isOwner;
   String? cpf;
   List<ProductEntity>? products;
 
@@ -27,10 +27,10 @@ class TransactionEntity {
       required this.storeName,
       required this.sellDate,
       required this.totalTaxes,
-      required this.ownerId,
-      required this.ownerEmail,
+      // required this.ownerId,
+      // required this.ownerEmail,
       required this.codigoNotaFiscal,
-      required this.isOwner,
+      // required this.isOwner,
       required this.cpf,
       this.products
   });

@@ -2,7 +2,7 @@ import 'package:currency_text_input_formatter/currency_text_input_formatter.dart
 
 class MonetaryFormatterUtil {
   static final CurrencyTextInputFormatter _formatter = CurrencyTextInputFormatter(
-    locale: 'br',
+    locale: 'pt_BR',
     decimalDigits: 2,
     symbol: 'R\$',
   );

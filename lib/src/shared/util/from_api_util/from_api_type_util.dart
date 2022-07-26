@@ -7,11 +7,11 @@ class FromApiTypeUtil {
     return products.map((product) => ProductModel.fromMap(product)).toList();
   }
 
-  static double toDouble(value, {double? defaultValue}) {
-    return ConvertUtil.convertDoubleToAsFixed(_toDouble(value, defaultValue: defaultValue));  
+  static double? toDouble(value, {double? defaultValue}) {
+    return ConvertUtil.convertDoubleToAsFixed(_toDouble(value, defaultValue: defaultValue) ?? 0);
   }
   
-  static double _toDouble(value, {double? defaultValue}) {
+  static double? _toDouble(value, {double? defaultValue}) {
     if(value == null) {
       return value;
     } else if (value is String) {
@@ -26,7 +26,7 @@ class FromApiTypeUtil {
   }
 
 
-  static DateTime toDateTime(value, {DateTime? defaultValue}) {
+  static DateTime? toDateTime(value, {DateTime? defaultValue}) {
     if(value == null){
       return value;
     }else if(value is String) {
@@ -38,7 +38,7 @@ class FromApiTypeUtil {
     }
   }
 
-  static bool toBool(value, {bool? defaultValue}) {
+  static bool? toBool(value, {bool? defaultValue}) {
     if(value == null) {
       return value;
     }else if(value is bool) {
@@ -52,7 +52,7 @@ class FromApiTypeUtil {
     }
   }
 
-  static String toSafeString(value, {String? defaultValue}) {
+  static String? toSafeString(value, {String? defaultValue}) {
     if(value == null) {
       return value;
     }else if(value is String) {
@@ -62,7 +62,7 @@ class FromApiTypeUtil {
     }
   }
 
-  static int toInt(value, {int? defaultValue}) {
+  static int? toInt(value, {int? defaultValue}) {
     if(value == null) {
       return value;
     }else if(value is int) {

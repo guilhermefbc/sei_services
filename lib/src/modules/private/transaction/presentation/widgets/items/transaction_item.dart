@@ -7,6 +7,7 @@ import 'package:sei_services/src/shared/util/monetary/monetary_formatter_util.da
 
 class TransactionItem extends StatefulWidget {
   final TransactionEntity transaction;
+
   const TransactionItem({
     Key? key,
     required this.transaction
@@ -23,17 +24,63 @@ class _TransactionItemState extends State<TransactionItem> {
       margin: EdgeInsets.symmetric(horizontal: 20.w),
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.all(Radius.circular(8)),
-        boxShadow: [
-          ItemsBoxShadow.boxShadow
-        ]
+          color: Colors.white,
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          boxShadow: [
+            ItemsBoxShadow.boxShadow
+          ]
       ),
-      child: Row(
+      child: Column(
         children: [
-
+          _buildStoreName(),
+          SizedBox(height: 15.h,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildValueBloc(
+                  title: "Valor",
+                  child: _buildTransactionValue(),
+                  color: Colors.green
+              ),
+              _buildValueBloc(
+                  title: "Impostos",
+                  child: _buildTaxValue(),
+                  color: Colors.redAccent
+              ),
+            ],
+          ),
+          SizedBox(height: 15.h,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _buildDate(),
+              _buildToProductScreenIcon()
+            ],
+          )
         ],
       ),
+    );
+  }
+
+  Widget _buildToProductScreenIcon() {
+    return InkWell(
+      onTap: () {
+
+      },
+      child: CircleAvatar(
+          radius: 20.r,
+          backgroundColor: Colors.blueAccent,
+          child: const Icon(Icons.add_shopping_cart)
+      ),
+    );
+  }
+
+  Widget _buildValueBloc({required String title, required Widget child, Color? color,}) {
+    return Column(
+      children: [
+        Text(title, style: TextStyle(color: color, fontWeight: FontWeight.w400,),),
+        child
+      ],
     );
   }
 
@@ -41,9 +88,9 @@ class _TransactionItemState extends State<TransactionItem> {
     return Text(
       MonetaryFormatterUtil.format(widget.transaction.transactionAmount),
       style: TextStyle(
-        color: Colors.green,
-        fontSize: 30.sp,
-        fontWeight: FontWeight.bold
+          color: Colors.green,
+          fontSize: 30.sp,
+          fontWeight: FontWeight.w500
       ),
     );
   }
@@ -52,9 +99,9 @@ class _TransactionItemState extends State<TransactionItem> {
     return Text(
       MonetaryFormatterUtil.format(widget.transaction.totalTaxes),
       style: TextStyle(
-          color: Colors.green,
+          color: Colors.redAccent,
           fontSize: 30.sp,
-          fontWeight: FontWeight.bold
+          fontWeight: FontWeight.w500
       ),
     );
   }
@@ -63,9 +110,12 @@ class _TransactionItemState extends State<TransactionItem> {
     return Text(DateUtil.format(widget.transaction.sellDate));
   }
 
-  Widget _storeName() {
+  Widget _buildStoreName() {
     return Text(
-      widget.transaction.storeName ?? '-'
+        widget.transaction.storeName ?? '---',
+        style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
+        overflow: TextOverflow.visible,
+        textAlign: TextAlign.center,
     );
   }
 }

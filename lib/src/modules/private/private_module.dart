@@ -9,8 +9,8 @@ import 'package:sei_services/src/shared/domain/usecases/is_logged_usecase.dart';
 class PrivateModule extends Module {
   @override
   List<Bind> get binds => [
-    Bind.lazySingleton((i) => AuthSecurityDB()),
-    Bind.lazySingleton((i) => AuthRepository(i())),
+    Bind.singleton((i) => AuthSecurityDB()),
+    Bind.singleton((i) => AuthRepository(i())),
     Bind.lazySingleton((i) => IsLoggedUsecase(i())),
   ];
 
