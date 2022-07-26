@@ -11,6 +11,6 @@ class ProductModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-    ChildRoute('/', child: (context, args) => const ProductOverviewScreen()),
+    ChildRoute('/', child: (context, args) => ProductOverviewScreen(transaction: args.data,)),
   ];
 }

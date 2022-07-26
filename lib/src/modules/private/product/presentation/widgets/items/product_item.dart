@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
 import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/theme/items_shadow.dart';
 import 'package:sei_services/src/shared/util/date/date_util.dart';
 import 'package:sei_services/src/shared/util/monetary/monetary_formatter_util.dart';
 
-class TransactionItem extends StatefulWidget {
+class ProductItem extends StatefulWidget {
+  final ProductEntity product;
   final TransactionEntity transaction;
-
-  const TransactionItem({
-    Key? key,
-    required this.transaction
-  }) : super(key: key);
+  const ProductItem({Key? key, required this.product, required this.transaction}) : super(key: key);
 
   @override
-  State<TransactionItem> createState() => _TransactionItemState();
+  State<ProductItem> createState() => _ProductItemState();
 }
 
-class _TransactionItemState extends State<TransactionItem> {
+class _ProductItemState extends State<ProductItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -52,10 +49,10 @@ class _TransactionItemState extends State<TransactionItem> {
           ),
           SizedBox(height: 15.h,),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               _buildDate(),
-              _buildToProductScreenIcon()
+              // _buildToProductScreenIcon()
             ],
           )
         ],
@@ -63,18 +60,18 @@ class _TransactionItemState extends State<TransactionItem> {
     );
   }
 
-  Widget _buildToProductScreenIcon() {
-    return InkWell(
-      onTap: () {
-        Modular.to.pushNamed('/private/transaction/product', arguments: widget.transaction);
-      },
-      child: CircleAvatar(
-          radius: 20.r,
-          backgroundColor: Colors.blueAccent,
-          child: const Icon(Icons.add_shopping_cart)
-      ),
-    );
-  }
+  // Widget _buildToProductScreenIcon() {
+  //   return InkWell(
+  //     onTap: () {
+  //       Modular.to.pushNamed('/private/transaction/product');
+  //     },
+  //     child: CircleAvatar(
+  //         radius: 20.r,
+  //         backgroundColor: Colors.blueAccent,
+  //         child: const Icon(Icons.add_shopping_cart)
+  //     ),
+  //   );
+  // }
 
   Widget _buildValueBloc({required String title, required Widget child, Color? color,}) {
     return Column(
@@ -87,7 +84,7 @@ class _TransactionItemState extends State<TransactionItem> {
 
   Widget _buildTransactionValue() {
     return Text(
-      MonetaryFormatterUtil.format(widget.transaction.transactionAmount),
+      MonetaryFormatterUtil.format(widget.product.price),
       style: TextStyle(
           color: Colors.green,
           fontSize: 30.sp,
@@ -98,7 +95,7 @@ class _TransactionItemState extends State<TransactionItem> {
 
   Widget _buildTaxValue() {
     return Text(
-      MonetaryFormatterUtil.format(widget.transaction.totalTaxes),
+      MonetaryFormatterUtil.format(widget.product.approximateTaxation),
       style: TextStyle(
           color: Colors.redAccent,
           fontSize: 30.sp,
@@ -113,10 +110,10 @@ class _TransactionItemState extends State<TransactionItem> {
 
   Widget _buildStoreName() {
     return Text(
-        widget.transaction.storeName ?? '---',
-        style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
-        overflow: TextOverflow.visible,
-        textAlign: TextAlign.center,
+      widget.product.description ?? '---',
+      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
+      overflow: TextOverflow.visible,
+      textAlign: TextAlign.center,
     );
   }
 }

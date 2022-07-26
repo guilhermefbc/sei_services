@@ -8,14 +8,22 @@ class ProductsRepository implements Persistence {
   ProductsRepository(this._db);
 
   @override
-  Future<void> save(product) async {
-    _products.add(product);
-    await saveInLocalDB(product);
+  Future<void> save(products) async {
+    _products.addAll(products);
+    await saveInLocalDB(products);
   }
 
   @override
-  Future<void> saveInLocalDB(product) async {
+  Future<void> saveInLocalDB(products) async {
 
+  }
+
+  // Future<List<ProductEntity>> getByLocalDB() async {
+  //
+  // }
+
+  Future<List<ProductEntity>> getProducts() async {
+    return _products;
   }
 
 }

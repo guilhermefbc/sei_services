@@ -10,13 +10,17 @@ class TransactionsRepository implements Persistence{
   TransactionsRepository(this._db);
 
   @override
-  Future<void> save(transaction) async {
-    _transactions.add(transaction);
-    await saveInLocalDB(transaction);
+  Future<void> save(transactions) async {
+    _transactions.addAll(transactions);
+    await saveInLocalDB(transactions);
   }
 
   @override
-  Future<void> saveInLocalDB(transaction) async {
+  Future<void> saveInLocalDB(transactions) async {
 
+  }
+
+  Future<List<TransactionEntity>> getTransactions() async {
+    return _transactions;
   }
 }

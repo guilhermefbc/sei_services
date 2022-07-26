@@ -12,8 +12,8 @@ class GetTransactionBridge {
 
   Future<void> getTransactions() async {
     List<TransactionEntity> transactions = await _service.getTransactions();
-    for (TransactionEntity transaction in transactions) {
-
-    }
+    _transactions.save(transactions);
+    final products = transactions.map((transaction) => transaction.products).toList();
+    _products.save(products[0]);
   }
 }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/items/transaction_item.dart';
-import 'package:sei_services/src/shared/data/datasources/remote/transaction_service.dart';
-import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
+import 'package:sei_services/src/shared/domain/bridges/get_transaction_bridge.dart';
+import 'package:sei_services/src/shared/domain/repositories/transactions_repository.dart';
 
 class TransactionOverviewScreen extends StatefulWidget {
   const TransactionOverviewScreen({Key? key}) : super(key: key);
@@ -13,12 +13,14 @@ class TransactionOverviewScreen extends StatefulWidget {
 }
 
 class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
-  final TransactionService _bridge = Modular.get<TransactionService>();
+  final GetTransactionBridge _bridge = Modular.get<GetTransactionBridge>();
+  final TransactionsRepository _transactions = Modular.get<TransactionsRepository>();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _bridge.getTransactions();
   }
 
   @override
@@ -27,7 +29,7 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
       backgroundColor: Colors.white70,
       appBar: AppBar(),
       body: FutureBuilder(
-          future: _bridge.getTransactions(),
+          future: _transactions.getTransactions(),
           builder: (ctx, snapshot) {
             if(!snapshot.hasData) {
               return const Center(child: CircularProgressIndicator(),);
