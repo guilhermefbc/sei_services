@@ -20,7 +20,7 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _bridge.getTransactions();
+    // _bridge.getTransactions();
   }
 
   @override

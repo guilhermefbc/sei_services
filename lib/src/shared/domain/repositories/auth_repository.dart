@@ -13,4 +13,5 @@ class AuthRepository {
   }
 
   AuthEntity get auth => _auth;
+  String get token =>_auth.token;
 }

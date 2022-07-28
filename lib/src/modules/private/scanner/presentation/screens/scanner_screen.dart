@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:sei_services/src/modules/private/scanner/domain/scanner_util.dart';
 
 class ScannerScreen extends StatefulWidget {
   const ScannerScreen({Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class ScannerScreen extends StatefulWidget {
 
 class _ScannerScreenState extends State<ScannerScreen> {
   MobileScannerController cameraController = MobileScannerController();
+  final ScannerUtil _scanner = Modular.get<ScannerUtil>();
 
   @override
   Widget build(BuildContext context) {
@@ -59,18 +62,19 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 allowDuplicates: false,
                 controller: cameraController,
                 onDetect: (barcode, args) {
-                  if (barcode.rawValue == null) {
-                    debugPrint('Failed to scan Barcode');
-                  } else {
-                    Vibrate.vibrate();
-                    final String code = barcode.rawValue!;
-                    debugPrint('Barcode found! $code');
-                  }
+                  _scanner.scanDoc(barcode.rawValue);
+                  // if (barcode.rawValue == null) {
+                  //   debugPrint('Failed to scan Barcode');
+                  // } else {
+                  //   Vibrate.vibrate();
+                  //   final String code = barcode.rawValue!;
+                  //   debugPrint('Barcode found! $code');
+                  // }
                 }),
             Center(
               child: Container(
-                height: 250.h,
-                width: 250.w,
+                height: 250.r,
+                width: 250.r,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: Colors.green,

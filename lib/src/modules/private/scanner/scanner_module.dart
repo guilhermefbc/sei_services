@@ -1,4 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:sei_services/src/modules/private/scanner/data/datasources/remote/scanner_service.dart';
+import 'package:sei_services/src/modules/private/scanner/domain/scanner_util.dart';
 import 'package:sei_services/src/modules/private/scanner/presentation/screens/scanner_screen.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/screens/transaction_overview_screen.dart';
 
@@ -6,7 +8,8 @@ import 'package:sei_services/src/modules/private/transaction/presentation/screen
 class ScannerModule extends Module {
   @override
   List<Bind> get binds => [
-    // Bind.lazySingleton((i) => LogOutUsecase(i())),
+    Bind.singleton((i) => ScannerService(i())),
+    Bind.singleton((i) => ScannerUtil(i())),
   ];
 
   @override

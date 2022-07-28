@@ -7,7 +7,7 @@ import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart'
 import 'package:sei_services/src/shared/domain/repositories/auth_repository.dart';
 
 
-const List<Map<String,dynamic>> transactions = [
+const List<Map<String,dynamic>> transactions2 = [
   {
     "_id": "62c6ebc3fb587e9001aa1c7a",
     "expenseType": "Indefinido",
@@ -66,15 +66,13 @@ class TransactionService {
   TransactionService(this._auth);
 
   Future<List<TransactionEntity>> getTransactions() async {
-    // Uri uri = Uri.parse("https://dev.api.sei-imposto.com/taxes/transactions/search");
-    // final response = await http.get(uri, headers: {'Content-Type': 'application/json', 'X-HYPERMARKET': _auth.token});
-    // if (response.statusCode != 200) {
-    //   throw('Erro ao realizar requisição');
-    // }
-    // List<Map<String,dynamic>> transactions = jsonDecode(response.body);
+    Uri uri = Uri.parse("https://dev.api.sei-imposto.com/taxes/transactions/search");
+    final response = await http.get(uri, headers: {'Content-Type': 'application/json', 'X-HYPERMARKET': _auth.token});
+    if (response.statusCode != 200) {
+      throw('Erro ao realizar requisição');
+    }
+    List transactions = jsonDecode(response.body);
 
-
-    // List<Map<String,dynamic>> transactions = jsonDecode(test);
     return transactions.map((transaction) => TransactionModel.fromMap(transaction)).toList();
   }
 }

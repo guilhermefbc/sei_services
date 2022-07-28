@@ -6,7 +6,7 @@ import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart'
 
 class TransactionsRepository implements Persistence{
   final TransactionDB _db;
-  List<TransactionEntity> _transactions = [];
+  late List<TransactionEntity> _transactions;
 
   TransactionsRepository(this._db);
 
@@ -24,11 +24,18 @@ class TransactionsRepository implements Persistence{
   }
 
   Future<List<TransactionEntity>> getTransactions() async {
-    _getTransactionsByLocalDB();
+    _initTransactionsList();
+    await _getTransactionsByLocalDB();
     return _transactions;
   }
 
   Future<void> _getTransactionsByLocalDB() async {
     _transactions.addAll(await _db.getAllTransactions());
+  }
+
+  void _initTransactionsList() {
+    if(_transactions.isNotEmpty) {
+      _transactions = [];
+    }
   }
 }
