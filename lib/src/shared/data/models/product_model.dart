@@ -42,7 +42,7 @@ class ProductModel extends ProductEntity{
     isMedicine: isMedicine
   );
   
-  factory ProductModel.fromMap(Map<String, dynamic> map) {
+  factory ProductModel.fromMap(Map map) {
     return ProductModel(
       productId: FromApiTypeUtil.toMyString(map['productId']), 
       transactionId: FromApiTypeUtil.toMyString(map['transactionId']), 
@@ -58,15 +58,15 @@ class ProductModel extends ProductEntity{
       approximateTaxation: FromApiTypeUtil.toDouble(map['approximateTaxation']),
       productOrigin: FromApiTypeUtil.toMyString(map['productOrigin']),
       icmsTaxation: FromApiTypeUtil.toDouble(map['icmsTaxation']),
-      isFavorite: FromApiTypeUtil.toBool(map['isFavorite']),
+      isFavorite: FromApiTypeUtil.toBool(map['isFavorite'], defaultValue: false),
       expenseType: FromApiTypeUtil.toMyString(map['expenseType']),
-      isStockable: FromApiTypeUtil.toBool(map['isStockable']),
-      isMedicine: FromApiTypeUtil.toBool(map['isMedicine'])
+      isStockable: FromApiTypeUtil.toBool(map['isStockable'], defaultValue: false),
+      isMedicine: FromApiTypeUtil.toBool(map['isMedicine'], defaultValue: false)
     );
   }
 
-  Map<String,dynamic> toMap() {
-    return<String,dynamic>{
+  Map<String,dynamic> toMap({bool isSafe = false}) {
+    Map<String,dynamic> map = <String,dynamic>{
       "productId": productId,
       "transactionId": transactionId,
       "description": description,
@@ -86,5 +86,6 @@ class ProductModel extends ProductEntity{
       "isStockable": isStockable,
       "isMedicine": isMedicine
     };
+    return isSafe ? FromApiTypeUtil.toSafeMap(map) : map;
   }
 }

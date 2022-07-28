@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:sei_services/src/modules/private/scanner/domain/scanner_util.dart';
 

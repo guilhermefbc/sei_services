@@ -4,6 +4,7 @@ import 'package:sei_services/src/shared/data/datasources/local/auth_security_db.
 import 'package:sei_services/src/shared/domain/guards/auth_guard.dart';
 import 'package:sei_services/src/shared/domain/repositories/auth_repository.dart';
 import 'package:sei_services/src/shared/domain/usecases/is_logged_usecase.dart';
+import 'package:uuid/uuid.dart';
 
 
 class PrivateModule extends Module {
@@ -11,6 +12,7 @@ class PrivateModule extends Module {
   List<Bind> get binds => [
     Bind.singleton((i) => AuthSecurityDB()),
     Bind.singleton((i) => AuthRepository(i())),
+    Bind.singleton((i) => const Uuid()),
     Bind.lazySingleton((i) => IsLoggedUsecase(i())),
   ];
 

@@ -1,30 +1,27 @@
 import 'package:sei_services/src/shared/data/datasources/local/transaction_db.dart';
-import 'package:sei_services/src/shared/data/datasources/remote/transaction_service.dart';
 import 'package:sei_services/src/shared/data/models/transaction_model.dart';
 import 'package:sei_services/src/shared/domain/abstract/persistence_abstract.dart';
 import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
 
-class TransactionsRepository implements Persistence{
+class TransactionsRepository {
   final TransactionDB _db;
-  late List<TransactionEntity> _transactions;
+  List<TransactionEntity> _transactions = [];
 
   TransactionsRepository(this._db);
 
-  @override
-  Future<void> save(transactions) async {
+  Future<void> save(List<TransactionModel> transactions) async {
     _transactions.addAll(transactions);
-    await saveInLocalDB(transactions);
+    _saveInLocalDB(transactions);
   }
 
-  @override
-  Future<void> saveInLocalDB(transactions) async {
+  Future<void> _saveInLocalDB(List<TransactionModel> transactions) async {
     for(TransactionModel transaction in transactions) {
-      await _db.saveTransaction(transaction);
+      _db.saveTransaction(transaction);
     }
   }
 
   Future<List<TransactionEntity>> getTransactions() async {
-    _initTransactionsList();
+    _clean();
     await _getTransactionsByLocalDB();
     return _transactions;
   }
@@ -33,7 +30,7 @@ class TransactionsRepository implements Persistence{
     _transactions.addAll(await _db.getAllTransactions());
   }
 
-  void _initTransactionsList() {
+  void _clean() {
     if(_transactions.isNotEmpty) {
       _transactions = [];
     }

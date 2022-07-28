@@ -12,7 +12,7 @@ import 'package:sei_services/src/shared/domain/repositories/transactions_reposit
 class TransactionModule extends Module {
   @override
   List<Bind> get binds => [
-    Bind.singleton((i) => TransactionService(i())),
+    Bind.singleton((i) => TransactionService(i(),i())),
     Bind.singleton((i) => TransactionDB()),
     Bind.singleton((i) => ProductsDB()),
     Bind.singleton((i) => TransactionsRepository(i(),)),

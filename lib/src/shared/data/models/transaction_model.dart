@@ -15,7 +15,6 @@ class TransactionModel extends TransactionEntity {
     required totalTaxes,
     required codigoNotaFiscal,
     required cpf,
-    products
   }) : super(
     transactionId: transactionId,
     expenseGroupId: expenseGroupId,
@@ -28,11 +27,10 @@ class TransactionModel extends TransactionEntity {
     totalTaxes: totalTaxes,
     codigoNotaFiscal: codigoNotaFiscal,
     cpf: cpf,
-    products: products
   );
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
+  Map<String, dynamic> toMap({bool isSafe = false}) {
+    Map<String, dynamic> map = <String, dynamic>{
       'transactionId': transactionId,
       'accountNumber': accountNumber,
       'transactionType': transactionType,
@@ -44,9 +42,10 @@ class TransactionModel extends TransactionEntity {
       'expenseGroupId': expenseGroupId,
       'cpf': cpf
     };
+    return isSafe ? FromApiTypeUtil.toSafeMap(map) : map;
   }
 
-  factory TransactionModel.fromMap(Map<String, dynamic> map) {
+  factory TransactionModel.fromMap(Map map) {
     return TransactionModel(
         transactionId: FromApiTypeUtil.toMyString(map["_id"]),
         expenseGroupId: FromApiTypeUtil.toMyString(map["groupId"]),
@@ -59,7 +58,6 @@ class TransactionModel extends TransactionEntity {
         totalTaxes: FromApiTypeUtil.toDouble(map['totalTaxes']),
         codigoNotaFiscal: FromApiTypeUtil.toMyString(map["codigoNotaFiscal"]),
         cpf: FromApiTypeUtil.toMyString(map["cpf"]),
-        products: FromApiTypeUtil.toProductEntityList(map["Products"])
     );
   }
 }

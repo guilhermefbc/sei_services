@@ -1,5 +1,3 @@
-import 'package:sei_services/src/shared/data/models/product_model.dart';
-import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
 import 'package:sei_services/src/shared/util/from_api_util/convert_util.dart';
 
 class FromApiTypeUtil {
@@ -11,11 +9,29 @@ class FromApiTypeUtil {
     }
   }
 
-  static List<ProductEntity> toProductEntityList(List<List>? products) {
-    if(products == null) {
-      return [];
-    }
-    return products[0].map((product) => ProductModel.fromMap(product)).toList();
+  static Map<String, dynamic> toSafeMap(Map<String,dynamic> map) {
+    map.forEach((key, value) {
+      if(map[key] == null) {
+        map.remove(key);
+      }
+    });
+    return map;
+  }
+
+  static String toSafeString(value, String defaultValue) {
+    return toMyString(value, defaultValue: defaultValue)!;
+  }
+
+  static double toSafeDouble(value, double defaultValue) {
+    return toDouble(value, defaultValue: defaultValue)!;
+  }
+
+  static bool toSafeBool(value, bool defaultValue) {
+    return toBool(value, defaultValue: defaultValue)!;
+  }
+
+  static int toSafeInt(value, int defaultValue) {
+    return toInt(value, defaultValue: defaultValue)!;
   }
 
   static double? toDouble(value, {double? defaultValue}) {
@@ -24,7 +40,7 @@ class FromApiTypeUtil {
   
   static double? _toDouble(value, {double? defaultValue}) {
     if(value == null) {
-      return value;
+      return _forValueNull(defaultValue);
     } else if (value is String) {
       return double.parse(value);
     } else if (value is double) {
@@ -39,7 +55,7 @@ class FromApiTypeUtil {
 
   static DateTime? toDateTime(value, {DateTime? defaultValue}) {
     if(value == null){
-      return value;
+      return _forValueNull(defaultValue);
     }else if(value is String) {
       return DateTime.parse(value);
     }else if(value is DateTime){
@@ -51,7 +67,7 @@ class FromApiTypeUtil {
 
   static bool? toBool(value, {bool? defaultValue}) {
     if(value == null) {
-      return value;
+      return _forValueNull(defaultValue);
     }else if(value is bool) {
       return value;
     }else if(value is int) {
@@ -65,7 +81,7 @@ class FromApiTypeUtil {
 
   static String? toMyString(value, {String? defaultValue}) {
     if(value == null) {
-      return value;
+      return _forValueNull(defaultValue);
     }else if(value is String) {
       return value;
     }else{
@@ -75,14 +91,20 @@ class FromApiTypeUtil {
 
   static int? toInt(value, {int? defaultValue}) {
     if(value == null) {
-      return value;
+      return _forValueNull(defaultValue);
     }else if(value is int) {
       return value;
     }else if(value is String) {
       return int.parse(value);
+    }else if(value is bool) {
+      return value ? 1 : 0;
     }else{
       throw Exception("Format error");
     }
+  }
+
+  static _forValueNull(defaultValue) {
+    return defaultValue;
   }
 }
 
