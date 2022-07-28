@@ -11,7 +11,7 @@ import 'package:sei_services/src/shared/domain/repositories/auth_repository.dart
 
 const List<Map<String,dynamic>> resultMaps1 = [
   {
-    "_id": "62c6ebc3fb587e9001aa1c7a",
+    "_id": "62c6ebc3fb587e9001aa1c7c",
     "expenseType": "Indefinido",
     "Products": [
       [
@@ -75,6 +75,7 @@ class TransactionService {
       throw('Erro ao realizar requisição');
     }
     List resultMaps = jsonDecode(response.body);
+    // List resultMaps = resultMaps1;
 
     List<TransactionModel> transactions = resultMaps.map((transaction) => TransactionModel.fromMap(transaction)).toList();
     List<ProductModel> products = _getAllTransactionsProducts(resultMaps);

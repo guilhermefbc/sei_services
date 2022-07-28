@@ -46,8 +46,8 @@ class TransactionModel extends TransactionEntity {
 
   factory TransactionModel.fromMap(Map map) {
     return TransactionModel(
-        transactionId: FromApiTypeUtil.toMyString(map["_id"]),
-        expenseGroupId: FromApiTypeUtil.toMyString(map["groupId"]),
+        transactionId: FromApiTypeUtil.toMyString(map["_id"] ?? map["transactionId"]),
+        expenseGroupId: FromApiTypeUtil.toMyString(map["groupId"] ?? map["expenseGroupId"]),
         accountNumber: FromApiTypeUtil.toInt(map["accountNumber"]),
         transactionType: map["TransactionType"],
         transactionAmount: FromApiTypeUtil.toDouble(map['transactionAmount']),

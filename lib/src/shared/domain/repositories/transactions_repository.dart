@@ -21,7 +21,6 @@ class TransactionsRepository {
   }
 
   Future<List<TransactionEntity>> getTransactions() async {
-    _clean();
     await _getTransactionsByLocalDB();
     return _transactions;
   }
@@ -30,9 +29,4 @@ class TransactionsRepository {
     _transactions.addAll(await _db.getAllTransactions());
   }
 
-  void _clean() {
-    if(_transactions.isNotEmpty) {
-      _transactions = [];
-    }
-  }
 }

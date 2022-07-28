@@ -25,7 +25,7 @@ class ScannerUtil {
 
   Future<void> _workWithResult(String result) async {
     Vibrate.vibrate();
-    await _service.postQRBill(result);
+    _service.postQRBill(result);
     Modular.to.navigate('/private/transaction/');
     debugPrint('Barcode found! $result');
   }

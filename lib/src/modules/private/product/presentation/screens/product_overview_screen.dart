@@ -21,7 +21,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: FutureBuilder(
-          future: _products.getProducts(),
+          future: _products.getProductsByTransactionId(widget.transaction.transactionId),
           builder: (ctx, snapshot) {
             if(!snapshot.hasData) {
               return const Center(child: CircularProgressIndicator(),);

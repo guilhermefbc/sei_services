@@ -10,7 +10,7 @@ class ScannerService {
   Future<int> postQRBill(String code) async {
     final Uri uri = Uri.parse("https://dev.api.sei-imposto.com/nw/nfces");
     final body = json.encode({
-      "code": code,
+      "code": '25220312919734000310651130002533851005957160',
       "groupId": 1,
       "accountNumber": 1,
       "isStockable": 1,

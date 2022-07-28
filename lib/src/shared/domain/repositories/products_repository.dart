@@ -19,12 +19,32 @@ class ProductsRepository {
     }
   }
 
-  // Future<List<ProductEntity>> getByLocalDB() async {
-  //
-  // }
+  Future<void> _getAllProductsFromLocalDB() async {
+    if(_products.isEmpty) {
+      _products.addAll(await _db.getProducts());
+    }
+  }
 
-  Future<List<ProductEntity>> getProducts() async {
+  Future<void> _getProductsFromLocalDBByTransaction(String transactionId) async {
+    if(!_thereAreTransactionProducts(transactionId)) {
+      _products.addAll(await _db.getProductsByTransactionId(transactionId));
+    }
+  }
+
+  bool _thereAreTransactionProducts(String transactionId) {
+    return _products.any((product) => product.transactionId == transactionId);
+  }
+  
+  Future<List<ProductEntity>> getAllProducts() async {
+    await _getAllProductsFromLocalDB();
     return _products;
   }
 
+  Future<List<ProductEntity>> getProductsByTransactionId(String? transactionId) async {
+    if(transactionId != null) {
+      await _getAllProductsFromLocalDB();
+      return _products.where((product) => product.transactionId == transactionId).toList();
+    }
+    return [];
+  }
 }

@@ -81,10 +81,10 @@ class ProductModel extends ProductEntity{
       "approximateTaxation": approximateTaxation,
       "productOrigin": productOrigin,
       "icmsTaxation": icmsTaxation,
-      "isFavorite": isFavorite,
+      "isFavorite": FromApiTypeUtil.toInt(isFavorite, defaultValue: 0),
       "expenseType": expenseType,
-      "isStockable": isStockable,
-      "isMedicine": isMedicine
+      "isStockable": FromApiTypeUtil.toInt(isStockable, defaultValue: 0),
+      "isMedicine": FromApiTypeUtil.toInt(isMedicine, defaultValue: 0)
     };
   }
 }
