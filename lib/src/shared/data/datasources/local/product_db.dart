@@ -77,7 +77,7 @@ class ProductsDB {
   Future<void> saveProduct(ProductModel product) async {
     try {
       Database dbProduct = await db;
-      await dbProduct.insert(_productsTable, product.toMap(isSafe: true));
+      await dbProduct.insert(_productsTable, product.toMap());
     } catch (error) {
       throw Exception(error);
     }
@@ -108,7 +108,7 @@ class ProductsDB {
     try{
       Database dbExpenseGroup = await db;
       await dbExpenseGroup.update(_productsTable,
-          productProvider.toMap(isSafe: true),
+          productProvider.toMap(),
           where: "$_productId = ?",
           whereArgs: [productProvider.productId]);
     }catch(error) {

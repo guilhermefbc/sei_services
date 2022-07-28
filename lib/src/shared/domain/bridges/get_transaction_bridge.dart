@@ -13,8 +13,8 @@ class GetTransactionBridge {
 
   Future<void> fetchTransactions() async {
     Map<String, dynamic> result = await _service.getTransactions();
-    // _transactions.save(result["transactions"]);
-    // _products.save(result["products"]);
+    _transactions.save(result["transactions"]);
+    _products.save(result["products"]);
   }
 
 

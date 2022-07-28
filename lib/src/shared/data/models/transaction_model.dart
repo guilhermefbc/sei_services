@@ -29,8 +29,8 @@ class TransactionModel extends TransactionEntity {
     cpf: cpf,
   );
 
-  Map<String, dynamic> toMap({bool isSafe = false}) {
-    Map<String, dynamic> map = <String, dynamic>{
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
       'transactionId': transactionId,
       'accountNumber': accountNumber,
       'transactionType': transactionType,
@@ -42,7 +42,6 @@ class TransactionModel extends TransactionEntity {
       'expenseGroupId': expenseGroupId,
       'cpf': cpf
     };
-    return isSafe ? FromApiTypeUtil.toSafeMap(map) : map;
   }
 
   factory TransactionModel.fromMap(Map map) {
@@ -53,7 +52,7 @@ class TransactionModel extends TransactionEntity {
         transactionType: map["TransactionType"],
         transactionAmount: FromApiTypeUtil.toDouble(map['transactionAmount']),
         expenseType: FromApiTypeUtil.toMyString(map['expenseType']),
-        storeName: FromApiTypeUtil.toMyString(map['Store']),
+        storeName: FromApiTypeUtil.toMyString(map['Store'] ?? map['storeName']),
         sellDate: FromApiTypeUtil.toDateTime(map['sellDate']),
         totalTaxes: FromApiTypeUtil.toDouble(map['totalTaxes']),
         codigoNotaFiscal: FromApiTypeUtil.toMyString(map["codigoNotaFiscal"]),

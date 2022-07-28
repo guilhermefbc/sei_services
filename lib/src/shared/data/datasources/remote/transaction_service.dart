@@ -69,15 +69,15 @@ class TransactionService {
   TransactionService(this._auth, this._uuid);
 
   Future<Map<String,dynamic>> getTransactions() async {
-    // Uri uri = Uri.parse("https://dev.api.sei-imposto.com/taxes/transactions/search");
-    // final response = await http.get(uri, headers: {'Content-Type': 'application/json', 'X-HYPERMARKET': _auth.token});
-    // if (response.statusCode != 200) {
-    //   throw('Erro ao realizar requisição');
-    // }
-    // List resultMaps = jsonDecode(response.body);
+    Uri uri = Uri.parse("https://dev.api.sei-imposto.com/taxes/transactions/search");
+    final response = await http.get(uri, headers: {'Content-Type': 'application/json', 'X-HYPERMARKET': _auth.token});
+    if (response.statusCode != 200) {
+      throw('Erro ao realizar requisição');
+    }
+    List resultMaps = jsonDecode(response.body);
 
-    List<TransactionModel> transactions = resultMaps1.map((transaction) => TransactionModel.fromMap(transaction)).toList();
-    List<ProductModel> products = _getAllTransactionsProducts(resultMaps1);
+    List<TransactionModel> transactions = resultMaps.map((transaction) => TransactionModel.fromMap(transaction)).toList();
+    List<ProductModel> products = _getAllTransactionsProducts(resultMaps);
     return <String,dynamic>{
       "transactions": transactions,
       "products": products

@@ -65,8 +65,8 @@ class ProductModel extends ProductEntity{
     );
   }
 
-  Map<String,dynamic> toMap({bool isSafe = false}) {
-    Map<String,dynamic> map = <String,dynamic>{
+  Map<String,dynamic> toMap() {
+    return <String,dynamic>{
       "productId": productId,
       "transactionId": transactionId,
       "description": description,
@@ -86,6 +86,5 @@ class ProductModel extends ProductEntity{
       "isStockable": isStockable,
       "isMedicine": isMedicine
     };
-    return isSafe ? FromApiTypeUtil.toSafeMap(map) : map;
   }
 }

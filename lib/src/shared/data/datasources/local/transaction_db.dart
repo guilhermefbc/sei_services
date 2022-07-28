@@ -62,7 +62,7 @@ class TransactionDB {
   Future<void> saveTransaction(TransactionModel transaction) async {
     Database dbGroup = await db;
     try {
-      await dbGroup.insert(_transactionsTable, transaction.toMap(isSafe: true));
+      await dbGroup.insert(_transactionsTable, transaction.toMap());
     } catch (error) {
       throw Exception(error);
     }
@@ -90,7 +90,7 @@ class TransactionDB {
     try {
       Database dbExpenseGroup = await db;
       await dbExpenseGroup.update(
-          _transactionsTable, transaction.toMap(isSafe: true),
+          _transactionsTable, transaction.toMap(),
           where: "$_transactionId = ?",
           whereArgs: [transaction.transactionId]);
     } catch (error) {
