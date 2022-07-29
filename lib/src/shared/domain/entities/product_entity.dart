@@ -45,4 +45,12 @@ class ProductEntity {
     }
     return icmsTaxation!;
   }
+
+  String get origin {
+    bool isNational = productOrigin!.toUpperCase().contains('NACIONAL');
+    if(isNational) {
+      return 'Nacional';
+    }
+    return 'Importado';
+  }
 }

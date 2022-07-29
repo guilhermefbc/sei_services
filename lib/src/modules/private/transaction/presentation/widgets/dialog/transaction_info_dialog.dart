@@ -57,7 +57,7 @@ class _TransactionsInfoDialogState extends State<TransactionsInfoDialog> {
         children: [
           Text(
             '$name: ',
-            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
           ),
           Text(
             information,
