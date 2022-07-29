@@ -13,6 +13,4 @@ class GetTransactionBridge {
     _transactions.save(result["transactions"]);
     _products.save(result["products"]);
   }
-
-
 }

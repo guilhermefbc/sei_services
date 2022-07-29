@@ -66,7 +66,7 @@ class _TransactionItemState extends State<TransactionItem> {
   Widget _buildToProductScreenIcon() {
     return InkWell(
       onTap: () {
-        Modular.to.pushNamed('/private/transaction/product', arguments: widget.transaction);
+        Modular.to.pushNamed('/private/transaction/product/', arguments: widget.transaction);
       },
       child: CircleAvatar(
           radius: 20.r,

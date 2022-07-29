@@ -46,17 +46,17 @@ class TransactionModel extends TransactionEntity {
 
   factory TransactionModel.fromMap(Map map) {
     return TransactionModel(
-        transactionId: FromApiTypeUtil.toMyString(map["_id"] ?? map["transactionId"]),
-        expenseGroupId: FromApiTypeUtil.toMyString(map["groupId"] ?? map["expenseGroupId"]),
-        accountNumber: FromApiTypeUtil.toInt(map["accountNumber"]),
-        transactionType: map["TransactionType"],
-        transactionAmount: FromApiTypeUtil.toDouble(map['transactionAmount']),
-        expenseType: FromApiTypeUtil.toMyString(map['expenseType']),
-        storeName: FromApiTypeUtil.toMyString(map['Store'] ?? map['storeName']),
-        sellDate: FromApiTypeUtil.toDateTime(map['sellDate']),
-        totalTaxes: FromApiTypeUtil.toDouble(map['totalTaxes']),
-        codigoNotaFiscal: FromApiTypeUtil.toMyString(map["codigoNotaFiscal"]),
-        cpf: FromApiTypeUtil.toMyString(map["cpf"]),
+        transactionId: FromApiTypeUtil.toMyString(map["_id"] ?? map["transactionId"], defaultValue: '---'),
+        expenseGroupId: FromApiTypeUtil.toMyString(map["groupId"] ?? map["expenseGroupId"], defaultValue: '---'),
+        accountNumber: FromApiTypeUtil.toInt(map["accountNumber"], defaultValue: 0),
+        transactionType: FromApiTypeUtil.toMyString(map["TransactionType"], defaultValue: '---'),
+        transactionAmount: FromApiTypeUtil.toDouble(map['transactionAmount'], defaultValue: 0),
+        expenseType: FromApiTypeUtil.toMyString(map['expenseType'], defaultValue: '---'),
+        storeName: FromApiTypeUtil.toMyString(map['Store'] ?? map['storeName'], defaultValue: '---'),
+        sellDate: FromApiTypeUtil.toDateTime(map['sellDate'], defaultValue: DateTime.now()),
+        totalTaxes: FromApiTypeUtil.toDouble(map['totalTaxes'], defaultValue: 0),
+        codigoNotaFiscal: FromApiTypeUtil.toMyString(map["codigoNotaFiscal"], defaultValue: '---'),
+        cpf: FromApiTypeUtil.toMyString(map["cpf"], defaultValue: '---'),
     );
   }
 }

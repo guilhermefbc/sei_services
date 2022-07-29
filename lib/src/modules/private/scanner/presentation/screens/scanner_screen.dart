@@ -61,14 +61,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 allowDuplicates: false,
                 controller: cameraController,
                 onDetect: (barcode, args) {
+                  print(barcode.rawValue);
+                  print(barcode.format);
+                  print(barcode.type);
                   _scanner.scanDoc(barcode.rawValue);
-                  // if (barcode.rawValue == null) {
-                  //   debugPrint('Failed to scan Barcode');
-                  // } else {
-                  //   Vibrate.vibrate();
-                  //   final String code = barcode.rawValue!;
-                  //   debugPrint('Barcode found! $code');
-                  // }
                 }),
             Center(
               child: Container(
