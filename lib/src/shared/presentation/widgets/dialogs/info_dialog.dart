@@ -6,11 +6,13 @@ class InfoDialog extends BaseDialog {
   const InfoDialog({
     Key? key,
     required Widget child,
+    showCloseBtn
   }) : super(
     key: key,
     child: child,
     icon: Icons.info,
     backgroundIconColor: Colors.yellow,
+    showCloseBtn: showCloseBtn
   );
 
   InfoDialog.confirm({

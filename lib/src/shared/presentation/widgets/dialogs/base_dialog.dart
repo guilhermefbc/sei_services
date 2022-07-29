@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BaseDialog extends StatefulWidget {
   static const double padding = 10;
@@ -10,12 +11,16 @@ class BaseDialog extends StatefulWidget {
   final Widget child;
   final IconData icon;
   final Color backgroundIconColor;
+  final bool showCloseBtn;
+  final Function()? closeBtnFunction;
 
   const BaseDialog({
     Key? key,
     required this.child,
     required this.icon,
     required this.backgroundIconColor,
+    this.showCloseBtn = false,
+    this.closeBtnFunction,
   }) : super(key: key);
 
   @override
@@ -77,8 +82,8 @@ class _BaseDialogState extends State<BaseDialog>
               top: BaseDialog.iconRadius + BaseDialog.padding,
               right: BaseDialog.padding,
               bottom: BaseDialog.padding,
-            ),
-            margin: const EdgeInsets.only(top: BaseDialog.iconRadius),
+            ).r,
+            margin: const EdgeInsets.only(top: BaseDialog.iconRadius).r,
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               color: Colors.white,
@@ -86,7 +91,7 @@ class _BaseDialogState extends State<BaseDialog>
             ),
             child: Padding(
               child: widget.child,
-              padding: const EdgeInsets.all(BaseDialog.padding),
+              padding: const EdgeInsets.all(BaseDialog.padding).r,
             ),
           ),
         ),
@@ -103,6 +108,12 @@ class _BaseDialogState extends State<BaseDialog>
             ),
           ),
         ),
+        if (widget.showCloseBtn)
+          Positioned(
+            top: BaseDialog.iconSize,
+            right: BaseDialog.padding,
+            child: CloseButton(onPressed: widget.closeBtnFunction),
+          ),
       ],
     );
   }

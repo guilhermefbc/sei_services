@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sei_services/src/modules/private/transaction/presentation/widgets/dialog/transaction_info_dialog.dart';
 import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/theme/items_shadow.dart';
 import 'package:sei_services/src/shared/util/date/date_util.dart';
@@ -21,44 +22,49 @@ class TransactionItem extends StatefulWidget {
 class _TransactionItemState extends State<TransactionItem> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5).r,
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10).r,
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          boxShadow: [
-            ItemsBoxShadow.boxShadow
-          ]
-      ),
-      child: Column(
-        children: [
-          _buildStoreName(),
-          SizedBox(height: 15.h,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildValueBloc(
-                  title: "Valor",
-                  child: _buildTransactionValue(),
-                  color: Colors.green
-              ),
-              _buildValueBloc(
-                  title: "Impostos",
-                  child: _buildTaxValue(),
-                  color: Colors.redAccent
-              ),
-            ],
-          ),
-          SizedBox(height: 15.h,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildDate(),
-              _buildToProductScreenIcon()
-            ],
-          )
-        ],
+    return GestureDetector(
+      onTap: (){
+        _showTransactionsInfoDialog(context);
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5).r,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10).r,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
+            boxShadow: [
+              ItemsBoxShadow.boxShadow
+            ]
+        ),
+        child: Column(
+          children: [
+            _buildStoreName(),
+            SizedBox(height: 15.h,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildValueBloc(
+                    title: "Valor",
+                    child: _buildTransactionValue(),
+                    color: Colors.green
+                ),
+                _buildValueBloc(
+                    title: "Impostos",
+                    child: _buildTaxValue(),
+                    color: Colors.redAccent
+                ),
+              ],
+            ),
+            SizedBox(height: 15.h,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildDate(),
+                _buildToProductScreenIcon(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -117,6 +123,14 @@ class _TransactionItemState extends State<TransactionItem> {
         style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
         overflow: TextOverflow.visible,
         textAlign: TextAlign.center,
+    );
+  }
+
+  _showTransactionsInfoDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: true,
+        context: context,
+        builder: (ctx) => TransactionsInfoDialog(transaction: widget.transaction)
     );
   }
 }
