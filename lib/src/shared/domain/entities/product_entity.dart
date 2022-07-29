@@ -38,4 +38,11 @@ class ProductEntity {
       required this.isStockable,
       required this.isMedicine
   });
+
+  double get taxes {
+    if(approximateTaxation! > 0) {
+      return approximateTaxation!;
+    }
+    return icmsTaxation!;
+  }
 }

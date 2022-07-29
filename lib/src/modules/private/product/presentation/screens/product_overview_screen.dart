@@ -28,7 +28,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
             }
             List list = snapshot.data as List;
             return ListView(
-              padding: const EdgeInsets.only(top: 10).r,
+              padding: const EdgeInsets.only(top: 10, bottom: 35).r,
               children: list.map<Widget>((product) => ProductItem(transaction: widget.transaction, product: product,)).toList(),
             );
           }

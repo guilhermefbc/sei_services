@@ -19,8 +19,8 @@ class _ProductItemState extends State<ProductItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20.w),
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5).r,
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10).r,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -94,8 +94,12 @@ class _ProductItemState extends State<ProductItem> {
   }
 
   Widget _buildTaxValue() {
+    String text = '---';
+    if(widget.product.taxes > 0) {
+      text = MonetaryFormatterUtil.format(widget.product.taxes);
+    }
     return Text(
-      MonetaryFormatterUtil.format(widget.product.approximateTaxation),
+      text,
       style: TextStyle(
           color: Colors.redAccent,
           fontSize: 30.sp,
