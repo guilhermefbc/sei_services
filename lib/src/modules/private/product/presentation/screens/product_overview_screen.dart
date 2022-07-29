@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sei_services/src/modules/private/product/presentation/widgets/items/product_item.dart';
 import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/domain/repositories/products_repository.dart';
+import 'package:sei_services/src/shared/util/monetary/monetary_formatter_util.dart';
 
 class ProductOverviewScreen extends StatefulWidget {
   final TransactionEntity transaction;
@@ -19,7 +20,11 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: _buildTransactionValue(),
+        centerTitle: true,
+        toolbarHeight: 100.h,
+      ),
       body: FutureBuilder(
           future: _products.getProductsByTransactionId(widget.transaction.transactionId),
           builder: (ctx, snapshot) {
@@ -32,6 +37,17 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
               children: list.map<Widget>((product) => ProductItem(transaction: widget.transaction, product: product,)).toList(),
             );
           }
+      ),
+    );
+  }
+
+  Widget _buildTransactionValue() {
+    return Text(
+      MonetaryFormatterUtil.format(widget.transaction.transactionAmount),
+      style: TextStyle(
+          color: Colors.white,
+          fontSize: 35.sp,
+          fontWeight: FontWeight.w400
       ),
     );
   }
