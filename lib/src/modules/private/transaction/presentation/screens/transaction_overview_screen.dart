@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobx/mobx.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/items/transaction_item.dart';
+import 'package:sei_services/src/modules/private/transaction/presentation/widgets/lists/transactions_item_list_widget.dart';
 import 'package:sei_services/src/shared/domain/bridges/get_transaction_bridge.dart';
 import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/domain/repositories/transactions_repository.dart';
@@ -66,26 +67,7 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
           ),
           body: TabBarView(
             children: dates.map((date) {
-              return FutureBuilder(
-                future: _transactions.getTransactionsByYearMonth(date),
-                builder: (ctx, snapshot) {
-                  if (!snapshot.hasData) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  _controller.addTransactions(_transactions.transactions);
-                  _controller.addFilteredTransactions(
-                      snapshot.data! as List<TransactionEntity>);
-                  return ListView(
-                    padding: const EdgeInsets.only(top: 10).r,
-                    children: _controller.filteredTransactions
-                        .map<Widget>((transaction) =>
-                            TransactionItem(transaction: transaction))
-                        .toList(),
-                  );
-                },
-              );
+              return TransactionsItemListWidget(date: date);
             }).toList(),
           ),
         ),
