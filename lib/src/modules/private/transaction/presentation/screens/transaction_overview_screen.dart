@@ -5,6 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobx/mobx.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
+import 'package:sei_services/src/modules/private/transaction/presentation/widgets/items/tab_bar_item.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/items/transaction_item.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/lists/transactions_item_list_widget.dart';
 import 'package:sei_services/src/shared/domain/bridges/get_transaction_bridge.dart';
@@ -58,10 +59,7 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
             ),
             bottom: TabBar(
               tabs: dates.map((date) {
-                return Tab(
-                  child: Text(
-                      DateUtil.formatMonthYear(date, withoutThisYear: true)),
-                );
+                return TabBarItem(date: date);
               }).toList(),
             ),
           ),
