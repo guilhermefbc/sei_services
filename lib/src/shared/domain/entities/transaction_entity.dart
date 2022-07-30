@@ -1,19 +1,17 @@
 import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
 
 class TransactionEntity {
-  String? transactionId;
-  String? expenseGroupId;
-  int? accountNumber;
-  String? transactionType;
-  double? transactionAmount;
-  String? expenseType;
-  String? storeName;
-  DateTime? sellDate;
-  double? totalTaxes;
-  int? ownerId;
-  String? codigoNotaFiscal;
-  String? cpf;
-  List<ProductEntity>? products;
+  String transactionId;
+  String expenseGroupId;
+  int accountNumber;
+  String transactionType;
+  double transactionAmount;
+  String expenseType;
+  String storeName;
+  DateTime sellDate;
+  double totalTaxes;
+  String codigoNotaFiscal;
+  String cpf;
 
   TransactionEntity({
       required this.transactionId,

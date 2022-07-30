@@ -41,7 +41,7 @@ class _TransactionsInfoDialogState extends State<TransactionsInfoDialog> {
 
   Widget _buildStoreName() {
     return Text(
-      widget.transaction.storeName ?? '---',
+      widget.transaction.storeName,
       style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
       overflow: TextOverflow.visible,
       textAlign: TextAlign.center,

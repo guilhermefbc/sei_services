@@ -7,10 +7,11 @@ class MonetaryFormatterUtil {
     symbol: 'R\$',
   );
 
-  static String format(num? value) {
+  static String format(double? value) {
     if(value == null) {
       return '--';
     }
-    return _formatter.format(value.toString());
+    final String asFixed2 = value.toStringAsFixed(2);
+    return _formatter.format(asFixed2);
   }
 }

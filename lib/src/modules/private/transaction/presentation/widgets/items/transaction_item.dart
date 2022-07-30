@@ -119,7 +119,7 @@ class _TransactionItemState extends State<TransactionItem> {
 
   Widget _buildStoreName() {
     return Text(
-        widget.transaction.storeName ?? '---',
+        widget.transaction.storeName,
         style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
         overflow: TextOverflow.visible,
         textAlign: TextAlign.center,
