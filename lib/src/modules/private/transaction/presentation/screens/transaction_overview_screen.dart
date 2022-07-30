@@ -27,7 +27,9 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white70,
-      appBar: AppBar(),
+      appBar: AppBar(
+        toolbarHeight: 100.h,
+      ),
       body: FutureBuilder(
           future: _transactions.getTransactions(),
           builder: (ctx, snapshot) {
