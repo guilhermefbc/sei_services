@@ -8,6 +8,7 @@ import 'package:sei_services/src/modules/private/transaction/presentation/contro
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/items/tab_bar_item.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/items/transaction_item.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/lists/transactions_item_list_widget.dart';
+import 'package:sei_services/src/modules/private/transaction/presentation/widgets/transaction_header_widget.dart';
 import 'package:sei_services/src/shared/domain/bridges/get_transaction_bridge.dart';
 import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/domain/repositories/transactions_repository.dart';
@@ -24,8 +25,6 @@ class TransactionOverviewScreen extends StatefulWidget {
 
 class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
   final GetTransactionBridge _bridge = Modular.get<GetTransactionBridge>();
-  final TransactionsRepository _transactions =
-      Modular.get<TransactionsRepository>();
   final TransactionController _controller =
       Modular.get<TransactionController>();
 
@@ -48,15 +47,7 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
           backgroundColor: Colors.white70,
           appBar: AppBar(
             toolbarHeight: 80.h,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(MonetaryFormatterUtil.format(
-                    _controller.filteredTransactionsTotal)),
-                Text(MonetaryFormatterUtil.format(
-                    _controller.filteredTransactionsTaxesTotal)),
-              ],
-            ),
+            title: TransactionsHeaderWidget(),
             bottom: TabBar(
               tabs: dates.map((date) {
                 return TabBarItem(date: date);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sei_services/src/modules/private/product/presentation/widgets/dialog/product_info_dialog.dart';
+import 'package:sei_services/src/modules/private/transaction/presentation/widgets/amount_value_widget.dart';
+import 'package:sei_services/src/modules/private/transaction/presentation/widgets/taxes_value_widget.dart';
 import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
 import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/theme/items_shadow.dart';
@@ -42,12 +44,12 @@ class _ProductItemState extends State<ProductItem> {
               children: [
                 _buildValueBloc(
                     title: "Valor",
-                    child: _buildTransactionValue(),
+                    child: AmountValueWidget(amount: widget.product.price!),
                     color: Colors.green
                 ),
                 _buildValueBloc(
                     title: "Impostos",
-                    child: _buildTaxValue(),
+                    child: TaxesValueWidget(taxes: widget.product.taxes),
                     color: Colors.redAccent
                 ),
               ],
@@ -85,32 +87,6 @@ class _ProductItemState extends State<ProductItem> {
         Text(title, style: TextStyle(color: color, fontWeight: FontWeight.w400,),),
         child
       ],
-    );
-  }
-
-  Widget _buildTransactionValue() {
-    return Text(
-      MonetaryFormatterUtil.format(widget.product.price),
-      style: TextStyle(
-          color: Colors.green,
-          fontSize: 30.sp,
-          fontWeight: FontWeight.w500
-      ),
-    );
-  }
-
-  Widget _buildTaxValue() {
-    String text = '---';
-    if(widget.product.taxes > 0) {
-      text = MonetaryFormatterUtil.format(widget.product.taxes);
-    }
-    return Text(
-      text,
-      style: TextStyle(
-          color: Colors.redAccent,
-          fontSize: 30.sp,
-          fontWeight: FontWeight.w500
-      ),
     );
   }
 
