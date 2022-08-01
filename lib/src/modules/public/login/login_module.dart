@@ -14,7 +14,7 @@ class LoginModule extends Module {
   List<Bind<Object>> get binds => [
     Bind.lazySingleton((i) => LoginController()),
     Bind.lazySingleton((i) => LoginService()),
-    Bind.lazySingleton((i) => LoginUsecase(i(),i()))
+    Bind.lazySingleton((i) => LoginUsecase(i(),i(),i(),))
   ];
 
   @override

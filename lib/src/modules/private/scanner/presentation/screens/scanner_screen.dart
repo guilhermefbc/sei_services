@@ -3,6 +3,9 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:sei_services/src/modules/private/scanner/domain/scanner_util.dart';
+import 'package:sei_services/src/modules/private/scanner/presentation/controller/scanner_controller.dart';
+import 'package:sei_services/src/modules/private/scanner/presentation/widgets/dialogs/scanner_notiifcation_dialog.dart';
+import 'package:sei_services/src/modules/private/scanner/presentation/widgets/dialogs/select_scanner_notificationDialog.dart';
 
 class ScannerScreen extends StatefulWidget {
   const ScannerScreen({Key? key}) : super(key: key);
@@ -14,6 +17,7 @@ class ScannerScreen extends StatefulWidget {
 class _ScannerScreenState extends State<ScannerScreen> {
   MobileScannerController cameraController = MobileScannerController();
   final ScannerUtil _scanner = Modular.get<ScannerUtil>();
+  final ScannerController _controller = Modular.get<ScannerController>();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +68,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
                   print(barcode.rawValue);
                   print(barcode.format);
                   print(barcode.type);
-                  _scanner.scanDoc(barcode.rawValue);
+                  _scanner.scanDoc(barcode.rawValue).then((_) {
+                    _showDialog(context);
+                  });
                 }),
             Center(
               child: Container(
@@ -80,5 +86,13 @@ class _ScannerScreenState extends State<ScannerScreen> {
             )
           ],
         ));
+  }
+
+  _showDialog(BuildContext context) {
+    print(_controller.status.toString());
+    showDialog(
+        context: context,
+        builder: (ctx) => SelectScannerNotificationDialog(status: _controller.status)
+    );
   }
 }

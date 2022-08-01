@@ -40,7 +40,8 @@ class TransactionModel extends TransactionEntity {
       'storeName': storeName,
       'totalTaxes': totalTaxes,
       'expenseGroupId': expenseGroupId,
-      'cpf': cpf
+      'cpf': cpf,
+      'codigoNotaFiscal': codigoNotaFiscal
     };
   }
 

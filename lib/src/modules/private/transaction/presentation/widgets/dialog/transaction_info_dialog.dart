@@ -4,6 +4,7 @@ import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart'
 import 'package:sei_services/src/shared/presentation/widgets/dialogs/info_dialog.dart';
 import 'package:sei_services/src/shared/util/date/date_util.dart';
 import 'package:sei_services/src/shared/util/monetary/monetary_formatter_util.dart';
+import 'package:sei_services/src/shared/util/scanner/formatter_scanner_util.dart';
 
 class TransactionsInfoDialog extends StatefulWidget {
   final TransactionEntity transaction;
@@ -32,9 +33,9 @@ class _TransactionsInfoDialogState extends State<TransactionsInfoDialog> {
                 needFormat: true),
             _buildInfo('Impostos', widget.transaction.totalTaxes,
                 needFormat: true),
-            _buildInfo('Código', widget.transaction.codigoNotaFiscal),
             _buildInfo('Data', DateUtil.format(widget.transaction.sellDate)),
             _buildInfo('CPF', widget.transaction.cpf),
+            _buildBigInfo('Código', FormatterScannerUtil.formatNumericCode(widget.transaction.codigoNotaFiscal)),
           ],
         ));
   }
@@ -45,6 +46,29 @@ class _TransactionsInfoDialogState extends State<TransactionsInfoDialog> {
       style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16.sp),
       overflow: TextOverflow.visible,
       textAlign: TextAlign.center,
+    );
+  }
+
+  Widget _buildBigInfo(String name, info, {bool needFormat = false}) {
+    final String information =
+    needFormat ? MonetaryFormatterUtil.format(info) : info.toString();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 3).r,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$name: ',
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
+          ),
+          Text(
+            information,
+            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
+            overflow: TextOverflow.visible,
+          )
+        ],
+      ),
     );
   }
 
@@ -59,10 +83,12 @@ class _TransactionsInfoDialogState extends State<TransactionsInfoDialog> {
             '$name: ',
             style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500),
           ),
-          Text(
-            information,
-            style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
-            overflow: TextOverflow.visible,
+          Expanded(
+            child: Text(
+              information,
+              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
+              overflow: TextOverflow.visible,
+            ),
           )
         ],
       ),

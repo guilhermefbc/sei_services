@@ -33,105 +33,125 @@ class _LoginScreenState extends State<LoginScreen> {
     );
 
     return Scaffold(
-      appBar: AppBar(),
-      bottomNavigationBar: BottomAppBar(
-        color: const Color(0xFFB9FAFA),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('dontHaveAnAccount'.i18n()),
-            TextButton(
-                onPressed: (){
-                  Modular.to.pushNamed('/login/register');
-                },
-                child: Text('register'.i18n(), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),)
+        bottomNavigationBar: BottomAppBar(
+          color: const Color(0xFFB9FAFA),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('dontHaveAnAccount'.i18n()),
+              TextButton(
+                  onPressed: () {
+                    Modular.to.pushNamed('/login/register');
+                  },
+                  child: Text('register'.i18n(), style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16),)
               ),
-          ],
-        ),
-      ),
-      body: ListView(
-        children: [
-          SizedBox(
-            height: 160.h,
+            ],
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 20.r, right: 30.r),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  FormBuilderTextField(
-                    name: 'Email',
-                    decoration: InputDecoration(
-                      labelText: 'email'.i18n(),
-                      border: const OutlineInputBorder(),
-                      prefixIcon: const Icon(Icons.email_outlined),
-                    ),
-                    onChanged: _loginController.setEmail,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(errorText: 'thisFieldIsRequired'.i18n()),
-                      FormBuilderValidators.email(errorText: 'thisFieldMustBeAValidEmail'.i18n())
-                    ]),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  SizedBox(
-                    height: 10.r,
-                  ),
-                  Observer(
-                    builder: (_) => FormBuilderTextField(
-                      name: 'Senha',
+        ),
+        body: ListView(
+          children: [
+            SizedBox(height: 30.h,),
+            SizedBox(
+              height: 250.r,
+              width: 250.r,
+              child: Image.asset('assets/images/home_logo.png'),
+            ),
+            SizedBox(
+              height: 50.h,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20.r, right: 30.r),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    FormBuilderTextField(
+                      name: 'Email',
                       decoration: InputDecoration(
-                        labelText: 'password'.i18n(),
+                        labelText: 'email'.i18n(),
                         border: const OutlineInputBorder(),
-                        prefixIcon: const Icon(Icons.password),
-                        suffixIcon: PasswordIconButton(
-                          icon1: const Icon(Icons.remove_red_eye),
-                          icon2: const Icon(Icons.remove_red_eye_outlined),
-                          function: _loginController.togglePasswordVisibility,
-                          onTapIcon: _loginController.passwordVisible,
-                        ),
+                        prefixIcon: const Icon(Icons.email_outlined),
                       ),
-                      onChanged: _loginController.setPassword,
-                      // valueTransformer: (text) => num.tryParse(text),
-                      // autovalidateMode: AutovalidateMode.always,
+                      onChanged: _loginController.setEmail,
                       validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(errorText: 'thisFieldIsRequired'.i18n()),
-                        FormBuilderValidators.minLength(8, errorText: 'thePasswordMustHaveMinLength'.i18n()),
+                        FormBuilderValidators.required(
+                            errorText: 'thisFieldIsRequired'.i18n()),
+                        FormBuilderValidators.email(
+                            errorText: 'thisFieldMustBeAValidEmail'.i18n())
                       ]),
-                      keyboardType: TextInputType.text,
-                      obscureText: _loginController.passwordVisible,
+                      keyboardType: TextInputType.emailAddress,
                     ),
-                    name: 'Login password',
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                          onPressed: (){
-                            Modular.to.pushNamed('/login/forgot_password');
-                          },
-                          child: Text('forgotPassword'.i18n())
-                      )
-                    ],
-                  ),
-                  SimpleButton(
-                      onPressed: () async {
-                        if(_formKey.currentState!.validate()) {
-                          await _loginRepository.login(
-                              _loginController.email!,
-                              _loginController.password!
+                    SizedBox(
+                      height: 10.r,
+                    ),
+                    Observer(
+                      builder: (_) =>
+                          FormBuilderTextField(
+                            name: 'Senha',
+                            decoration: InputDecoration(
+                              labelText: 'password'.i18n(),
+                              border: const OutlineInputBorder(),
+                              prefixIcon: const Icon(Icons.password),
+                              suffixIcon: PasswordIconButton(
+                                icon1: const Icon(Icons.remove_red_eye),
+                                icon2: const Icon(
+                                    Icons.remove_red_eye_outlined),
+                                function: _loginController
+                                    .togglePasswordVisibility,
+                                onTapIcon: _loginController.passwordVisible,
+                              ),
+                            ),
+                            onChanged: _loginController.setPassword,
+                            // valueTransformer: (text) => num.tryParse(text),
+                            // autovalidateMode: AutovalidateMode.always,
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(
+                                  errorText: 'thisFieldIsRequired'.i18n()),
+                              FormBuilderValidators.minLength(
+                                  8, errorText: 'thePasswordMustHaveMinLength'
+                                  .i18n()),
+                            ]),
+                            keyboardType: TextInputType.text,
+                            obscureText: _loginController.passwordVisible,
+                          ),
+                      name: 'Login password',
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                            onPressed: () {
+                              Modular.to.pushNamed('/login/forgot_password');
+                            },
+                            child: Text('forgotPassword'.i18n())
+                        )
+                      ],
+                    ),
+                    Observer(
+                        builder: (context) {
+                          return _loginController.loading
+                              ? const Center(child: CircularProgressIndicator())
+                              : SimpleButton(
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                await _loginRepository.login(
+                                    _loginController.email!,
+                                    _loginController.password!
+                                );
+                              }
+                            },
+                            title: 'login'.i18n(),
+                            width: 100,
                           );
                         }
-                      },
-                      title: 'login'.i18n(),
-                      width: 100,
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
-      )
+            )
+          ],
+        )
     );
   }
 }

@@ -18,7 +18,7 @@ class TransactionModule extends Module {
     Bind.singleton((i) => ProductsDB()),
     Bind.singleton((i) => TransactionsRepository(i(),)),
     Bind.singleton((i) => ProductsRepository(i())),
-    Bind.singleton((i) => GetTransactionBridge(i(),i(),i(),)),
+    Bind.singleton((i) => GetTransactionBridge(i(),i(),i(),i())),
     Bind.singleton((i) => TransactionController()),
   ];
 

@@ -88,7 +88,7 @@ class TransactionsExamples {
 
   static const List<Map<String, dynamic>> transactionsSmall = [
     {
-      "_id": "62c6ebc3fb587e9001aa1c7c",
+      "_id": "62c6ebc3fb587e9001aa1c7d",
       "expenseType": "Indefinido",
       "Products": [
         [
@@ -135,7 +135,7 @@ class TransactionsExamples {
       "TransactionType": "Debito",
       "transactionAmount": 10,
       "Store": "FARMACIA JATOBA",
-      "sellDate": "2022-06-21T17:02:49.000Z",
+      "sellDate": "2021-06-21T17:02:49.000Z",
       "totalTaxes": 0,
       "__v": 0,
     }

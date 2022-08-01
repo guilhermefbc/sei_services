@@ -50,7 +50,7 @@ class ProductsDB {
         onCreate: (Database sei, int newerVersion) async {
           await sei.execute(''' 
           CREATE TABLE $_productsTable (
-            $_productId TEXT PRIMARY KEY,
+            $_productId TEXT KEY,
             $_transactionId TEXT,
             $_description TEXT,
             $_eanCode TEXT,
