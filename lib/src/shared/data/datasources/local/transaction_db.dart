@@ -60,19 +60,19 @@ class TransactionDB {
   }
 
   Future<void> saveTransaction(TransactionModel transaction) async {
-    Database dbGroup = await db;
+    Database dbTransaction = await db;
     try {
-      await dbGroup.insert(_transactionsTable, transaction.toMap());
+      await dbTransaction.insert(_transactionsTable, transaction.toMap());
     } catch (error) {
       throw Exception(error);
     }
   }
 
   Future<void> deleteTransaction(TransactionModel transaction) async {
-    Database dbGroup = await db;
+    Database dbTransaction = await db;
     try {
-      await dbGroup.delete(_transactionsTable,
-          where: 'transactionId = ?',
+      await dbTransaction.delete(_transactionsTable,
+          where: '$_transactionId = ?',
           whereArgs: [transaction.transactionId]);
     } catch (error) {
       throw Exception(error);
@@ -88,8 +88,8 @@ class TransactionDB {
 
   Future<void> updateTransaction(TransactionModel transaction) async {
     try {
-      Database dbExpenseGroup = await db;
-      await dbExpenseGroup.update(
+      Database dbTransaction = await db;
+      await dbTransaction.update(
           _transactionsTable, transaction.toMap(),
           where: "$_transactionId = ?",
           whereArgs: [transaction.transactionId]);

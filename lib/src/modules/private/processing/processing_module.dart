@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:sei_services/src/modules/private/processing/presentation/processing_list_screen.dart';
+import 'package:sei_services/src/modules/private/processing/presentation/screens/processing_list_screen.dart';
 import 'package:sei_services/src/shared/data/datasources/local/auth_security_db.dart';
 
 

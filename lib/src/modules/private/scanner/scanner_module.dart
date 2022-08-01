@@ -11,7 +11,7 @@ class ScannerModule extends Module {
   List<Bind> get binds => [
     Bind.singleton((i) => ScannerController()),
     Bind.singleton((i) => ScannerService(i())),
-    Bind.singleton((i) => ScannerUtil(i(),i(),)),
+    Bind.singleton((i) => ScannerUtil(i(),i(),i())),
   ];
 
   @override
