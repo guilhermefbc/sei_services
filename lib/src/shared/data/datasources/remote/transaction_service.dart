@@ -25,6 +25,7 @@ class TransactionService {
       throw ('Erro ao realizar requisição');
     }
     List resultMaps = jsonDecode(response.body);
+    // List resultMaps = TransactionsExamples.getAll();
     // List resultMaps = TransactionsExamples.transactionsSmall;
     // List resultMaps = TransactionsExamples.transactionsBig;
     // List resultMaps = TransactionsExamples.transactionsWeb;
@@ -42,8 +43,8 @@ class TransactionService {
   List<ProductModel> _getAllTransactionsProducts(List resultMaps) {
     List<ProductModel> products = [];
     for (Map map in resultMaps) {
-      List<List<Map>> productListMap1 = map["Products"];
-      List<Map> productListMap2 = productListMap1.first;
+      List productListMap1 = map["Products"];
+      List productListMap2 = productListMap1.first;
       List<ProductModel> productList = productListMap2.map((productMap) {
         Map tempMap = Map.of(productMap);
         tempMap["productId"] = _uuid.v4();

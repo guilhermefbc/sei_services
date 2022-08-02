@@ -63,7 +63,7 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
       return TabBarItem(date: date);
     }).toList();
     if(_processing.isNotEmpty) {
-      tabs.add(Tab(child: Icon(Icons.access_time),),);
+      tabs.add(const Tab(child: Icon(Icons.access_time),),);
     }
     return tabs;
   }
