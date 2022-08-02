@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -24,12 +26,23 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
   final TransactionController _controller =
       Modular.get<TransactionController>();
   final ProcessingRepository _processing = Modular.get<ProcessingRepository>();
+  late StreamSubscription _fetchTransactionsStream;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _bridge.fetchTransactions();
+    _fetchTransactionsStream = Stream.periodic(const Duration(seconds: 60),).listen((_) {
+      _bridge.fetchTransactions();
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _fetchTransactionsStream.cancel();
   }
 
   @override
