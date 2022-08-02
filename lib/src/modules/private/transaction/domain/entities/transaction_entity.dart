@@ -1,5 +1,3 @@
-import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
-
 class TransactionEntity {
   String transactionId;
   String expenseGroupId;

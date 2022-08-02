@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/amount_value_widget.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/dialog/transaction_info_dialog.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/taxes_value_widget.dart';
-import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/theme/items_shadow.dart';
 import 'package:sei_services/src/shared/util/date/date_util.dart';
 import 'package:sei_services/src/shared/util/monetary/monetary_formatter_util.dart';

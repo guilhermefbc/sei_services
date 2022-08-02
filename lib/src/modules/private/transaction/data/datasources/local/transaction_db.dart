@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:path/path.dart';
-import 'package:sei_services/src/shared/data/models/transaction_model.dart';
-import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
+import 'package:sei_services/src/modules/private/transaction/data/models/transaction_model.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/entities/transaction_entity.dart';
 import 'package:sqflite/sqflite.dart';
 
 class TransactionDB {

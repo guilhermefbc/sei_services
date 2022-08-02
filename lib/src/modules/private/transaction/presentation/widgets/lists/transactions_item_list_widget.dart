@@ -3,8 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/items/transaction_item.dart';
-import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
-import 'package:sei_services/src/shared/domain/repositories/transactions_repository.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/entities/transaction_entity.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/repositories/transactions_repository.dart';
 
 class TransactionsItemListWidget extends StatefulWidget {
   final DateTime date;

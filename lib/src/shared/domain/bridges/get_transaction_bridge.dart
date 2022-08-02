@@ -1,9 +1,9 @@
 import 'package:sei_services/src/core/connectivity/connection.dart';
 import 'package:sei_services/src/modules/private/processing/domain/repositories/processing_repository.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
-import 'package:sei_services/src/shared/data/datasources/remote/transaction_service.dart';
+import 'package:sei_services/src/modules/private/transaction/data/datasources/remote/transaction_service.dart';
 import 'package:sei_services/src/shared/domain/repositories/products_repository.dart';
-import 'package:sei_services/src/shared/domain/repositories/transactions_repository.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/repositories/transactions_repository.dart';
 
 class GetTransactionBridge {
   final TransactionService _service;

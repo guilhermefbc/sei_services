@@ -1254,7 +1254,7 @@ class TransactionsExamples {
       "Buyer": [
         {
           "name": "GUILHERME FRANCA BATISTA CIPRI",
-          "cpf": "062.695.393-66062.695.393-66",
+          "cpf": "",
           "address":
               "R LINO RODRIGUES, 275 CS DE ESQUINAR LINO RODRIGUES , 275 CS DE ESQUINA",
           "district": "CENTROCENTRO",
@@ -3257,7 +3257,7 @@ class TransactionsExamples {
       "Buyer": [
         {
           "nome": "CADASTRADO AUTOMATICAMENTE",
-          "cpf": "062.695.393-66",
+          "cpf": "",
           "address": "RUA CORONEL JOAO LOU, S/N",
           "district": "CENTRO",
           "zipCode": "",

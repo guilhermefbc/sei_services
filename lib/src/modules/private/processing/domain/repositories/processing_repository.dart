@@ -1,7 +1,7 @@
 import 'package:sei_services/src/modules/private/processing/data/datasources/local/processing_db.dart';
 import 'package:sei_services/src/modules/private/processing/data/models/processing_model.dart';
 import 'package:sei_services/src/modules/private/processing/domain/entities/processing_entity.dart';
-import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/entities/transaction_entity.dart';
 
 class ProcessingRepository {
   final ProcessingDB _db;

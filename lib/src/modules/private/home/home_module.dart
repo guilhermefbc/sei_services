@@ -5,11 +5,11 @@ import 'package:sei_services/src/modules/private/scanner/scanner_module.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
 import 'package:sei_services/src/modules/private/transaction/transaction_module.dart';
 import 'package:sei_services/src/shared/data/datasources/local/product_db.dart';
-import 'package:sei_services/src/shared/data/datasources/local/transaction_db.dart';
-import 'package:sei_services/src/shared/data/datasources/remote/transaction_service.dart';
+import 'package:sei_services/src/modules/private/transaction/data/datasources/local/transaction_db.dart';
+import 'package:sei_services/src/modules/private/transaction/data/datasources/remote/transaction_service.dart';
 import 'package:sei_services/src/shared/domain/bridges/get_transaction_bridge.dart';
 import 'package:sei_services/src/shared/domain/repositories/products_repository.dart';
-import 'package:sei_services/src/shared/domain/repositories/transactions_repository.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/repositories/transactions_repository.dart';
 
 
 class HomeModule extends Module {

@@ -1,12 +1,12 @@
 import 'dart:convert';
-import 'package:sei_services/src/shared/data/datasources/remote/transactions_examples.dart';
+import 'package:sei_services/src/modules/private/transaction/data/exemples/transactions_examples.dart';
 import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 import 'package:sei_services/src/shared/data/models/product_model.dart';
-import 'package:sei_services/src/shared/data/models/transaction_model.dart';
+import 'package:sei_services/src/modules/private/transaction/data/models/transaction_model.dart';
 import 'package:sei_services/src/shared/domain/entities/auth_entity.dart';
 import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
-import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/domain/repositories/auth_repository.dart';
 
 class TransactionService {

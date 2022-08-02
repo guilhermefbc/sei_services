@@ -1,5 +1,5 @@
 import 'package:mobx/mobx.dart';
-import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/util/date/date_util.dart';
 
 part 'transaction_controller.g.dart';

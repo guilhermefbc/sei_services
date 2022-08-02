@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sei_services/src/modules/private/product/presentation/widgets/items/product_item.dart';
-import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/domain/repositories/products_repository.dart';
 import 'package:sei_services/src/shared/presentation/widgets/default_header_widget.dart';
 import 'package:sei_services/src/shared/util/monetary/monetary_formatter_util.dart';

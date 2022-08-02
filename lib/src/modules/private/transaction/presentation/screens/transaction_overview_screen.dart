@@ -10,7 +10,7 @@ import 'package:sei_services/src/modules/private/transaction/presentation/contro
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/items/tab_bar_item.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/lists/transactions_item_list_widget.dart';
 import 'package:sei_services/src/shared/presentation/widgets/default_header_widget.dart';
-import 'package:sei_services/src/shared/domain/repositories/transactions_repository.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/repositories/transactions_repository.dart';
 
 class TransactionOverviewScreen extends StatefulWidget {
   const TransactionOverviewScreen({Key? key}) : super(key: key);

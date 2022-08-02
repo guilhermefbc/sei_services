@@ -8,7 +8,7 @@ import 'package:sei_services/src/modules/private/processing/domain/repositories/
 import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
 import 'package:sei_services/src/shared/domain/bridges/get_transaction_bridge.dart';
 import 'package:sei_services/src/shared/domain/constants/screen_dimension_constant.dart';
-import 'package:sei_services/src/shared/domain/repositories/transactions_repository.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/repositories/transactions_repository.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({ Key? key }) : super(key: key);

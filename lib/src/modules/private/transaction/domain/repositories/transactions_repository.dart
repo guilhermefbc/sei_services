@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sei_services/src/shared/data/datasources/local/transaction_db.dart';
-import 'package:sei_services/src/shared/data/models/transaction_model.dart';
+import 'package:sei_services/src/modules/private/transaction/data/datasources/local/transaction_db.dart';
+import 'package:sei_services/src/modules/private/transaction/data/models/transaction_model.dart';
 import 'package:sei_services/src/shared/domain/abstract/persistence_abstract.dart';
-import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/entities/transaction_entity.dart';
 
 class TransactionsRepository {
   final TransactionDB _db;
