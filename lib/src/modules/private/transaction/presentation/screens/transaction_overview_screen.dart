@@ -9,7 +9,7 @@ import 'package:sei_services/src/modules/private/processing/presentation/widgets
 import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/items/tab_bar_item.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/lists/transactions_item_list_widget.dart';
-import 'package:sei_services/src/modules/private/transaction/presentation/widgets/transaction_header_widget.dart';
+import 'package:sei_services/src/shared/presentation/widgets/default_header_widget.dart';
 import 'package:sei_services/src/shared/domain/repositories/transactions_repository.dart';
 
 class TransactionOverviewScreen extends StatefulWidget {
@@ -52,7 +52,10 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
             title:
                 _controller.tabIndex == initialIndex && _processing.isNotEmpty
                     ? const ProcessingHeaderWidget()
-                    : TransactionsHeaderWidget(),
+                    : DefaultHeaderWidget(
+                        amount: _controller.filteredTransactionsTotal,
+                        taxes: _controller.filteredTransactionsTaxesTotal,
+                      ),
             bottom: TabBar(isScrollable: true, tabs: _getTabBarElements(dates)),
           ),
           body: TabBarView(children: _getTabBarViewElements(dates)),

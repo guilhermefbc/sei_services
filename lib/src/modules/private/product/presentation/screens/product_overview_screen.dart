@@ -4,11 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sei_services/src/modules/private/product/presentation/widgets/items/product_item.dart';
 import 'package:sei_services/src/shared/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/domain/repositories/products_repository.dart';
+import 'package:sei_services/src/shared/presentation/widgets/default_header_widget.dart';
 import 'package:sei_services/src/shared/util/monetary/monetary_formatter_util.dart';
 
 class ProductOverviewScreen extends StatefulWidget {
   final TransactionEntity transaction;
-  const ProductOverviewScreen({Key? key, required this.transaction}) : super(key: key);
+
+  const ProductOverviewScreen({Key? key, required this.transaction})
+      : super(key: key);
 
   @override
   State<ProductOverviewScreen> createState() => _ProductOverviewScreenState();
@@ -21,34 +24,33 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: _buildTransactionValue(),
+        title: DefaultHeaderWidget(
+          amount: widget.transaction.transactionAmount,
+          taxes: widget.transaction.totalTaxes,
+        ),
         centerTitle: true,
         toolbarHeight: 100.h,
       ),
       body: FutureBuilder(
-          future: _products.getProductsByTransactionId(widget.transaction.transactionId),
+          future: _products
+              .getProductsByTransactionId(widget.transaction.transactionId),
           builder: (ctx, snapshot) {
-            if(!snapshot.hasData) {
-              return const Center(child: CircularProgressIndicator(),);
+            if (!snapshot.hasData) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             }
             List list = snapshot.data as List;
             return ListView(
               padding: const EdgeInsets.only(top: 10, bottom: 35).r,
-              children: list.map<Widget>((product) => ProductItem(transaction: widget.transaction, product: product,)).toList(),
+              children: list
+                  .map<Widget>((product) => ProductItem(
+                        transaction: widget.transaction,
+                        product: product,
+                      ))
+                  .toList(),
             );
-          }
-      ),
-    );
-  }
-
-  Widget _buildTransactionValue() {
-    return Text(
-      MonetaryFormatterUtil.format(widget.transaction.transactionAmount),
-      style: TextStyle(
-          color: Colors.white,
-          fontSize: 35.sp,
-          fontWeight: FontWeight.w400
-      ),
+          }),
     );
   }
 }
