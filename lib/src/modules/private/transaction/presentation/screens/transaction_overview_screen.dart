@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -11,7 +9,7 @@ import 'package:sei_services/src/modules/private/transaction/presentation/contro
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/items/tab_bar_item.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/lists/transactions_item_list_widget.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/transaction_header_widget.dart';
-import 'package:sei_services/src/shared/domain/bridges/get_transaction_bridge.dart';
+import 'package:sei_services/src/shared/domain/repositories/transactions_repository.dart';
 
 class TransactionOverviewScreen extends StatefulWidget {
   const TransactionOverviewScreen({Key? key}) : super(key: key);
@@ -22,32 +20,22 @@ class TransactionOverviewScreen extends StatefulWidget {
 }
 
 class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
-  final GetTransactionBridge _bridge = Modular.get<GetTransactionBridge>();
   final TransactionController _controller =
       Modular.get<TransactionController>();
   final ProcessingRepository _processing = Modular.get<ProcessingRepository>();
-  late StreamSubscription _fetchTransactionsStream;
+  final TransactionsRepository _repository =
+  Modular.get<TransactionsRepository>();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _bridge.fetchTransactions();
-    _fetchTransactionsStream = Stream.periodic(const Duration(seconds: 60),).listen((_) {
-      _bridge.fetchTransactions();
-    });
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    _fetchTransactionsStream.cancel();
   }
 
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
+      _controller.addTransactions(_repository.transactions);
       List<DateTime> dates = _controller.transactionsDates;
       return DefaultTabController(
         key: ValueKey(dates.toString()),

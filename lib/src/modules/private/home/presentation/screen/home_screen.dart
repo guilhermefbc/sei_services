@@ -1,8 +1,14 @@
+import 'dart:async';
+
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sei_services/src/modules/private/processing/domain/repositories/processing_repository.dart';
+import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
+import 'package:sei_services/src/shared/domain/bridges/get_transaction_bridge.dart';
 import 'package:sei_services/src/shared/domain/constants/screen_dimension_constant.dart';
+import 'package:sei_services/src/shared/domain/repositories/transactions_repository.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({ Key? key }) : super(key: key);
@@ -12,10 +18,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final GetTransactionBridge _bridge = Modular.get<GetTransactionBridge>();
+  final ProcessingRepository _processing = Modular.get<ProcessingRepository>();
+  final TransactionsRepository _transactions =
+  Modular.get<TransactionsRepository>();
+  late StreamSubscription _fetchTransactionsStream;
+
   @override
   void initState() {
     super.initState();
     Modular.to.navigate('/private/transaction/');
+    _init();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _fetchTransactionsStream.cancel();
+  }
+
+  _init() async {
+    _transactions.getTransactions();
+    _bridge.fetchTransactions();
+    _fetchTransactionsStream = Stream.periodic(const Duration(seconds: 60),).listen((_) {
+      if(_processing.isNotEmpty) {
+        _bridge.fetchTransactions();
+      }
+    });
   }
 
 

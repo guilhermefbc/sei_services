@@ -34,7 +34,6 @@ class _TransactionsItemListWidgetState
             child: CircularProgressIndicator(),
           );
         }
-        _controller.addTransactions(_transactions.transactions);
         _controller.addFilteredTransactions(snapshot.data! as List<TransactionEntity>);
         return ListView(
           padding: const EdgeInsets.only(top: 10).r,
