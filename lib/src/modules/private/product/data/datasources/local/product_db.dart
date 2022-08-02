@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:path/path.dart';
-import 'package:sei_services/src/shared/data/models/product_model.dart';
-import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
+import 'package:sei_services/src/modules/private/product/data/models/product_model.dart';
+import 'package:sei_services/src/modules/private/product/domain/entities/product_entity.dart';
 import 'package:sqflite/sqflite.dart';
 
 

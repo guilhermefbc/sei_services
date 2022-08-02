@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
+import 'package:sei_services/src/modules/private/product/domain/entities/product_entity.dart';
 import 'package:sei_services/src/shared/presentation/widgets/dialogs/info_dialog.dart';
 import 'package:sei_services/src/shared/util/monetary/monetary_formatter_util.dart';
 

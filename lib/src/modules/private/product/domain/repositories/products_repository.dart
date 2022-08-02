@@ -1,7 +1,6 @@
-import 'package:sei_services/src/shared/data/datasources/local/product_db.dart';
-import 'package:sei_services/src/shared/data/models/product_model.dart';
-import 'package:sei_services/src/shared/domain/abstract/persistence_abstract.dart';
-import 'package:sei_services/src/shared/domain/entities/product_entity.dart';
+import 'package:sei_services/src/modules/private/product/data/datasources/local/product_db.dart';
+import 'package:sei_services/src/modules/private/product/data/models/product_model.dart';
+import 'package:sei_services/src/modules/private/product/domain/entities/product_entity.dart';
 
 class ProductsRepository {
   final ProductsDB _db;
