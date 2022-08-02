@@ -33,6 +33,22 @@ mixin _$TransactionController on _TransactionController, Store {
               name: '_TransactionController.transactionsDates'))
       .value;
 
+  late final _$tabIndexAtom =
+      Atom(name: '_TransactionController.tabIndex', context: context);
+
+  @override
+  int get tabIndex {
+    _$tabIndexAtom.reportRead();
+    return super.tabIndex;
+  }
+
+  @override
+  set tabIndex(int value) {
+    _$tabIndexAtom.reportWrite(value, super.tabIndex, () {
+      super.tabIndex = value;
+    });
+  }
+
   late final _$_TransactionControllerActionController =
       ActionController(name: '_TransactionController', context: context);
 
@@ -61,6 +77,7 @@ mixin _$TransactionController on _TransactionController, Store {
   @override
   String toString() {
     return '''
+tabIndex: ${tabIndex},
 filteredTransactionsTotal: ${filteredTransactionsTotal},
 filteredTransactionsTaxesTotal: ${filteredTransactionsTaxesTotal},
 transactionsDates: ${transactionsDates}

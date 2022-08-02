@@ -12,6 +12,9 @@ abstract class _TransactionController with Store {
   List<TransactionEntity> filteredTransactions =
       ObservableList<TransactionEntity>();
 
+  @observable
+  int tabIndex = 0;
+
   @action
   void addTransactions(List<TransactionEntity> values) {
     transactions.clear();

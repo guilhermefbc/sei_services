@@ -5,7 +5,7 @@ import 'package:sei_services/src/modules/private/transaction/presentation/widget
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/taxes_value_widget.dart';
 
 class TransactionsHeaderWidget extends StatefulWidget {
-  const TransactionsHeaderWidget({Key? key}) : super(key: key);
+  TransactionsHeaderWidget({Key? key}) : super(key: key);
 
   @override
   State<TransactionsHeaderWidget> createState() => _TransactionsHeaderWidgetState();

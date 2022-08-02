@@ -8,8 +8,10 @@ import 'package:sei_services/src/shared/domain/repositories/transactions_reposit
 
 class TransactionsItemListWidget extends StatefulWidget {
   final DateTime date;
+  final int index;
 
-  const TransactionsItemListWidget({Key? key, required this.date})
+  const TransactionsItemListWidget(
+      {Key? key, required this.date, required this.index})
       : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class _TransactionsItemListWidgetState
 
   @override
   Widget build(BuildContext context) {
+    _controller.tabIndex = widget.index;
     return FutureBuilder(
       future: _transactions.getTransactionsByYearMonth(widget.date),
       builder: (ctx, snapshot) {
@@ -34,10 +37,12 @@ class _TransactionsItemListWidgetState
             child: CircularProgressIndicator(),
           );
         }
-        _controller.addFilteredTransactions(snapshot.data! as List<TransactionEntity>);
+        _controller
+            .addFilteredTransactions(snapshot.data! as List<TransactionEntity>);
         return ListView(
           padding: const EdgeInsets.only(top: 10).r,
-          children: _controller.filteredTransactions.map<Widget>(
+          children: _controller.filteredTransactions
+              .map<Widget>(
                   (transaction) => TransactionItem(transaction: transaction))
               .toList(),
         );
