@@ -23,7 +23,7 @@ class _ProcessingListScreenState extends State<ProcessingListScreen> {
     _controller.tabIndex = widget.index;
     List data = _processing.processing;
     return ListView.builder(
-        padding: const EdgeInsets.only(top: 5).r,
+        padding: const EdgeInsets.only(top: 5, bottom: 15).r,
         itemCount: data.length,
         itemBuilder: (ctx, idx) => ProcessingItem(processing: data[idx])
     );
