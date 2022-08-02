@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sei_services/src/modules/private/processing/domain/repositories/processing_repository.dart';
 import 'package:sei_services/src/modules/private/processing/presentation/widgets/items/processing_item.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
@@ -22,6 +23,7 @@ class _ProcessingListScreenState extends State<ProcessingListScreen> {
     _controller.tabIndex = widget.index;
     List data = _processing.processing;
     return ListView.builder(
+        padding: const EdgeInsets.only(top: 5).r,
         itemCount: data.length,
         itemBuilder: (ctx, idx) => ProcessingItem(processing: data[idx])
     );
