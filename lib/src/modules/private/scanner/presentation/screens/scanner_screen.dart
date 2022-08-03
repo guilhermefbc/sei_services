@@ -29,87 +29,83 @@ class _ScannerScreenState extends State<ScannerScreen> {
         //   ],
         // )),
         body: Stack(
-          children: [
-            MobileScanner(
-                allowDuplicates: false,
-                controller: cameraController,
-                onDetect: (barcode, args) {
-                  print(barcode.rawValue);
-                  print(barcode.format);
-                  print(barcode.type);
-                  _scanner.scanDoc(barcode.rawValue).then((_) {
-                    _showDialog(context);
-                  });
-                }),
-            Center(
-              child: Container(
-                height: 250.r,
-                width: 250.r,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.green,
-                    width: 4,
-                  ),
+      children: [
+        MobileScanner(
+            allowDuplicates: false,
+            controller: cameraController,
+            onDetect: (barcode, args) async {
+              await _scanner.scanDoc(barcode.rawValue);
+              await _showDialog(context);
+            }),
+        Center(
+          child: Container(
+            height: 250.r,
+            width: 250.r,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.green,
+                width: 4,
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 15.r,
+          right: 15.r,
+          child: GestureDetector(
+            onTap: () {
+              Modular.to.pushNamed('/private/scanner/manual_numeric_code');
+            },
+            child: CircleAvatar(
+              radius: 30.r,
+              child: Text(
+                '123',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                  fontSize: 20.sp,
                 ),
               ),
             ),
-            Positioned(
-              bottom: 15.r,
-              right: 15.r,
-              child: GestureDetector(
-                onTap: () {
-                  Modular.to.pushNamed('/private/scanner/manual_numeric_code');
-                },
-                child: CircleAvatar(
-                  radius: 30.r,
-                  child: Text(
-                    '123',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                      fontSize: 20.sp,
-                    ),
-                  ),
+          ),
+        ),
+        Positioned(
+          bottom: 15.r,
+          left: 15.r,
+          child: GestureDetector(
+            onTap: () {
+              Modular.to.pushNamed('/private/scanner/manual_numeric_code');
+            },
+            child: CircleAvatar(
+              radius: 30.r,
+              child: IconButton(
+                color: Colors.white,
+                icon: ValueListenableBuilder(
+                  valueListenable: cameraController.torchState,
+                  builder: (context, state, child) {
+                    switch (state as TorchState) {
+                      case TorchState.off:
+                        return const Icon(Icons.flash_off, color: Colors.grey);
+                      case TorchState.on:
+                        return const Icon(Icons.flash_on, color: Colors.yellow);
+                    }
+                  },
                 ),
+                iconSize: 32.0,
+                onPressed: () => cameraController.toggleTorch(),
               ),
             ),
-            Positioned(
-              bottom: 15.r,
-              left: 15.r,
-              child: GestureDetector(
-                onTap: () {
-                  Modular.to.pushNamed('/private/scanner/manual_numeric_code');
-                },
-                child: CircleAvatar(
-                  radius: 30.r,
-                  child: IconButton(
-                    color: Colors.white,
-                    icon: ValueListenableBuilder(
-                      valueListenable: cameraController.torchState,
-                      builder: (context, state, child) {
-                        switch (state as TorchState) {
-                          case TorchState.off:
-                            return const Icon(Icons.flash_off, color: Colors.grey);
-                          case TorchState.on:
-                            return const Icon(Icons.flash_on, color: Colors.yellow);
-                        }
-                      },
-                    ),
-                    iconSize: 32.0,
-                    onPressed: () => cameraController.toggleTorch(),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ));
+          ),
+        ),
+      ],
+    ));
   }
 
-  _showDialog(BuildContext context) {
-    print(_controller.status.toString());
-    showDialog(
-        context: context,
-        builder: (ctx) =>
-            SelectScannerNotificationDialog(status: _controller.status));
+  Future<void> _showDialog(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (ctx) =>
+          SelectScannerNotificationDialog(status: _controller.status),
+    );
   }
 }

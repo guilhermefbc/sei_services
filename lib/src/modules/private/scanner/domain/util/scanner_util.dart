@@ -37,13 +37,17 @@ class ScannerUtil {
   }
 
   Future<void> _workWithResult(String code) async {
-    Vibrate.vibrate();
-    int? result = await _service.postQRBill(code);
-    _setStatus(result);
-    if(_controller.isSuccess) {
-      _processing.saveProcessing(code);
+    try{
+      Vibrate.vibrate();
+      int? result = await _service.postQRBill(code);
+      _setStatus(result);
+      if(_controller.isSuccess) {
+        _processing.saveProcessing(code);
+      }
+      debugPrint('Barcode found! $result');
+    }catch(_) {
+      _controller.status = ScannerStatusEnum.error;
     }
-    debugPrint('Barcode found! $result');
   }
 
   void _setStatus(int? result) {

@@ -11,6 +11,6 @@ class BarCodeUtil {
   }
   
   static bool _hasBarCodeSize(String code) {
-    return code.length <= _numberOfBarCodeDecimals;
+    return code.length == _numberOfBarCodeDecimals;
   }
 }
