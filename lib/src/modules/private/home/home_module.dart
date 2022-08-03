@@ -7,9 +7,9 @@ import 'package:sei_services/src/modules/private/transaction/transaction_module.
 import 'package:sei_services/src/modules/private/product/data/datasources/local/product_db.dart';
 import 'package:sei_services/src/modules/private/transaction/data/datasources/local/transaction_db.dart';
 import 'package:sei_services/src/modules/private/transaction/data/datasources/remote/transaction_service.dart';
-import 'package:sei_services/src/shared/domain/bridges/get_transaction_bridge.dart';
 import 'package:sei_services/src/modules/private/product/domain/repositories/products_repository.dart';
 import 'package:sei_services/src/modules/private/transaction/domain/repositories/transactions_repository.dart';
+import 'package:sei_services/src/shared/domain/usecases/fetch_transaction_usecase.dart';
 
 
 class HomeModule extends Module {
@@ -21,7 +21,7 @@ class HomeModule extends Module {
     Bind.singleton((i) => TransactionsRepository(i(),)),
     Bind.singleton((i) => TransactionController()),
     Bind.singleton((i) => ProductsRepository(i())),
-    Bind.singleton((i) => GetTransactionBridge(i(),i(),i(),i(),i(),i(),)),
+    Bind.singleton((i) => FetchTransactionsUsecase(i(),i(),i(),i(),i(),i(),)),
   ];
 
   @override

@@ -5,14 +5,14 @@ import 'package:sei_services/src/modules/private/transaction/data/datasources/re
 import 'package:sei_services/src/modules/private/product/domain/repositories/products_repository.dart';
 import 'package:sei_services/src/modules/private/transaction/domain/repositories/transactions_repository.dart';
 
-class GetTransactionBridge {
+class FetchTransactionsUsecase {
   final TransactionService _service;
   final TransactionsRepository _transactions;
   final ProductsRepository _products;
   final Connection _connection;
   final ProcessingRepository _processing;
   final TransactionController _controller;
-  GetTransactionBridge(this._service, this._transactions, this._products, this._connection, this._processing, this._controller);
+  FetchTransactionsUsecase(this._service, this._transactions, this._products, this._connection, this._processing, this._controller);
 
   Future<void> fetchTransactions() async {
     final bool hasConnection = await _connection.hasConnection();

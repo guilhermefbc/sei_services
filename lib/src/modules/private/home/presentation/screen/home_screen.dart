@@ -1,14 +1,12 @@
 import 'dart:async';
-
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sei_services/src/modules/private/processing/domain/repositories/processing_repository.dart';
-import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
-import 'package:sei_services/src/shared/domain/bridges/get_transaction_bridge.dart';
 import 'package:sei_services/src/shared/domain/constants/screen_dimension_constant.dart';
 import 'package:sei_services/src/modules/private/transaction/domain/repositories/transactions_repository.dart';
+import 'package:sei_services/src/shared/domain/usecases/fetch_transaction_usecase.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({ Key? key }) : super(key: key);
@@ -18,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final GetTransactionBridge _bridge = Modular.get<GetTransactionBridge>();
+  final FetchTransactionsUsecase _usecase = Modular.get<FetchTransactionsUsecase>();
   final ProcessingRepository _processing = Modular.get<ProcessingRepository>();
   final TransactionsRepository _transactions =
   Modular.get<TransactionsRepository>();
@@ -40,10 +38,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _init() async {
     _transactions.getTransactions();
-    _bridge.fetchTransactions();
+    _usecase.fetchTransactions();
     _fetchTransactionsStream = Stream.periodic(const Duration(seconds: 60),).listen((_) {
       if(_processing.isNotEmpty) {
-        _bridge.fetchTransactions();
+        _usecase.fetchTransactions();
       }
     });
   }
