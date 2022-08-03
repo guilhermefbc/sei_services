@@ -4,7 +4,7 @@ import 'package:sei_services/src/modules/private/transaction/domain/entities/tra
 import 'package:sei_services/src/shared/presentation/widgets/dialogs/info_dialog.dart';
 import 'package:sei_services/src/shared/util/date/date_util.dart';
 import 'package:sei_services/src/shared/util/monetary/monetary_formatter_util.dart';
-import 'package:sei_services/src/shared/util/scanner/formatter_scanner_util.dart';
+import 'package:sei_services/src/modules/private/scanner/domain/util/formatter_scanner_util.dart';
 
 class TransactionsInfoDialog extends StatefulWidget {
   final TransactionEntity transaction;

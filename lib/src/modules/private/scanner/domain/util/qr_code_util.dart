@@ -1,4 +1,4 @@
-import 'package:sei_services/src/shared/util/scanner/formatter_scanner_util.dart';
+import 'package:sei_services/src/modules/private/scanner/domain/util/formatter_scanner_util.dart';
 
 class QrCodeUtil {
   // static bool _isValidStateUFCode(String code) {

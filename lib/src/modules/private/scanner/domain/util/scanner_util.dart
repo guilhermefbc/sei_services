@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:sei_services/src/modules/private/processing/domain/repositories/processing_repository.dart';
 import 'package:sei_services/src/modules/private/scanner/data/datasources/remote/scanner_service.dart';
-import 'package:sei_services/src/modules/private/scanner/domain/scanner_status_enum.dart';
+import 'package:sei_services/src/modules/private/scanner/domain/enum/scanner_status_enum.dart';
 import 'package:sei_services/src/modules/private/scanner/presentation/controller/scanner_controller.dart';
-import 'package:sei_services/src/shared/util/scanner/bar_code_util.dart';
-import 'package:sei_services/src/shared/util/scanner/qr_code_util.dart';
+import 'package:sei_services/src/modules/private/scanner/domain/util/bar_code_util.dart';
+import 'package:sei_services/src/modules/private/scanner/domain/util/qr_code_util.dart';
 
 class ScannerUtil {
   final int _minNumberToBeValid = 44;

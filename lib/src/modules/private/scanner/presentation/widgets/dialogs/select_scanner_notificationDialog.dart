@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:sei_services/src/modules/private/scanner/domain/scanner_status_enum.dart';
+import 'package:sei_services/src/modules/private/scanner/domain/enum/scanner_status_enum.dart';
 import 'package:sei_services/src/modules/private/scanner/presentation/widgets/dialogs/scanner_notiifcation_dialog.dart';
 import 'package:sei_services/src/shared/presentation/widgets/dialogs/info_dialog.dart';
 

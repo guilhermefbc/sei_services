@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:sei_services/src/modules/private/scanner/domain/scanner_util.dart';
+import 'package:sei_services/src/modules/private/scanner/domain/util/scanner_util.dart';
 import 'package:sei_services/src/modules/private/scanner/presentation/controller/scanner_controller.dart';
 import 'package:sei_services/src/modules/private/scanner/presentation/widgets/dialogs/scanner_notiifcation_dialog.dart';
 import 'package:sei_services/src/modules/private/scanner/presentation/widgets/dialogs/select_scanner_notificationDialog.dart';

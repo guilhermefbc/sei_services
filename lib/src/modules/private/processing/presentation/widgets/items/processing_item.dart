@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sei_services/src/modules/private/processing/domain/entities/processing_entity.dart';
 import 'package:sei_services/src/shared/theme/items_shadow.dart';
 import 'package:sei_services/src/shared/util/date/date_util.dart';
-import 'package:sei_services/src/shared/util/scanner/formatter_scanner_util.dart';
+import 'package:sei_services/src/modules/private/scanner/domain/util/formatter_scanner_util.dart';
 
 class ProcessingItem extends StatelessWidget {
   final ProcessingEntity processing;
