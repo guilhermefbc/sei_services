@@ -26,6 +26,7 @@ class AppInitialWidget extends StatelessWidget {
         // delegate from localization package.
         LocalJsonLocalization.delegate,
       ],
+      debugShowCheckedModeBanner: false,
       supportedLocales: [
         Locale('en', 'US'),
         Locale('pt', 'BR'),

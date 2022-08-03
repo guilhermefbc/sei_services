@@ -24,6 +24,8 @@ class _SelectScannerNotificationDialogState extends State<SelectScannerNotificat
         return _success(context);
       case ScannerStatusEnum.repeated:
         return _repeated(context);
+      case ScannerStatusEnum.invalidState:
+        return _invalidState(context);
       default:
         return _default(context);
     }
@@ -51,6 +53,16 @@ class _SelectScannerNotificationDialogState extends State<SelectScannerNotificat
       context: context,
       title: 'Nota repetida',
       description: 'Essa nota fiscal já foi lida, ela já está em processamento ou disponível no app',
+      buttonTitle: 'Certo',
+      buttonOnPressed: (){},
+    );
+  }
+
+  Widget _invalidState(BuildContext context) {
+    return InfoDialog.confirm(
+      context: context,
+      title: 'Estado inválido',
+      description: 'O sistema ainda não está disponível para o estado (UF) desta nota, guarde ela por enquanto, embreve você poderá adicioná-la ao app.',
       buttonTitle: 'Certo',
       buttonOnPressed: (){},
     );

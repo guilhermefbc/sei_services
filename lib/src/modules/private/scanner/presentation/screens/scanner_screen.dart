@@ -22,43 +22,12 @@ class _ScannerScreenState extends State<ScannerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Mobile Scanner'),
-          actions: [
-            IconButton(
-              color: Colors.white,
-              icon: ValueListenableBuilder(
-                valueListenable: cameraController.torchState,
-                builder: (context, state, child) {
-                  switch (state as TorchState) {
-                    case TorchState.off:
-                      return const Icon(Icons.flash_off, color: Colors.grey);
-                    case TorchState.on:
-                      return const Icon(Icons.flash_on, color: Colors.yellow);
-                  }
-                },
-              ),
-              iconSize: 32.0,
-              onPressed: () => cameraController.toggleTorch(),
-            ),
-            IconButton(
-              color: Colors.white,
-              icon: ValueListenableBuilder(
-                valueListenable: cameraController.cameraFacingState,
-                builder: (context, state, child) {
-                  switch (state as CameraFacing) {
-                    case CameraFacing.front:
-                      return const Icon(Icons.camera_front);
-                    case CameraFacing.back:
-                      return const Icon(Icons.camera_rear);
-                  }
-                },
-              ),
-              iconSize: 32.0,
-              onPressed: () => cameraController.switchCamera(),
-            ),
-          ],
-        ),
+        // appBar: AppBar(
+        //     title: Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //   ],
+        // )),
         body: Stack(
           children: [
             MobileScanner(
@@ -83,7 +52,55 @@ class _ScannerScreenState extends State<ScannerScreen> {
                   ),
                 ),
               ),
-            )
+            ),
+            Positioned(
+              bottom: 15.r,
+              right: 15.r,
+              child: GestureDetector(
+                onTap: () {
+                  Modular.to.pushNamed('/private/scanner/manual_numeric_code');
+                },
+                child: CircleAvatar(
+                  radius: 30.r,
+                  child: Text(
+                    '123',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                      fontSize: 20.sp,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: 15.r,
+              left: 15.r,
+              child: GestureDetector(
+                onTap: () {
+                  Modular.to.pushNamed('/private/scanner/manual_numeric_code');
+                },
+                child: CircleAvatar(
+                  radius: 30.r,
+                  child: IconButton(
+                    color: Colors.white,
+                    icon: ValueListenableBuilder(
+                      valueListenable: cameraController.torchState,
+                      builder: (context, state, child) {
+                        switch (state as TorchState) {
+                          case TorchState.off:
+                            return const Icon(Icons.flash_off, color: Colors.grey);
+                          case TorchState.on:
+                            return const Icon(Icons.flash_on, color: Colors.yellow);
+                        }
+                      },
+                    ),
+                    iconSize: 32.0,
+                    onPressed: () => cameraController.toggleTorch(),
+                  ),
+                ),
+              ),
+            ),
           ],
         ));
   }
@@ -92,7 +109,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
     print(_controller.status.toString());
     showDialog(
         context: context,
-        builder: (ctx) => SelectScannerNotificationDialog(status: _controller.status)
-    );
+        builder: (ctx) =>
+            SelectScannerNotificationDialog(status: _controller.status));
   }
 }

@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 class FormatterScannerUtil {
   static String toStateCode(String code) {
-    return extractCodeNumberByQRData(code).substring(0,2);
+    return code.substring(0,2);
   }
 
   static String extractCodeNumberByQRData(String rawContent) {
@@ -26,3 +29,48 @@ class FormatterScannerUtil {
     return formattedCode;
   }
 }
+
+class NFCECodeTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    String old = oldValue.text.replaceAll(' ', '');
+    if (old.length >= newValue.text.length) {
+      return newValue;
+    }
+    var cardText = addSeparators(newValue.text, ' ');
+    return newValue.copyWith(text: cardText, selection: updateCursorPosition(cardText));
+  }
+  String addSeparators(String value, String separator) {
+    value = value.replaceAll(' ', '');
+    int aux = 3;
+    var newString = '';
+    for (int i = 0; i < value.length; i++) {
+      newString += value[i];
+      if (i == aux && i < 43) {
+        newString += separator;
+        aux += 4;
+      }
+    }
+    return newString;
+  }
+
+  TextSelection updateCursorPosition(String text) {
+    return TextSelection.fromPosition(TextPosition(offset: text.length));
+  }
+}
+
+// class NFCECodeTextFormatter extends TextInputFormatter {
+//   @override
+//   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+//     String old = oldValue.text.replaceAll(' ', '');
+//     if (old.length >= newValue.text.length) {
+//       return newValue;
+//     }
+//     final cardText = FormatterScannerUtil.formatNumericCode(newValue.text);
+//     return newValue.copyWith(text: cardText, selection: updateCursorPosition(cardText));
+//   }
+//
+//   TextSelection updateCursorPosition(String text) {
+//     return TextSelection.fromPosition(TextPosition(offset: text.length));
+//   }
+// }

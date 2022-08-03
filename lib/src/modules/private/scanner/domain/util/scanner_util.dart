@@ -15,6 +15,7 @@ class ScannerUtil {
   ScannerUtil(this._service, this._controller, this._processing);
 
   Future<void> scanDoc(String? code) async {
+    code = code?.replaceAll(' ', '');
     if(_isValidCode(code)) {
       String result = _getDocumentCode(code!);
       await _isValidResult(result);
@@ -24,10 +25,14 @@ class ScannerUtil {
   }
 
   Future<void> _isValidResult(String result) async {
-    if(result.isNotEmpty) {
+    if('error' != result && 'invalidState' != result) {
       await _workWithResult(result);
     }else{
-      _controller.status = ScannerStatusEnum.invalidCode;
+      if(result == 'error') {
+        _controller.status = ScannerStatusEnum.invalidCode;
+      }else{
+        _controller.status = ScannerStatusEnum.invalidState;
+      }
     }
   }
 
