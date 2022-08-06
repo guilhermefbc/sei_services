@@ -15,23 +15,25 @@ class ScannerUtil {
   ScannerUtil(this._service, this._controller, this._processing);
 
   Future<void> scanDoc(String? code) async {
-    code = code?.replaceAll(' ', '');
     if(_isValidCode(code)) {
-      String result = _getDocumentCode(code!);
-      await _isValidResult(result);
+      code = code?.replaceAll(' ', '');
+      final result = _getDocumentCode(code!);
+      await _resultToWork(result);
     }else{
       _controller.status = ScannerStatusEnum.invalidCode;
     }
   }
 
-  Future<void> _isValidResult(String result) async {
-    if('error' != result && 'invalidState' != result) {
+  Future<void> _resultToWork(result) async {
+    if(_isValidResult(result)) {
       await _workWithResult(result);
     }else{
-      if(result == 'error') {
-        _controller.status = ScannerStatusEnum.invalidCode;
-      }else{
+      if(result == ScannerStatusEnum.error) {
+        _controller.status = ScannerStatusEnum.error;
+      }else if(result == ScannerStatusEnum.invalidState){
         _controller.status = ScannerStatusEnum.invalidState;
+      }else{
+        _controller.status = ScannerStatusEnum.invalidCode;
       }
     }
   }
@@ -50,6 +52,38 @@ class ScannerUtil {
     }
   }
 
+  bool _isValidResult(result) {
+    return result != null
+        && result != ScannerStatusEnum.error
+        && result != ScannerStatusEnum.invalidState
+        && result is String
+        && result.isNotEmpty
+        && result.length == _minNumberToBeValid
+        && _isValidCodeKey(result);
+  }
+
+  bool _isValidCodeKey(String code) {
+    final List<int> multiplier = [2, 3, 4, 5, 6, 7, 8, 9];
+    final int codeVerificationDigit = int.tryParse(code.substring(43,44)) ?? 0;
+    final List<int> partialKey = code.substring(0,43).split('').map((numStr) {
+      return int.tryParse(numStr) ?? 0;
+    }).toList();
+
+    int i = 42;
+    int weightedSum = 0;
+
+    while (i >= 0) {
+      for (int j = 0; (j < multiplier.length && i >= 0); j++) {
+        weightedSum += partialKey[i] * multiplier[j];
+        i--;
+      }
+    }
+
+    int rest = weightedSum % 11;
+    int calculatedVerificationDigit = rest == 0 || rest == 1 ? 0 : 11 - rest;
+    return calculatedVerificationDigit == codeVerificationDigit;
+  }
+
   void _setStatus(int? result) {
     switch(result) {
       case 200:
@@ -66,7 +100,9 @@ class ScannerUtil {
     }
   }
 
-  String _getDocumentCode(String code) {
+  /// The result can be both String and
+  /// ScannerStatusEnum
+  _getDocumentCode(String code) {
     if(BarCodeUtil.isBarCode(code)) {
       return code;
     }else{
