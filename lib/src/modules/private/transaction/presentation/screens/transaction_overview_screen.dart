@@ -1,9 +1,11 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sei_services/src/modules/private/processing/domain/repositories/processing_repository.dart';
+import 'package:sei_services/src/modules/private/processing/presentation/controller/processing/processing_controller.dart';
 import 'package:sei_services/src/modules/private/processing/presentation/screens/processing_list_screen.dart';
 import 'package:sei_services/src/modules/private/processing/presentation/widgets/processing_header_widget.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
@@ -21,11 +23,13 @@ class TransactionOverviewScreen extends StatefulWidget {
 }
 
 class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
-  final TransactionController _controller =
+  final TransactionController _tController =
       Modular.get<TransactionController>();
-  final ProcessingRepository _processing = Modular.get<ProcessingRepository>();
-  final TransactionsRepository _repository =
-      Modular.get<TransactionsRepository>();
+  final TransactionsRepository _tRepository =
+  Modular.get<TransactionsRepository>();
+  final ProcessingRepository _pRepository = Modular.get<ProcessingRepository>();
+  final ProcessingController _pController =
+  Modular.get<ProcessingController>();
 
   @override
   void initState() {
@@ -36,11 +40,12 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
-      _controller.addTransactions(_repository.transactions);
-      List<DateTime> dates = _controller.transactionsDates;
+      _tController.addTransactions(_tRepository.transactions);
+      _pController.addAllProcessing(_pRepository.processing);
+      List<DateTime> dates = _tController.transactionsDates;
       int initialIndex =
-          _processing.isNotEmpty ? dates.length : dates.length - 1;
-      int length = _processing.isNotEmpty ? dates.length + 1 : dates.length;
+      _pController.processing.isNotEmpty ? dates.length : dates.length - 1;
+      int length = _pController.processing.isNotEmpty ? dates.length + 1 : dates.length;
       return DefaultTabController(
         key: ValueKey(dates.toString()),
         initialIndex: initialIndex,
@@ -50,11 +55,12 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
           appBar: AppBar(
             toolbarHeight: 80.h,
             title:
-                _controller.tabIndex == initialIndex && _processing.isNotEmpty
+                _tController.tabIndex == initialIndex
+                    && _pController.processing.isNotEmpty
                     ? const ProcessingHeaderWidget()
                     : DefaultHeaderWidget(
-                        amount: _controller.filteredTransactionsTotal,
-                        taxes: _controller.filteredTransactionsTaxesTotal,
+                        amount: _tController.filteredTransactionsTotal,
+                        taxes: _tController.filteredTransactionsTaxesTotal,
                       ),
             bottom: TabBar(isScrollable: true, tabs: _getTabBarElements(dates)),
           ),
@@ -68,11 +74,16 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
     List<Widget> tabs = dates.map<Widget>((date) {
       return TabBarItem(key: ValueKey(date.toString() + 'Tab'), date: date);
     }).toList();
-    if (_processing.isNotEmpty) {
+    if (_pRepository.isNotEmpty) {
       tabs.add(
         Tab(
           key: ValueKey(dates.toString() + 'Tab'),
-          child: const Icon(Icons.access_time),
+          child: Badge(
+              badgeContent: Text('${_pController.processing.length}',
+                style: const TextStyle(fontSize: 11),
+              ),
+              child: const Icon(Icons.access_time),
+          ),
         ),
       );
     }
@@ -88,7 +99,7 @@ class _TransactionOverviewScreenState extends State<TransactionOverviewScreen> {
         index: idx++,
       );
     }).toList();
-    if (_processing.isNotEmpty) {
+    if (_pRepository.isNotEmpty) {
       tabViews.add(ProcessingListScreen(
         key: ValueKey(dates.toString() + 'TabView'),
         index: idx,

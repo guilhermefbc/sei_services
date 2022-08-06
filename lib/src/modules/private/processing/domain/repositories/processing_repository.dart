@@ -24,12 +24,19 @@ class ProcessingRepository {
         .map<String>((transaction) => transaction.codigoNotaFiscal)
         .toList();
     for (String code in codes) {
-      await _db.deleteProcessing(code);
+      deleteProcessing(code);
     }
   }
 
   Future<void> deleteProcessing(String code) async {
+    _removeProcessingFromTheList(code);
     await _db.deleteProcessing(code);
+  }
+
+  void _removeProcessingFromTheList(String code) {
+    processing.removeWhere((element) {
+      return element.code == code;
+    });
   }
 
   Future<void> saveProcessing(String code) async {
