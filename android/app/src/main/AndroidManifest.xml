@@ -2,7 +2,7 @@
     package="com.sei.services.sei_services">
     <uses-permission android:name="android.permission.VIBRATE"/>
    <application
-        android:label="sei_services"
+        android:label="Sei"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
