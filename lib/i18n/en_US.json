@@ -26,7 +26,7 @@
   "forgotPasswordWithProblems": "Forgot password with problems",
   "forgotPasswordWithProblemsMessage": "Recovery email was not sent. If the email provided is correct and you have a network, wait a few moments and try again.",
   "thisFieldIsRequired": "This field is required",
-  "thisFieldMustBeAValidEmail": "This fiel must be a valid email",
+  "thisFieldMustBeAValidEmail": "This field must be a valid email",
   "thePasswordMustHaveMinLength": "The password must have min length 8",
   "informedPasswordsDoNotMatch": "Informed passwords do not match",
   "thisFieldMustBeANumericValue": "This field must be a numeric value",

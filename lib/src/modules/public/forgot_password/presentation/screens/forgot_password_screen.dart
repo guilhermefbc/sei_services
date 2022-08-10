@@ -35,19 +35,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: Column(
                 children: [
                   FormBuilderTextField(
-                    name: 'Email',
+                    name: 'EmailResetPassword',
                     initialValue: _loginController.email,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.email_outlined),
+                    decoration: InputDecoration(
+                      labelText: 'email'.i18n(),
+                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.email_outlined),
                     ),
                     onChanged: _loginController.setEmail,
                     // valueTransformer: (text) => num.tryParse(text),
                     // autovalidateMode: AutovalidateMode.always,
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(errorText: 'This field is required'),
-                      FormBuilderValidators.email(errorText: 'This fiel must be a valid email')
+                      FormBuilderValidators.required(errorText: 'thisFieldIsRequired'.i18n()),
+                      FormBuilderValidators.email(errorText: 'thisFieldMustBeAValidEmail'.i18n())
                     ]),
                     keyboardType: TextInputType.emailAddress,
                   ),
