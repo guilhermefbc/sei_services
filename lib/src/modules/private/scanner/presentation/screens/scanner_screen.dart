@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:sei_services/src/modules/private/scanner/domain/util/scanner_util.dart';
 import 'package:sei_services/src/modules/private/scanner/presentation/controller/scanner_controller.dart';
-import 'package:sei_services/src/modules/private/scanner/presentation/widgets/dialogs/scanner_notiifcation_dialog.dart';
 import 'package:sei_services/src/modules/private/scanner/presentation/widgets/dialogs/select_scanner_notificationDialog.dart';
 
 class ScannerScreen extends StatefulWidget {

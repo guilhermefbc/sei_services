@@ -44,11 +44,11 @@ class _NumericCodeScreenState extends State<NumericCodeScreen> {
                           child: FormBuilderTextField(
                             key: const ValueKey('scannerManualNumericCode'),
                             autofocus: true,
-                            name: 'RegisterEmail',
-                            decoration: const InputDecoration(
-                              labelText: 'Manual code',
-                              border: OutlineInputBorder(),
-                              prefixIcon: Icon(Icons.numbers),
+                            name: 'infoManualNoteCode',
+                            decoration: InputDecoration(
+                              labelText: 'manualCode'.i18n(),
+                              border: const OutlineInputBorder(),
+                              prefixIcon: const Icon(Icons.numbers),
                             ),
                             onChanged: _controller.setCode,
                             maxLines: 2,
@@ -60,10 +60,6 @@ class _NumericCodeScreenState extends State<NumericCodeScreen> {
                             validator: FormBuilderValidators.compose([
                               FormBuilderValidators.required(
                                   errorText: 'thisFieldIsRequired'.i18n()),
-                              // FormBuilderValidators.max(44,
-                              //     errorText: '44CharactersAreRequired'.i18n()),
-                              // FormBuilderValidators.min(44,
-                              //     errorText: '44CharactersAreRequired'.i18n()),
                             ]),
                             keyboardType: const TextInputType.numberWithOptions(
                                 decimal: false, signed: false),
@@ -92,7 +88,7 @@ class _NumericCodeScreenState extends State<NumericCodeScreen> {
                                       _controller.loading = false;
                                     }
                                   },
-                                  title: 'Enviar',
+                                  title: 'submit'.i18n(),
                                 );
                         },
                       ),

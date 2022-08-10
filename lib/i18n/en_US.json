@@ -49,5 +49,16 @@
   "typeOfExpense": "Type of expense",
   "ItsMedicine": "It's medicine",
   "productOrigin": "Product origin",
-  "value": "Value"
+  "value": "Value",
+  "manualCode": "Manual code",
+  "submit": "Submit",
+  "noteReadSuccessfully": "Note read successfully! The note is in process, soon you will be able to view it in the app",
+  "readAnotherNote": "Do you want to read another note?",
+  "repeatedNote": "Repeated note",
+  "hasAlreadyBeenRead": "This invoice has already been read, it is already in processing or available in the app",
+  "right": "Right",
+  "invalidState": "Invalid state",
+  "invalidStateMessage": "The system is not yet available for the state (Federative Unit) of this note, save it for now, soon you can add it to the app.",
+  "tryAgain": "Try again",
+  "tryAgainMessage": "There was a problem reading the note, please try again"
 }

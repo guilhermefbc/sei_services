@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/private/scanner/domain/enum/scanner_status_enum.dart';
 import 'package:sei_services/src/modules/private/scanner/presentation/widgets/dialogs/scanner_notiifcation_dialog.dart';
 import 'package:sei_services/src/shared/presentation/widgets/dialogs/info_dialog.dart';
@@ -33,11 +34,11 @@ class _SelectScannerNotificationDialogState extends State<SelectScannerNotificat
 
   Widget _success(BuildContext context) {
     return ScannerNotificationDialog(
-      title: 'Sucesso!',
-      description: 'Nota lida com sucesso! A nota está em processamento, em breve você poderá visualizar ela no app',
-      questionNavigation: 'Você quer ler outra nota?',
-      button1Title: 'Não',
-      button2Title: 'Sim',
+      title: 'success'.i18n() + '!',
+      description: 'noteReadSuccessfully'.i18n(),
+      questionNavigation: 'readAnotherNote'.i18n(),
+      button1Title: 'no'.i18n(),
+      button2Title: 'yes'.i18n(),
       button1OnPressed: () {
         Modular.to.navigate('/private/transaction/');
         Modular.to.pop();
@@ -51,9 +52,9 @@ class _SelectScannerNotificationDialogState extends State<SelectScannerNotificat
   Widget _repeated(BuildContext context) {
     return InfoDialog.confirm(
       context: context,
-      title: 'Nota repetida',
-      description: 'Essa nota fiscal já foi lida, ela já está em processamento ou disponível no app',
-      buttonTitle: 'Certo',
+      title: 'repeatedNote'.i18n(),
+      description: 'hasAlreadyBeenRead'.i18n(),
+      buttonTitle: 'right'.i18n(),
       buttonOnPressed: (){},
     );
   }
@@ -61,9 +62,9 @@ class _SelectScannerNotificationDialogState extends State<SelectScannerNotificat
   Widget _invalidState(BuildContext context) {
     return InfoDialog.confirm(
       context: context,
-      title: 'Estado inválido',
-      description: 'O sistema ainda não está disponível para o estado (UF) desta nota, guarde ela por enquanto, embreve você poderá adicioná-la ao app.',
-      buttonTitle: 'Certo',
+      title: 'invalidState'.i18n(),
+      description: 'invalidStateMessage'.i18n(),
+      buttonTitle: 'right'.i18n(),
       buttonOnPressed: (){},
     );
   }
@@ -71,9 +72,9 @@ class _SelectScannerNotificationDialogState extends State<SelectScannerNotificat
   Widget _default(BuildContext context) {
     return InfoDialog.confirm(
       context: context,
-      title: 'Tente novamente',
-      description: 'Houve algum problema na leitura da nota, por favor tente novamente',
-      buttonTitle: 'Certo',
+      title: 'tryAgain'.i18n(),
+      description: 'tryAgainMessage'.i18n(),
+      buttonTitle: 'right'.i18n(),
       buttonOnPressed: (){},
     );
   }
