@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/public/forgot_password/domain/usecases/forgot_password_usecase.dart';
@@ -29,7 +30,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 30),
+            padding: const EdgeInsets.only(left: 20, right: 30).r,
             child: Form(
               key: _formKey,
               child: Column(
@@ -57,7 +58,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   SimpleButton(
                     onPressed: sendResetEmailAction(context),
                     title: 'send'.i18n(),
-                    width: 100,
+                    width: 100.w,
                   )
                 ],
               ),

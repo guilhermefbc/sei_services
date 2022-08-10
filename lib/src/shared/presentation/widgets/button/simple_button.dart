@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SimpleButton extends StatefulWidget {
   final Function() onPressed;
@@ -22,7 +23,7 @@ class _SimpleButtonState extends State<SimpleButton> {
   Widget build(BuildContext context) {
     return Container(
       width: widget.width,
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 2).r,
       decoration: BoxDecoration(
           color: widget.color ?? Colors.blueAccent,
           boxShadow: const [
@@ -43,8 +44,8 @@ class _SimpleButtonState extends State<SimpleButton> {
             child: Text(
               widget.title,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontSize: 18,
+              style: TextStyle(
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.white
               ),
