@@ -1,9 +1,10 @@
 import 'package:intl/intl.dart';
+import 'package:localization/localization.dart';
 
 class DateUtil {
-  static final _dayFormatter = DateFormat.yMd().add_jm();
-  static final _monthFormatter = DateFormat.MMM('pt_BR');
-  static final _yearFormatter = DateFormat.y('pt_BR');
+  static final _dayFormatter = DateFormat.yMd('lang'.i18n()).add_jm();
+  static final _monthFormatter = DateFormat.MMM('lang'.i18n());
+  static final _yearFormatter = DateFormat.y('lang'.i18n());
 
   static String format(DateTime? date) {
     if (date == null) {

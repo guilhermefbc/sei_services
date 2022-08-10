@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/private/transaction/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/shared/presentation/widgets/dialogs/info_dialog.dart';
 import 'package:sei_services/src/shared/util/date/date_util.dart';
@@ -29,13 +30,13 @@ class _TransactionsInfoDialogState extends State<TransactionsInfoDialog> {
             SizedBox(
               height: 20.h,
             ),
-            _buildInfo('Valor', widget.transaction.transactionAmount,
+            _buildInfo('value'.i18n(), widget.transaction.transactionAmount,
                 needFormat: true),
-            _buildInfo('Impostos', widget.transaction.totalTaxes,
+            _buildInfo('tax'.i18n(), widget.transaction.totalTaxes,
                 needFormat: true),
-            _buildInfo('Data', DateUtil.format(widget.transaction.sellDate)),
+            _buildInfo('date'.i18n(), DateUtil.format(widget.transaction.sellDate)),
             _buildInfo('CPF', widget.transaction.cpf),
-            _buildBigInfo('Código', FormatterScannerUtil.formatNumericCode(widget.transaction.codigoNotaFiscal)),
+            _buildBigInfo('code'.i18n(), FormatterScannerUtil.formatNumericCode(widget.transaction.codigoNotaFiscal)),
           ],
         ));
   }

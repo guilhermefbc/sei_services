@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/amount_value_widget.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/taxes_value_widget.dart';
@@ -15,9 +16,6 @@ class DefaultHeaderWidget extends StatefulWidget {
 }
 
 class _DefaultHeaderWidgetState extends State<DefaultHeaderWidget> {
-  final TransactionController _controller =
-  Modular.get<TransactionController>();
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,13 +23,13 @@ class _DefaultHeaderWidgetState extends State<DefaultHeaderWidget> {
       children: [
         Column(
           children: [
-            Text('Total valor', style: TextStyle(fontSize: 12.sp),),
+            Text('totalValue'.i18n(), style: TextStyle(fontSize: 12.sp),),
             AmountValueWidget(amount: widget.amount, color: Colors.white,),
           ],
         ),
         Column(
           children: [
-            Text('Total impostos', style: TextStyle(fontSize: 12.sp),),
+            Text('totalTaxes'.i18n(), style: TextStyle(fontSize: 12.sp),),
             TaxesValueWidget(taxes: widget.taxes, color: Colors.white,),
           ],
         )
