@@ -74,7 +74,7 @@ class _PasswordFormWidgetState extends State<PasswordFormWidget> {
                 keyboardType: TextInputType.text,
                 obscureText: _registerController.passwordVisible,
               ),
-              name: 'Register password',
+              name: 'Register password 1',
             ),
             const SizedBox(height: 20,),
             Observer(
@@ -106,7 +106,7 @@ class _PasswordFormWidgetState extends State<PasswordFormWidget> {
                 keyboardType: TextInputType.text,
                 obscureText: _registerController.passwordVisible,
               ),
-              name: 'Register password',
+              name: 'Register password 2',
             ),
           ],
         ),
