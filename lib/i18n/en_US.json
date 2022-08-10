@@ -30,5 +30,8 @@
   "thePasswordMustHaveMinLength": "The password must have min length 8",
   "informedPasswordsDoNotMatch": "Informed passwords do not match",
   "thisFieldMustBeANumericValue": "This field must be a numeric value",
-  "44CharactersAreRequired": "44 characters are required"
+  "44CharactersAreRequired": "44 characters are required",
+  "noteCode": "Note code",
+  "readingDate": "Reading date",
+  "processing": "Processing"
 }

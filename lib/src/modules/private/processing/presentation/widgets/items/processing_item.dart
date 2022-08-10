@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/private/processing/domain/entities/processing_entity.dart';
 import 'package:sei_services/src/shared/theme/items_shadow.dart';
 import 'package:sei_services/src/shared/util/date/date_util.dart';
@@ -24,18 +25,18 @@ class ProcessingItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Código da nota',
-              style: TextStyle(fontWeight: FontWeight.w600),
+            Text(
+              'noteCode'.i18n(),
+              style: const TextStyle(fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
             ),
             Text(
               FormatterScannerUtil.formatNumericCode(processing.code),
               textAlign: TextAlign.center,
             ),
-            const Text(
-              'Data de leitura',
-              style: TextStyle(fontWeight: FontWeight.w600),
+            Text(
+              'readingDate'.i18n(),
+              style: const TextStyle(fontWeight: FontWeight.w600),
               textAlign: TextAlign.center,
             ),
             Text(

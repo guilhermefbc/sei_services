@@ -30,5 +30,8 @@
   "thePasswordMustHaveMinLength": "A senha deve ter um tamanho mínimo de 8",
   "informedPasswordsDoNotMatch": "As senhas informadas não são iguais",
   "thisFieldMustBeANumericValue": "Este campo deve ser um valor numérico",
-  "44CharactersAreRequired": "São necessários 44 caracteres"
+  "44CharactersAreRequired": "São necessários 44 caracteres",
+  "noteCode": "Código da nota",
+  "readingDate": "Data de leitura",
+  "processing": "Em processamento"
 }
