@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/private/product/presentation/widgets/dialog/product_info_dialog.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/amount_value_widget.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/taxes_value_widget.dart';
@@ -43,12 +44,12 @@ class _ProductItemState extends State<ProductItem> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _buildValueBloc(
-                    title: "Valor",
+                    title: "value".i18n(),
                     child: AmountValueWidget(amount: widget.product.price!),
                     color: Colors.green
                 ),
                 _buildValueBloc(
-                    title: "Impostos",
+                    title: "tax".i18n(),
                     child: TaxesValueWidget(taxes: widget.product.taxes),
                     color: Colors.redAccent
                 ),

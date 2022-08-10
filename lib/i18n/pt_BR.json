@@ -1,5 +1,7 @@
 {
   "ok": "OK",
+  "yes": "sim",
+  "no": "não",
   "email": "Email",
   "password": "Senha",
   "confirmPassword": "Confirme a senha",
@@ -33,5 +35,19 @@
   "44CharactersAreRequired": "São necessários 44 caracteres",
   "noteCode": "Código da nota",
   "readingDate": "Data de leitura",
-  "processing": "Em processamento"
+  "processing": "Em processamento",
+  "price": "Preço",
+  "tax": "Imposto",
+  "EANCode": "Código EAN",
+  "productAmount": "Quantidade",
+  "measure": "Medida",
+  "productCode": "Código do produto",
+  "genre": "Genre",
+  "CFOP": "CFOP",
+  "discount": "Desconto",
+  "ICMSTax": "Imposto ICMS",
+  "typeOfExpense": "Tipo de gasto",
+  "ItsMedicine": "É medicamento",
+  "productOrigin": "Origem do produto",
+  "value": "Valor"
 }

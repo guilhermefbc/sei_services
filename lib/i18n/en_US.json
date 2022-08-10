@@ -1,5 +1,7 @@
 {
   "ok": "OK",
+  "yes": "yes",
+  "no": "no",
   "email": "Email",
   "password": "Password",
   "confirmPassword": "Confirm Password",
@@ -33,5 +35,19 @@
   "44CharactersAreRequired": "44 characters are required",
   "noteCode": "Note code",
   "readingDate": "Reading date",
-  "processing": "Processing"
+  "processing": "Processing",
+  "price": "Price",
+  "tax": "Tax",
+  "EANCode": "EANCode",
+  "productAmount": "Product amount",
+  "measure": "Measure",
+  "productCode": "Product code",
+  "genre": "Genre",
+  "CFOP": "CFOP",
+  "discount": "Discount",
+  "ICMSTax": "ICMS tax",
+  "typeOfExpense": "Type of expense",
+  "ItsMedicine": "It's medicine",
+  "productOrigin": "Product origin",
+  "value": "Value"
 }
