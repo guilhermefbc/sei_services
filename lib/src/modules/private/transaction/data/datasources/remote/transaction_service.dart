@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:sei_services/src/modules/private/transaction/data/exemples/transactions_examples.dart';
 import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
@@ -16,10 +17,10 @@ class TransactionService {
   TransactionService(this._auth, this._uuid);
 
   Future<Map<String, dynamic>> getTransactions() async {
-    Uri uri = Uri.parse("https://dev.api.sei-imposto.com/taxes/transactions/search");
+    Uri uri = Uri.parse("${dotenv.env['URL']}/taxes/transactions/search");
     final response = await http.get(uri, headers: {
       'Content-Type': 'application/json',
-      'X-HYPERMARKET': _auth.token
+      dotenv.env['HTTP_KEY']!: _auth.token
     });
     if (response.statusCode != 200) {
       throw ('Erro ao realizar requisição');
