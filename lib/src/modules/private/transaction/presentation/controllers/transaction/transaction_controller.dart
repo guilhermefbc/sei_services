@@ -27,6 +27,11 @@ abstract class _TransactionController with Store {
     filteredTransactions.addAll(values);
   }
 
+  @action
+  void deleteTransaction(TransactionEntity value) {
+    transactions.remove(value);
+  }
+
   @computed
   double get filteredTransactionsTotal {
     if (filteredTransactions.toList().isEmpty) {

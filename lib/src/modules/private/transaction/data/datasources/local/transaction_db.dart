@@ -68,12 +68,12 @@ class TransactionDB {
     }
   }
 
-  Future<void> deleteTransaction(TransactionModel transaction) async {
+  Future<void> deleteTransaction(String transactionId) async {
     Database dbTransaction = await db;
     try {
       await dbTransaction.delete(_transactionsTable,
           where: '$_transactionId = ?',
-          whereArgs: [transaction.transactionId]);
+          whereArgs: [transactionId]);
     } catch (error) {
       throw Exception(error);
     }

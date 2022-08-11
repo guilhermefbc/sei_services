@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:localization/localization.dart';
+import 'package:sei_services/src/modules/private/product/domain/repositories/products_repository.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/repositories/transactions_repository.dart';
+import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/amount_value_widget.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/dialog/transaction_info_dialog.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/taxes_value_widget.dart';
 import 'package:sei_services/src/modules/private/transaction/domain/entities/transaction_entity.dart';
+import 'package:sei_services/src/shared/presentation/widgets/dialogs/delete_dialog.dart';
 import 'package:sei_services/src/shared/theme/items_shadow.dart';
 import 'package:sei_services/src/shared/util/date/date_util.dart';
 
@@ -22,9 +26,16 @@ class TransactionItem extends StatefulWidget {
 }
 
 class _TransactionItemState extends State<TransactionItem> {
+  final TransactionController _controller = Modular.get<TransactionController>();
+  final TransactionsRepository _tRepository = Modular.get<TransactionsRepository>();
+  final ProductsRepository _pRepository = Modular.get<ProductsRepository>();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onLongPress: () {
+        _showDeleteDialog(context);
+      },
       onTap: (){
         _showTransactionsInfoDialog(context);
       },
@@ -68,6 +79,23 @@ class _TransactionItemState extends State<TransactionItem> {
           ],
         ),
       ),
+    );
+  }
+
+  _showDeleteDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return DeleteDialog(
+              buttonOnPressed1: (){},
+              buttonOnPressed2: () {
+                _controller.deleteTransaction(widget.transaction);
+                _tRepository.deleteTransaction(widget.transaction);
+                _pRepository.deleteProductsByTransaction(
+                    widget.transaction.transactionId);
+              }
+          );
+        }
     );
   }
 

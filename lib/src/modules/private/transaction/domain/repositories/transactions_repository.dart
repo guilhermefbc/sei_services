@@ -44,6 +44,11 @@ class TransactionsRepository {
     return filtered;
   }
 
+  void deleteTransaction(TransactionEntity transaction) {
+    _transactions.remove(transaction);
+    _db.deleteTransaction(transaction.transactionId);
+  }
+
   Future<void> _getTransactionsByLocalDB() async {
     if (_transactions.isEmpty) {
       _transactions.addAll(await _db.getAllTransactions());

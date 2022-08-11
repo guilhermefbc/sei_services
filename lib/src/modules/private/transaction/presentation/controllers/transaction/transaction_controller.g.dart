@@ -75,6 +75,17 @@ mixin _$TransactionController on _TransactionController, Store {
   }
 
   @override
+  void deleteTransaction(TransactionEntity value) {
+    final _$actionInfo = _$_TransactionControllerActionController.startAction(
+        name: '_TransactionController.deleteTransaction');
+    try {
+      return super.deleteTransaction(value);
+    } finally {
+      _$_TransactionControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 tabIndex: ${tabIndex},
