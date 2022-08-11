@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sei_services/src/modules/private/product/presentation/controller/product/product_controller.dart';
 import 'package:sei_services/src/modules/private/product/presentation/widgets/items/product_item.dart';
 import 'package:sei_services/src/modules/private/transaction/domain/entities/transaction_entity.dart';
 import 'package:sei_services/src/modules/private/product/domain/repositories/products_repository.dart';
@@ -19,6 +21,7 @@ class ProductOverviewScreen extends StatefulWidget {
 
 class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
   final ProductsRepository _products = Modular.get<ProductsRepository>();
+  final ProductController _controller = Modular.get<ProductController>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,23 +35,30 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
         toolbarHeight: 100.h,
       ),
       body: FutureBuilder(
-          future: _products
-              .getProductsByTransactionId(widget.transaction.transactionId),
+          future: _products.getAllProducts(),
           builder: (ctx, snapshot) {
             if (!snapshot.hasData) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
-            List list = snapshot.data as List;
-            return ListView(
-              padding: const EdgeInsets.only(top: 10, bottom: 35).r,
-              children: list
-                  .map<Widget>((product) => ProductItem(
-                        transaction: widget.transaction,
-                        product: product,
-                      ))
-                  .toList(),
+            _controller.addAllProducts(
+                _products.getProductsByTransactionId(
+                    widget.transaction.transactionId
+                )
+            );
+            return Observer(
+              builder: (context) {
+                return ListView(
+                  padding: const EdgeInsets.only(top: 10, bottom: 35).r,
+                  children: _controller.products
+                      .map<Widget>((product) => ProductItem(
+                            transaction: widget.transaction,
+                            product: product,
+                          ))
+                      .toList(),
+                );
+              },
             );
           }),
     );

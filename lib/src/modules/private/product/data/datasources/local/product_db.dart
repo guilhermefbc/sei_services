@@ -116,7 +116,7 @@ class ProductsDB {
     }
   }
 
-  Future<void> deleteByProductId(int productId) async {
+  Future<void> deleteByProductId(String productId) async {
     try{
       Database dbProduct = await db;
       await dbProduct.delete(_productsTable, where: "$_productId = ?", whereArgs: [productId]);

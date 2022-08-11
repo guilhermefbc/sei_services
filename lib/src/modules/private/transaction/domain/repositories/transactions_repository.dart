@@ -25,7 +25,14 @@ class TransactionsRepository {
 
   Future<List<TransactionEntity>> getTransactions() async {
     await _getTransactionsByLocalDB();
+    sort();
     return _transactions;
+  }
+
+  void sort() {
+    _transactions.sort((a,b) {
+      return b.sellDate.compareTo(a.sellDate);
+    });
   }
 
   Future<List<TransactionEntity>> getTransactionsByYearMonth(

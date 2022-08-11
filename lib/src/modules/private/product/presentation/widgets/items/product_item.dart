@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:localization/localization.dart';
+import 'package:sei_services/src/modules/private/product/domain/repositories/products_repository.dart';
+import 'package:sei_services/src/modules/private/product/presentation/controller/product/product_controller.dart';
 import 'package:sei_services/src/modules/private/product/presentation/widgets/dialog/product_info_dialog.dart';
 import 'package:sei_services/src/modules/private/transaction/domain/repositories/transactions_repository.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
@@ -23,8 +25,8 @@ class ProductItem extends StatefulWidget {
 }
 
 class _ProductItemState extends State<ProductItem> {
-  final TransactionsRepository _repository = Modular.get<TransactionsRepository>();
-  final TransactionController _controller = Modular.get<TransactionController>();
+  final ProductsRepository _repository = Modular.get<ProductsRepository>();
+  final ProductController _controller = Modular.get<ProductController>();
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +87,8 @@ class _ProductItemState extends State<ProductItem> {
           return DeleteDialog(
               buttonOnPressed1: (){},
               buttonOnPressed2: () {
-                _controller;
-                _repository;
+                _repository.deleteProduct(widget.product);
+                _controller.removeProduct(widget.product);
               }
           );
         }

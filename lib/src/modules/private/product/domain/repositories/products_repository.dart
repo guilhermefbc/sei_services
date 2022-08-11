@@ -6,7 +6,9 @@ class ProductsRepository {
   final ProductsDB _db;
   List<ProductEntity> _products = [];
   ProductsRepository(this._db);
-  
+
+  List<ProductEntity> get products => _products;
+
   Future<void> save(List<ProductModel> products) async {
     _products.addAll(products);
     await _saveInLocalDB(products);
@@ -39,11 +41,19 @@ class ProductsRepository {
     return _products;
   }
 
-  Future<List<ProductEntity>> getProductsByTransactionId(String? transactionId) async {
-    if(transactionId != null) {
-      await _getAllProductsFromLocalDB();
-      return _products.where((product) => product.transactionId == transactionId).toList();
-    }
-    return [];
+  List<ProductEntity> getProductsByTransactionId(String? transactionId) {
+    return _products.where((product) => product.transactionId == transactionId).toList();
+  }
+
+  void deleteProduct(ProductEntity product) {
+    _products.remove(product);
+    _db.deleteByProductId(product.productId!);
+  }
+
+  void deleteProductsByTransaction(String transactionId) {
+    _products.removeWhere((product) {
+      return product.transactionId == transactionId;
+    });
+    _db.deleteByTransactionId(transactionId);
   }
 }
