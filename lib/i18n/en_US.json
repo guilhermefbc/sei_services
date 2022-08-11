@@ -65,5 +65,7 @@
   "date": "Date",
   "code": "Code",
   "totalValue": "Total value",
-  "totalTaxes": "Total taxes"
+  "totalTaxes": "Total taxes",
+  "deleteItem": "Delete item",
+  "deleteItemDescription": "Are you sure you want to delete this item?"
 }

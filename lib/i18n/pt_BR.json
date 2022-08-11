@@ -65,5 +65,7 @@
   "date": "Data",
   "code": "Código",
   "totalValue": "Total valor",
-  "totalTaxes": "Total impostos"
+  "totalTaxes": "Total impostos",
+  "deleteItem": "Deletar item",
+  "deleteItemDescription": "Você tem certeza que deseja deletar esse item?"
 }

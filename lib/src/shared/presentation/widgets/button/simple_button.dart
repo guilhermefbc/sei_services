@@ -22,7 +22,7 @@ class _SimpleButtonState extends State<SimpleButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width,
+      width: widget.width?.w,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 2).r,
       decoration: BoxDecoration(
           color: widget.color ?? Colors.blueAccent,
