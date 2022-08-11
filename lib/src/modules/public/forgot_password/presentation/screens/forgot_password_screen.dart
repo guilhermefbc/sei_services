@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -25,12 +26,15 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('forgotPassword'.i18n()),
+        centerTitle: true,
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 30).r,
+            padding: const EdgeInsets.symmetric(horizontal: 20).r,
             child: Form(
               key: _formKey,
               child: Column(
@@ -47,19 +51,27 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     // valueTransformer: (text) => num.tryParse(text),
                     // autovalidateMode: AutovalidateMode.always,
                     validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(errorText: 'thisFieldIsRequired'.i18n()),
-                      FormBuilderValidators.email(errorText: 'thisFieldMustBeAValidEmail'.i18n())
+                      FormBuilderValidators.required(
+                          errorText: 'thisFieldIsRequired'.i18n()),
+                      FormBuilderValidators.email(
+                          errorText: 'thisFieldMustBeAValidEmail'.i18n())
                     ]),
                     keyboardType: TextInputType.emailAddress,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  SimpleButton(
-                    onPressed: sendResetEmailAction(context),
-                    title: 'send'.i18n(),
-                    width: 100.w,
-                  )
+                  Observer(builder: (context) {
+                    return !_loginController.loading
+                        ? SimpleButton(
+                            onPressed: sendResetEmailAction(context),
+                            title: 'send'.i18n(),
+                            width: 100.w,
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                  })
                 ],
               ),
             ),
@@ -71,11 +83,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   Function() sendResetEmailAction(BuildContext context) {
     return () async {
-      if(_formKey.currentState!.validate()) {
-        bool result = await _usecase.resetPassword(email: _loginController.email!);
-        if(result) {
+      if (_formKey.currentState!.validate()) {
+        _loginController.loading = true;
+        bool result =
+            await _usecase.resetPassword(email: _loginController.email!);
+        _loginController.loading = false;
+        if (result) {
           _successDialog(context);
-        }else{
+        } else {
           _somethingWentWrongDialog(context);
         }
       }
@@ -93,9 +108,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             buttonTitle: 'goToLogin'.i18n(),
             buttonOnPressed: () {
               Modular.to.navigate('/login/');
-            }
-        )
-    );
+            }));
   }
 
   _somethingWentWrongDialog(BuildContext context) {
@@ -107,8 +120,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             title: 'forgotPasswordWithProblems'.i18n(),
             description: 'forgotPasswordWithProblemsMessage'.i18n(),
             buttonTitle: 'ok'.i18n(),
-            buttonOnPressed: (){}
-        )
-    );
+            buttonOnPressed: () {}));
   }
 }
