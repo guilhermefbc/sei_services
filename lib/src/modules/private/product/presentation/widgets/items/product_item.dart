@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/private/product/presentation/widgets/dialog/product_info_dialog.dart';
+import 'package:sei_services/src/modules/private/transaction/domain/repositories/transactions_repository.dart';
+import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/amount_value_widget.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/widgets/taxes_value_widget.dart';
 import 'package:sei_services/src/modules/private/product/domain/entities/product_entity.dart';
 import 'package:sei_services/src/modules/private/transaction/domain/entities/transaction_entity.dart';
+import 'package:sei_services/src/shared/presentation/widgets/dialogs/delete_dialog.dart';
 import 'package:sei_services/src/shared/theme/items_shadow.dart';
 import 'package:sei_services/src/shared/util/date/date_util.dart';
-import 'package:sei_services/src/shared/util/monetary/monetary_formatter_util.dart';
 
 class ProductItem extends StatefulWidget {
   final ProductEntity product;
@@ -20,9 +23,15 @@ class ProductItem extends StatefulWidget {
 }
 
 class _ProductItemState extends State<ProductItem> {
+  final TransactionsRepository _repository = Modular.get<TransactionsRepository>();
+  final TransactionController _controller = Modular.get<TransactionController>();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onLongPress: () {
+        _showDeleteDialog(context);
+      },
       onTap: () {
         _showProductInfoDialog(context);
       },
@@ -66,6 +75,21 @@ class _ProductItemState extends State<ProductItem> {
           ],
         ),
       ),
+    );
+  }
+
+  _showDeleteDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return DeleteDialog(
+              buttonOnPressed1: (){},
+              buttonOnPressed2: () {
+                _controller;
+                _repository;
+              }
+          );
+        }
     );
   }
 
