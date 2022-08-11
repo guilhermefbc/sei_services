@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:sei_services/src/shared/domain/repositories/auth_repository.dart';
 
@@ -8,7 +9,7 @@ class ScannerService {
   ScannerService(this._auth);
 
   Future<int> postQRBill(String code) async {
-    final Uri uri = Uri.parse("https://dev.api.sei-imposto.com/nw/nfces");
+    final Uri uri = Uri.parse("${dotenv.env['URL']}/nw/nfces");
     final body = json.encode({
       "code": code,
       "groupId": 1,
@@ -20,7 +21,7 @@ class ScannerService {
 
     final response = await http.post(uri,
         body: body,
-        headers: {'Content-Type': 'application/json', 'X-HYPERMARKET': _auth.token}
+        headers: {'Content-Type': 'application/json', dotenv.env['HTTP_KEY']!: _auth.token}
     );
 
     if (response.statusCode != 200 && response.statusCode != 202 && response.statusCode != 409) {
