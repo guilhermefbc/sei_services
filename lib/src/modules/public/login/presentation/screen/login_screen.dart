@@ -9,9 +9,9 @@ import 'package:localization/localization.dart';
 import 'package:sei_services/src/modules/public/login/domain/usecases/login_usecase.dart';
 import 'package:sei_services/src/shared/domain/constants/screen_dimension_constant.dart';
 import 'package:sei_services/src/shared/presentation/widgets/button/simple_button.dart';
+import 'package:sei_services/src/shared/presentation/widgets/dialogs/info_dialog.dart';
 import '../controller/login/login_controller.dart';
 import '../widgets/password_icon_button_widget.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -27,10 +27,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context, designSize: const Size(
-        ScreenDimensionConstant.pixelXLWidth,
-        ScreenDimensionConstant.pixelXLHeight)
-    );
+    ScreenUtil.init(context,
+        designSize: const Size(ScreenDimensionConstant.pixelXLWidth,
+            ScreenDimensionConstant.pixelXLHeight));
 
     return Scaffold(
         bottomNavigationBar: BottomAppBar(
@@ -43,15 +42,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     Modular.to.pushNamed('/login/register');
                   },
-                  child: Text('register'.i18n(), style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 16),)
-              ),
+                  child: Text(
+                    'register'.i18n(),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 16),
+                  )),
             ],
           ),
         ),
         body: ListView(
           children: [
-            SizedBox(height: 30.h,),
+            SizedBox(
+              height: 30.h,
+            ),
             SizedBox(
               height: 250.r,
               width: 250.r,
@@ -86,35 +89,31 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 10.r,
                     ),
                     Observer(
-                      builder: (_) =>
-                          FormBuilderTextField(
-                            name: 'Senha',
-                            decoration: InputDecoration(
-                              labelText: 'password'.i18n(),
-                              border: const OutlineInputBorder(),
-                              prefixIcon: const Icon(Icons.password),
-                              suffixIcon: PasswordIconButton(
-                                icon1: const Icon(Icons.remove_red_eye),
-                                icon2: const Icon(
-                                    Icons.remove_red_eye_outlined),
-                                function: _loginController
-                                    .togglePasswordVisibility,
-                                onTapIcon: _loginController.passwordVisible,
-                              ),
-                            ),
-                            onChanged: _loginController.setPassword,
-                            // valueTransformer: (text) => num.tryParse(text),
-                            // autovalidateMode: AutovalidateMode.always,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(
-                                  errorText: 'thisFieldIsRequired'.i18n()),
-                              FormBuilderValidators.minLength(
-                                  8, errorText: 'thePasswordMustHaveMinLength'
-                                  .i18n()),
-                            ]),
-                            keyboardType: TextInputType.text,
-                            obscureText: _loginController.passwordVisible,
+                      builder: (_) => FormBuilderTextField(
+                        name: 'Senha',
+                        decoration: InputDecoration(
+                          labelText: 'password'.i18n(),
+                          border: const OutlineInputBorder(),
+                          prefixIcon: const Icon(Icons.password),
+                          suffixIcon: PasswordIconButton(
+                            icon1: const Icon(Icons.remove_red_eye),
+                            icon2: const Icon(Icons.remove_red_eye_outlined),
+                            function: _loginController.togglePasswordVisibility,
+                            onTapIcon: _loginController.passwordVisible,
                           ),
+                        ),
+                        onChanged: _loginController.setPassword,
+                        // valueTransformer: (text) => num.tryParse(text),
+                        // autovalidateMode: AutovalidateMode.always,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                              errorText: 'thisFieldIsRequired'.i18n()),
+                          FormBuilderValidators.minLength(8,
+                              errorText: 'thePasswordMustHaveMinLength'.i18n()),
+                        ]),
+                        keyboardType: TextInputType.text,
+                        obscureText: _loginController.passwordVisible,
+                      ),
                       name: 'Login password',
                     ),
                     Row(
@@ -124,34 +123,53 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () {
                               Modular.to.pushNamed('/login/forgot_password');
                             },
-                            child: Text('forgotPassword'.i18n())
-                        )
+                            child: Text('forgotPassword'.i18n()))
                       ],
                     ),
-                    Observer(
-                        builder: (context) {
-                          return _loginController.loading
-                              ? const Center(child: CircularProgressIndicator())
-                              : SimpleButton(
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                await _loginRepository.login(
-                                    _loginController.email!,
-                                    _loginController.password!
-                                );
-                              }
-                            },
-                            title: 'login'.i18n(),
-                            width: 100,
-                          );
-                        }
-                    )
+                    Observer(builder: (context) {
+                      return _loginController.loading
+                          ? const Center(child: CircularProgressIndicator())
+                          : SimpleButton(
+                              onPressed: () async {
+                                await _onTapFunction(context);
+                              },
+                              title: 'login'.i18n(),
+                              width: 100,
+                            );
+                    })
                   ],
                 ),
               ),
             )
           ],
-        )
+        ));
+  }
+
+  Future<void> _onTapFunction(BuildContext context) async {
+    try {
+      if (_formKey.currentState!.validate()) {
+        await _loginRepository.login(
+          _loginController.email!,
+          _loginController.password!,
+        );
+      }
+    } catch (_) {
+      _showProblemsWithLoginDialog(context);
+    }
+  }
+
+  void _showProblemsWithLoginDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return InfoDialog.confirm(
+              context: context,
+              title: 'problemsWithLogin'.i18n(),
+              description: 'problemsWithLoginDescription'.i18n(),
+              buttonTitle: 'right'.i18n(),
+              buttonOnPressed: () {}
+          );
+        }
     );
   }
 }
