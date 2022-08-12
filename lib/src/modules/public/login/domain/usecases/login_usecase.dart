@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sei_services/src/modules/public/login/data/datasources/remote/login_service.dart';
 import 'package:sei_services/src/modules/public/login/presentation/controller/login/login_controller.dart';
@@ -26,6 +27,6 @@ class LoginUsecase {
   }
   
   _saveUserToken(String token) {
-    _auth.writeValue(key: 'token369', value: token);
+    _auth.writeValue(key: dotenv.env['AUTH_KEY']!, value: token);
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class RegisterService {
@@ -10,7 +11,7 @@ class RegisterService {
     required String nickname,
   }) async {
     try{
-      Uri uri = Uri.parse("https://dev.api.sei-imposto.com/taxes/users");
+      Uri uri = Uri.parse("${dotenv.env['URL']}/taxes/users");
 
       Map<String,String> body = {
         "email": email,

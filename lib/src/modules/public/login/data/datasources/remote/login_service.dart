@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class LoginService {
   Future<Map> login(String email, String password) async {
     try{
-      Uri uri = Uri.parse("https://dev.api.sei-imposto.com/taxes/users/makeLogin");
+      Uri uri = Uri.parse("${dotenv.env['URL']}/taxes/users/makeLogin");
 
       final response = await http.post(
           uri,
