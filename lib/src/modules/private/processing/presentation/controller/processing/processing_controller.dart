@@ -9,6 +9,7 @@ abstract class _ProcessingController with Store {
 
   @action
   void addAllProcessing(List<ProcessingEntity> values) {
+    processing.clear();
     processing.addAll(values);
   }
 
