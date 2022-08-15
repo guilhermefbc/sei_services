@@ -23,7 +23,7 @@
   "registerSuccess": "O cadastro foi concluído, agora você pode fazer o login.",
   "goToLogin": "Ir para login",
   "registerWithProblems": "Cadastro com problemas",
-  "registerWithProblemsMessage": "O cadastro não foi finalizado corretamente tente em algun minutos",
+  "registerWithProblemsMessage": "O cadastro não foi finalizado corretamente tente em alguns minutos",
   "forgotPasswordSuccess": "O email de recuperação foi enviado com sucesso, por favor verifique a sua caixa de mensagens",
   "forgotPasswordWithProblems": "Recuperação de senha com problemas",
   "forgotPasswordWithProblemsMessage": "O email de recuperação não foi enviado. Se o email informado está correto e você possui rede, espere alguns instantes e tente novamente.",
