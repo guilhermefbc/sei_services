@@ -59,19 +59,15 @@ class _HomeScreenState extends State<HomeScreen> {
         style: TabStyle.fixedCircle,
         items: const [
           TabItem(icon: Icons.home,),
-          TabItem(icon: Icons.add_chart,),
           TabItem(icon: Icons.camera_alt,),
-          TabItem(icon: Icons.add_shopping_cart,),
           TabItem(icon: Icons.people,),
         ],
         initialActiveIndex: 0,
         onTap: (int index) {
           switch(index) {
             case 0: Modular.to.navigate('/private/transaction/'); break;
-            case 1: break;
-            case 2: Modular.to.navigate('/private/scanner/'); break;
-            case 3: break;
-            case 4: Modular.to.navigate('/private/account/'); break;
+            case 1: Modular.to.navigate('/private/scanner/'); break;
+            case 2: Modular.to.navigate('/private/account/'); break;
           }
         },
       ),

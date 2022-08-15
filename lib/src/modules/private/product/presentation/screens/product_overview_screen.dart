@@ -42,13 +42,13 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                 child: CircularProgressIndicator(),
               );
             }
-            _controller.addAllProducts(
-                _products.getProductsByTransactionId(
-                    widget.transaction.transactionId
-                )
-            );
             return Observer(
               builder: (context) {
+                _controller.addAllProducts(
+                    _products.getProductsByTransactionId(
+                        widget.transaction.transactionId
+                    )
+                );
                 return ListView(
                   padding: const EdgeInsets.only(top: 10, bottom: 35).r,
                   children: _controller.products

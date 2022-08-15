@@ -26,10 +26,10 @@ class _ProcessingListScreenState extends State<ProcessingListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _tController.tabIndex = widget.index;
+    _pController.addAllProcessing(_processing.processing);
     return Observer(
       builder: (context) {
-        _tController.tabIndex = widget.index;
-        _pController.addAllProcessing(_processing.processing);
         List data = _pController.processing;
         if(data.isEmpty) {
           return const Center(child: CircularProgressIndicator(),);

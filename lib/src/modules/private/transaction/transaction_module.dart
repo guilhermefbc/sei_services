@@ -7,7 +7,6 @@ import 'package:sei_services/src/modules/private/transaction/presentation/screen
 class TransactionModule extends Module {
   @override
   List<Bind> get binds => [
-    Bind.singleton((i) => ProcessingController())
   ];
 
   @override
