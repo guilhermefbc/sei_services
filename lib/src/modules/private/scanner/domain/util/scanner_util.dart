@@ -84,6 +84,8 @@ class ScannerUtil {
     return calculatedVerificationDigit == codeVerificationDigit;
   }
 
+  /// Get the result of processing code in backend
+  /// and set a related status to this result
   void _setStatus(int? result) {
     switch(result) {
       case 200:
