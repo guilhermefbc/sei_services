@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sei_services/src/modules/private/account/account_model.dart';
 import 'package:sei_services/src/modules/private/home/presentation/screen/home_screen.dart';
+import 'package:sei_services/src/modules/private/manual/manual_module.dart';
 import 'package:sei_services/src/modules/private/processing/presentation/controller/processing/processing_controller.dart';
 import 'package:sei_services/src/modules/private/scanner/scanner_module.dart';
 import 'package:sei_services/src/modules/private/transaction/presentation/controllers/transaction/transaction_controller.dart';
@@ -31,7 +32,8 @@ class HomeModule extends Module {
     ChildRoute('/', child: (context, args) => const HomeScreen(), children: [
       ModuleRoute('/transaction', module: TransactionModule()),
       ModuleRoute('/account', module: AccountModel()),
-      ModuleRoute('/scanner', module: ScannerModule())
+      ModuleRoute('/scanner', module: ScannerModule()),
+      ModuleRoute('/manual', module: ManualModule()),
       // ModuleRoute('/', module: TransactionModule())
     ]),
   ];

@@ -69,5 +69,6 @@
   "deleteItem": "Deletar item",
   "deleteItemDescription": "Você tem certeza que deseja deletar esse item?",
   "problemsWithLogin": "Problemas com o login",
-  "problemsWithLoginDescription": "Ocorreu algum problema com o login, os problemas mais comuns são: email ou senha incorretos e aparelho desconectado. Se o seu problema não é um desses, espere alguns instantes e tente novamente."
+  "problemsWithLoginDescription": "Ocorreu algum problema com o login, os problemas mais comuns são: email ou senha incorretos e aparelho desconectado. Se o seu problema não é um desses, espere alguns instantes e tente novamente.",
+  "manualPurchases": "Compras manuais"
 }

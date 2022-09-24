@@ -69,6 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
           switch(index) {
             case 0: Modular.to.navigate('/private/transaction/'); break;
             case 2: Modular.to.navigate('/private/scanner/'); break;
+            case 3: Modular.to.navigate('/private/manual/'); break;
             case 4: Modular.to.navigate('/private/account/'); break;
           }
         },
