@@ -57,10 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ScreenDimensionConstant.pixelXLHeight)
     );
 
-    return Scaffold(
-      bottomNavigationBar: Observer(
-          builder: (context) {
-            return ConvexAppBar(
+    return Observer(
+        builder: (context) {
+          return Scaffold(
+            bottomNavigationBar: !_menuController.isActive
+            ? null
+            : ConvexAppBar(
               style: TabStyle.fixedCircle,
               items: [
                 const TabItem(icon: Icons.home,),
@@ -79,10 +81,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   case 4: Modular.to.navigate('/private/account/'); break;
                 }
               },
-            );
-          }
-      ),
-      body: const RouterOutlet(),
+            ),
+            body: const RouterOutlet(),
+          );
+        }
     );
   }
   

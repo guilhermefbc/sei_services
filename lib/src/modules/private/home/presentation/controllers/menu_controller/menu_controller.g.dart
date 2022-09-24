@@ -25,6 +25,22 @@ mixin _$MenuController on _MenuController, Store {
     });
   }
 
+  late final _$isActiveAtom =
+      Atom(name: '_MenuController.isActive', context: context);
+
+  @override
+  bool get isActive {
+    _$isActiveAtom.reportRead();
+    return super.isActive;
+  }
+
+  @override
+  set isActive(bool value) {
+    _$isActiveAtom.reportWrite(value, super.isActive, () {
+      super.isActive = value;
+    });
+  }
+
   late final _$_MenuControllerActionController =
       ActionController(name: '_MenuController', context: context);
 
@@ -40,9 +56,21 @@ mixin _$MenuController on _MenuController, Store {
   }
 
   @override
+  void toggleIsActive() {
+    final _$actionInfo = _$_MenuControllerActionController.startAction(
+        name: '_MenuController.toggleIsActive');
+    try {
+      return super.toggleIsActive();
+    } finally {
+      _$_MenuControllerActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-isManualContext: ${isManualContext}
+isManualContext: ${isManualContext},
+isActive: ${isActive}
     ''';
   }
 }

@@ -70,5 +70,7 @@
   "deleteItemDescription": "Are you sure you want to delete this item?",
   "problemsWithLogin": "Problems with login",
   "problemsWithLoginDescription": "There was a problem with the login, the most common problems are: incorrect email or password and device disconnected. If your problem is not one of these, wait a few moments and try again.",
-  "manualPurchases": "Manual purchases"
+  "manualPurchases": "Manual purchases",
+  "storeName": "Store name",
+  "purchaseAmount": "Purchase Amount"
 }

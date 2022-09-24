@@ -7,7 +7,7 @@ class MonetaryFormatterUtil {
     symbol: 'R\$',
   );
 
-  static String format(double? value) {
+  static String format(num? value) {
     if(value == null) {
       return '--';
     }
