@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:sei_services/src/modules/private/account/account_model.dart';
+import 'package:sei_services/src/modules/private/home/presentation/controllers/menu_controller/menu_controller.dart';
 import 'package:sei_services/src/modules/private/home/presentation/screen/home_screen.dart';
 import 'package:sei_services/src/modules/private/manual/manual_module.dart';
 import 'package:sei_services/src/modules/private/processing/presentation/controller/processing/processing_controller.dart';
@@ -24,7 +25,8 @@ class HomeModule extends Module {
     Bind.singleton((i) => TransactionController()),
     Bind.singleton((i) => ProductsRepository(i())),
     Bind.singleton((i) => FetchTransactionsUsecase(i(),i(),i(),i(),i(),i(),)),
-    Bind.singleton((i) => ProcessingController())
+    Bind.singleton((i) => ProcessingController()),
+    Bind.singleton((i) => MenuController()),
   ];
 
   @override
