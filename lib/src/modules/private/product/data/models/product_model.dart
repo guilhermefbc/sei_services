@@ -46,11 +46,11 @@ class ProductModel extends ProductEntity{
     return ProductModel(
       productId: FromApiTypeUtil.toMyString(map['productId'], defaultValue: '---'),
       transactionId: FromApiTypeUtil.toMyString(map['transactionId'], defaultValue: '---'),
-      description: FromApiTypeUtil.toMyString(map['description'], defaultValue: '---'),
+      description: FromApiTypeUtil.toMyString(map['productName'], defaultValue: '---'),
       eanCode: FromApiTypeUtil.toMyString(map['eanCode'], defaultValue: '---'),
       quantity: FromApiTypeUtil.toDouble(map['quantity'], defaultValue: 0),
       metric: FromApiTypeUtil.toMyString(map['metric'], defaultValue: '---'),
-      price: FromApiTypeUtil.toDouble(map['price'], defaultValue: 0),
+      price: FromApiTypeUtil.toDouble(map['productPrice'], defaultValue: 0),
       productCode: FromApiTypeUtil.toMyString(map['productCode'], defaultValue: '---'),
       genre: FromApiTypeUtil.toMyString(map['genre'], defaultValue: '---'),
       cfop: FromApiTypeUtil.toMyString(map['cfop'], defaultValue: '---'),
